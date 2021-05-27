@@ -1,0 +1,12 @@
+<template name="brand-grid" class="bg-white">
+  <wxs src="../../index.wxs" module="tool" />
+  <wxs src="../../../../utils/ossUrlTest.wxs" module="ossTool" />
+  <view style="background-image:url({{datas.bgImage}})`;backgroundSize:{{data.bgSize}};background-color:{{data.bgColor}}" 
+    class="brand-grid flex-wrap flex-start-center flex-wrap padding-tb-10">
+    <navigator url="tool.myTool(item.link)"  wx:for="{{data.slides}}" class="border-box flex-col-center" wx:key="index" style="width:{{100/data.cols}}vw;height:{{100/data.cols}}vw">
+        <image src="{{ossTool.ossUrlTest(item.src)}}" class="width-100" style="height:{{data.showName?'75':'100'}}%" 
+          mode="aspectFit" lazy-load></image>
+        <view wx:if="{{data.showName}}" style="color:{{data.color}}" class="font-normal">{{item.brand}}</view>
+    </navigator>
+  </view>
+</template>

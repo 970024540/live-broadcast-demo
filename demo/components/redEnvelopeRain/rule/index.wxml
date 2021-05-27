@@ -1,0 +1,19 @@
+<wxs src="../../../utils/ossUrlTest.wxs" module="tool" />
+  <view class="_redEnvelopRaion-Rule flex-col-center">
+    <view class="wrapper">
+      <view class="rule-header color-white flex-col-center">
+        <text class="font-big">活动规则</text>
+        <text class="font-mini">Activities Introduce</text>
+      </view>
+      <swiper wx:if="{{winningNews.length>0}}" class="notice-bar text-center winnerMsg" autoplay circular vertical interval="3000">
+         <swiper-item class="flex-center" wx:for="{{winningNews}}" wx:key="{{index}}">
+           <text style="color:#fff" class="line-ellispsis-1">{{item.username}}抽中了{{item.cpns_id?item.cpns_name:item.name}}</text>
+          </swiper-item>
+      </swiper> 
+      <scroll-view scroll-y scroll-with-animation class="list" >
+        <image mode="widthFix" style="width: 100%" src="{{tool.ossUrlTest(redRuleUrl)}}"></image>
+      </scroll-view>
+    </view>
+    <button class="btn-pink margin-tb-40" bindtap="joinGame">进入游戏</button>
+    <text class="iconfont icon-guanbi color-white icon-close" bindtap="cancelShow"></text>
+  </view>

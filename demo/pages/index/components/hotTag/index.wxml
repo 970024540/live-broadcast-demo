@@ -1,0 +1,5 @@
+<view wx:if="{{tagScrollSite=='1'}}" class="hot-tag" style="background-image: url({{top < 4 ? bg1 : bg2}})">
+  <view class="width-100 top-text text-center font-normal font-bold color-white">{{top < 10 ? '0' + top : top}}</view>
+</view>
+<view wx:if="{{tagScrollSite=='2'}}" style="background-color:{{tagBgColor}}" 
+  class="tag-class font-mini color-white">TOP {{top < 10 ? '0' + top : top}}</view>

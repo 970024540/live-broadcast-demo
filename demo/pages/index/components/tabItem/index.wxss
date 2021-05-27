@@ -1,0 +1,14 @@
+.i-tabs-tab {
+  display: inline-block;
+  white-space: nowrap;
+  padding: 0 30rpx 20rpx 30rpx;
+  color: #636363;
+  font-size: 32rpx;
+  line-height: 40rpx;
+}
+.font-bold {
+  font-weight: bold;
+}
+.text-center{
+  text-align: center;
+}

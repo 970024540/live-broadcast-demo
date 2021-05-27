@@ -1,0 +1,18 @@
+.margin-b-16{
+  margin-bottom:16rpx;
+}
+.tiCla{
+  font-weight:900;
+  font-size:32rpx;
+  margin:24rpx 20rpx;
+}
+.margin-t-36{
+  margin-top: 36rpx;
+}
+.playClass{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity:0.6;
+}

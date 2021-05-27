@@ -1,0 +1,23 @@
+<i-drawer mode="left" visible="{{show}}" bind:close="close">
+  <view class="wrapper">
+    <view class="title">物流信息</view>
+    <view class="logi_name" wx:if="{{!!logi_name}}">
+      <view >物流公司:
+        <view class="line-ellispsis-2 color-light-success">{{logi_name}}</view>
+      </view>
+      <view class="padding-tb-5">物流单号:
+        <view class="line-ellispsis-2 color-light-success">{{logi_no}}</view>
+      </view>
+    </view>
+    <view wx:if="{{data.length}}" class="{{logi_name?'scroll-top':'scroll'}}">
+      <i-steps direction="vertical">
+        <i-step wx:for="{{data}}" wx:key="{{index}}" status="{{ index == 0 ? 'process' : 'finish' }}" icon="{{ index == 0 ? 'play_fill' : 'right' }}">
+          <view slot="title">{{ item.AcceptTime }}</view>
+          <view slot="content">{{ item.Location }}-{{ item.AcceptStation }}</view>
+        </i-step>
+      </i-steps>
+    </view>
+    <view class="empty" wx:else>暂无物流信息</view>
+    <i-button class="button" bindtap="close" long="{{true}}" type="warning">关闭</i-button>
+  </view>
+</i-drawer>

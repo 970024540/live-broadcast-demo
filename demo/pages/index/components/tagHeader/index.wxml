@@ -1,0 +1,9 @@
+<template name="tagheader">
+  <wxs src="../../index.wxs" module="tool" />
+  <view class="padding-t-40 {{'tag' + styles.tagpos}}">
+    <navigator url="{{tool.myTool(styles.moreLink)}}" style="padding: 0 24rpx;color: #333;font-weight: bold;font-style: italic;text-decoration: underline;">
+      VIEW MORE >
+    </navigator>
+    <text style="padding: 20rpx 50rpx;background-color: {{styles.tagbg}};color: #fff;letter-spacing: 1px;font-size: 32rpx;line-height: 1;">{{ styles.tagtext }}</text>
+  </view>
+</template>

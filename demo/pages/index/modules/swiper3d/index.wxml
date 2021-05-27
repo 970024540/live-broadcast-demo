@@ -1,0 +1,13 @@
+<template name="Swiper3dModule">
+  <wxs src="../../index.wxs" module="tool" />
+  <import src="../../components/cover/index.wxml" />
+  <header wx:if="{{data.showDesc}}"  styles="{{data}}"></header>
+  <template wx:if="{{data.showCover}}" is="cover" data="{{data}}"></template>
+  <swiper3d type="{{data.type}}" source="{{data.type == 'goods3d' ? data.data : data.items}}" goodsArea="{{ data.goodsArea }}"></swiper3d>
+  <view wx:if="{{data.goodsArea.more}}" style="padding: 40rpx 0;background: transparent;">
+    <navigator url="{{tool.myTool(data.goodsArea.moreLink)}}" 
+        style="border: {{'1px solid ' + data.goodsArea.moreBorderColor}};color: {{data.goodsArea.moreColor}};display: block;width: 320rpx;margin: 0 auto;padding: 20rpx 0;text-align: center;background-color: {{goodsArea.moreBgColor}};" >
+        查看更多
+      </navigator>
+    </view>
+</template>

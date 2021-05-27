@@ -1,0 +1,45 @@
+<view class="loginModal flex-col-center" wx:if="{{showLoginModal}}" style="background-color:{{showMask?'rgba(0,0,0,0.5)':rgba(0,0,0,0)}};">
+  <view class="bg-white width-80 border-r-10 padding-tb-10 padding-rl-10" >
+    <view class="flex-center border-1px-b">
+      <text class="padding-tb-20 font-1x color-gray">登陆/注册</text>
+    </view>
+      <view class="flex-colo-center  padding-20 login-height"  wx:if="{{false}}">
+          <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class="padding-r-10  bg-success color-white weChart-btn margin-t-20">
+          <text class="iconfont padding-rl-10 icon-weChat font-2x"></text>
+          <text>微信快速登录</text>
+          </button>
+          <button  class=" padding-r-10  margin-t-20 color-dark weChart-btn" bindtap="handleLogin">
+            <i-icon type="mobilephone_fill" size="28" class="padding-rl-10" />
+            <text>手机一键登录</text>
+          </button>
+      </view>
+    <view wx:else>
+      <i-panel>
+          <i-input bind:change="handleChange" data-key="username" value="{{ username }}" type="number" title="手机号" placeholder="请输入手机号" />
+          <view class="flex-start-center" wx:if="{{loginType}}">
+            <i-input class="width-70" bind:change="handleChange" data-key="vcode" value="{{ vcode }}" type="number" title="验证码" placeholder="请输入验证码" />
+            <view class="width-30 font-normal" bindtap="getVcode">
+              {{isVcodeSended?vcode_time + 's':'获取验证码'}}
+            </view>
+          </view>
+          <i-input wx:if="{{!loginType}}" bind:change="handleChange" data-key="password" value="{{ password }}" type="password" title="密码" placeholder="请输入密码" />
+      </i-panel>
+      <view class="flex-space-around padding-tb-30">
+        <view class="flex-item padding-rl-60">
+          <button class="reset-btn padding-tb-20 width-100 bg-gray color-dark" bind:tap="handleCancel">取消</button>
+        </view>
+        <view class="flex-item padding-rl-60">
+          <button class="reset-btn padding-tb-20 width-100 bg-danger" bind:tap="loginClick">确认</button>
+        </view>
+      </view>
+        <view class="flex-end padding-rl-20 padding-b-20">
+         <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class="  bg-success color-white weChart-min-btn">
+          <text class="iconfont padding-rl-10 icon-weChat font-normal"></text>
+          <text>微信登录</text>
+          </button> -->
+      <text bind:tap="changeLoginType" class=" color-danger">{{loginType?'密码登录':'验证码'}}</text>
+    </view>
+    </view>
+  </view>
+  <view wx:if="{{showCloneBtn}}" class="color-white iconfont icon-guanbi margin-tb-20 font-3x delect" bindtap="colseModal"></view>
+</view>

@@ -1,0 +1,3 @@
+<view class="text-center color-gray padding-tb-20 width-100 font-mini">
+  <text>{{slogan}}</text>
+</view>

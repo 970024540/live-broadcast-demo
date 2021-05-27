@@ -1,0 +1,6 @@
+<view class="flex-start-center border-1px-b padding-tb-10">
+  <view class="cell-label padding-l-20" wx:if="{{!!title}}">
+     <text class="color-gray">{{title}}</text>
+   </view>
+  <input class="padding-tb-10 border-r-8 width-100 bg-white padding-rl-20" placeholder="{{placeholder}}" type="{{type}}" value="{{value}}"></input>
+</view>

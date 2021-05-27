@@ -1,0 +1,21 @@
+<template name="VideoModule">
+  <block wx:if="{{data.showHeader}}">
+    <view class="flex-center bg-white padding-tb-10" wx:if="{{data.header.title}}">
+      <text style="color:{{data.header.color}};font-size: {{data.header.fontSize * 2 || 40}}rpx">{{data.header.title}}</text>
+    </view>
+    <view class="link-img" style="height:{{data.header.height*2}}rpx;letter-spacing:12px;" wx:if="{{data.header.coverUrl}}">
+      <image  lazy-load src="{{data.header.coverUrl}}"></image>
+    </view>
+  </block>
+  <swiper class="width-100 margin-b-10" style="height:420rpx;">
+    <swiper-item class="relative" wx:for="{{data.data}}"   wx:key="{{index}}">
+      <view wx:if="{{!data.playInCurrentPage}}"  bindtap="selectVideo" data-obj="{{item}}">
+        <image  lazy-load style="width:750rpx;height:420rpx;" src="{{item.cover_url}}"></image>
+        <icon class="iconfont icon-play flex-center"></icon>
+      </view>
+      <view wx:else>
+        <video wx:if="item.quality" style="width:750rpx;height:420rpx" poster="{{item.cover_url}}" src="{{item.quality[0].url}}" show-fullscreen-btn="{{false}}"></video>
+      </view>
+    </swiper-item>
+  </swiper>
+</template>

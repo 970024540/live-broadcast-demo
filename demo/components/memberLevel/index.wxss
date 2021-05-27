@@ -1,0 +1,7 @@
+.member-level {
+  height: 36rpx;
+  width: 36rpx;
+}
+.color-white {
+  color: #fff;
+}

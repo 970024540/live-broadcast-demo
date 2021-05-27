@@ -1,0 +1,15 @@
+<template name="ImageModule">
+  <import src="../../components/cover/index.wxml" />
+  <template wx:if="{{data.showCover}}" is="cover" data="{{data}}"></template>
+  <header wx:if="{{data.showDesc}}" styles="{{data}}"></header>
+  <view style="padding:{{data.paddingTb*2}}rpx {{data.paddingRl*2}}rpx;background:{{data[data.bgType]}}" class="flex-start bg-white">
+    <view class="flex-item link-img">
+      <image  lazy-load style="height:200rpx" src="{{data.lsrc}}"></image>
+    </view>
+    <view style="width:{{data.space*2}}rpx"></view>
+    <view class="flex-item link-img">
+      <image  lazy-load style="height:200rpx" src="{{data.rsrc}}"></image>
+    </view>
+  </view>
+
+</template>

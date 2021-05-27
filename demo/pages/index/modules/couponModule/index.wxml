@@ -1,0 +1,20 @@
+<template name="CouponModule">
+  <import src="../../components/cover/index.wxml" />
+    <wxs src="../../index.wxs" module="tool" />
+   <view>
+    <header wx:if="{{data.showDesc}}" styles="{{data}}"></header>
+    <template wx:if="{{data.showCover}}" is="cover" data="{{data}}"></template>
+    <view wx:if="{{!!data}}" class="flex-start-center flex-wrap" style="padding: {{data.paddingTb*2}}rpx {{data.paddingRl*2}}rpx;">
+      <view  wx:for="{{data.data}}" wx:key="index" wx:for-index="index" class="flex-start-center flex-wrap flex-shrink-0"  style="width: {{100*item.span/24}}%">
+        <block wx:if="{{item.children.length}}">
+          <view bindtap="getRandomTicket"  data-index="{{index}}" data-indexs="{{index1}}" data-data="{{data}}" wx:for="{{item.children}}" wx:key="index1" wx:for-index="index1"   wx:for-item="item1" class="flex-shrink-0" style="width: {{100*item1.span/24}}%;line-height: 0" >
+            <image  lazy-load src="{{item1.src}}" class="width-100"  mode="widthFix" ></image>
+          </view>
+        </block>
+        <block wx:if="{{!item.children.length}}">
+          <image  lazy-load bindtap="randomTicket" data-fn="{{item.fn}}" src="{{item.src}}" class="width-100"  mode="widthFix" ></image>
+        </block>
+      </view>
+    </view>
+  </view>
+</template>

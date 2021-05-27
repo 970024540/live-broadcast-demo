@@ -1,0 +1,3 @@
+<template name="VstorecardModule">
+<view>微店名</view>
+</template>

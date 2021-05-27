@@ -1,0 +1,37 @@
+.flex-center{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.x-timer-item{
+  width: 56rpx;
+  line-height: 42rpx;
+  text-align: center;
+  color: #fff;
+  border-radius: 4rpx;
+  font-size: 28rpx;
+}
+.color-white{
+  color: #fff;
+}
+.color-dark{
+  color: #5f646e;
+  font-size: 28rpx;
+  padding-left: 4rpx;
+  padding-right: 4rpx;
+}
+.bg-gray{
+  background-color: #5f646e;
+}
+.bg-white{
+  background-color: white
+}
+.padding-rl-8{
+  padding-right: 8rpx;
+  padding-left: 8rpx;
+}
+.padding-tb-20{
+  padding-top:20rpx;
+  padding-bottom: 20rpx;
+}

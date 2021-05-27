@@ -1,0 +1,41 @@
+<view class="observer-goods-hot">
+	<wxs src="../../index.wxs" module="tool" />
+	<import src="../hotList/index.wxml" />
+  <import src="../hotCell/index.wxml" />
+  <import src="../hotScroller/index.wxml" />
+  <template name="hot3D">
+    <hot3dCom source="{{data.data}}" goodsArea="{{colors}}" showSell="{{showSell}}" tagScrollSite="{{tagScrollSite}}" 
+      showName="{{showName}}" tagBgColor="{{tagBgColor}}" sale="{{sale}}"></hot3dCom>
+  </template>
+  <template name="hotSwiper">
+    <hotSwiper source="{{data.data}}" goodsArea="{{colors}}" sale="{{sale}}" other="{{other}}"></hotSwiper>
+  </template>
+  <import src="../hotSwiper/index.wxml" />
+  <import src="../../modules/countdownModule/index.wxml"/>
+  <tab current="{{ suffix }}" scroll="{{tabData.length>2}}" wx:if="{{data.length == 0 || tabData.length>1}}" bgcolor="{{ other.bgColor }}" bindchange="handleSwitch">
+    <tab-item wx:for="{{tabData}}" wx:key="index"
+      title="{{item.title}}" 
+      key="{{index}}"
+      scroll="{{false}}"
+      length="{{tabData.length}}"
+      lineColor="{{other.lineColor}}" 
+      activeColor="{{other.activeColor}}" 
+      defaultColor="{{other.defaultColor}}"></tab-item>
+  </tab>
+  <view style="background:{{ goodsArea[goodsArea.bgType] }};overflow: hidden;">
+    <navigator wx:if="{{data[suffix].config.showCover == true && data[suffix].config.cover.coverUrl}}" url="{{tool.myTool(data[suffix].config.cover.link)}}" class="link-img">
+      <image mode="widthFix" lazy-load src="{{data[suffix].config.cover.coverUrl}}"></image>
+    </navigator>
+    <view wx:if="{{(!data[suffix].data || data[suffix].data.length == 0)&&!data[suffix].hideLoading}}" class="flex-center color-gray" style="padding: 200rpx 0">
+      <i-spin size="large"></i-spin>
+    </view>
+    <template wx:elif="{{other.type}}" is="{{other.type}}" 
+      data="{{data: data[suffix], columns: other.columns || 2,colors: goodsArea, other: other}}" />
+    <view wx:if="{{goodsArea.more}}" style="padding: 40rpx 0;background: transparent;">
+      <navigator url="{{tool.myTool(goodsArea.moreLink)}}" 
+        style="border: {{'1px solid ' + goodsArea.moreBorderColor}};color: {{goodsArea.moreColor}};display: block;width: 320rpx;margin: 0 auto;padding: 20rpx 0;text-align: center;background-color: {{goodsArea.moreBgColor}};">
+        查看更多
+      </navigator>
+    </view>
+  </view>
+</view>

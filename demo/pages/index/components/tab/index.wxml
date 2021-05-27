@@ -1,0 +1,6 @@
+<scroll-view wx:if="{{scrollType=='1'}}" scroll-x class="i-tabs" style="background-color: {{ bgcolor }};background-image:url({{bgImage}});background-size: cover;">
+  <slot></slot>
+</scroll-view>
+<view wx:if="{{scrollType=='2'}}" class="i-tabs-scroll" style="background-color: {{ bgcolor }};background-image:url({{bgImage}});background-size: cover;">
+  <slot></slot>
+</view>

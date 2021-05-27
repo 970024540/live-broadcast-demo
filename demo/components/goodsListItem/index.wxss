@@ -1,0 +1,71 @@
+.goods-item-1 {
+  width: 100vw;
+  padding: 0 24rpx;
+}
+.goods-item-1 .goods-item-img {
+  width: calc(100vw - 48rpx);
+  height: calc(100vw - 48rpx);
+}
+.goods-item-2 {
+  width: 50vw;
+}
+.goods-item-2 .goods-item-img {
+  width: 340rpx;
+  height: 340rpx;
+}
+.goods-item-3 {
+  width: 100vw;
+}
+.goods-item-3 .goods-item-img {
+  width: 20vw;
+  height: 20vw;
+  flex-shrink: 0;
+}
+.relative {
+  position: relative;
+}
+.maskitem{
+  position:absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color:rgba(0,0,0,0.3);
+  width:100%;
+}
+.maskitem-dark{
+  background-color: rgba(255, 255, 255, .5);
+}
+.maskitem-red{
+  background-color: rgba(221, 36, 83, .7);
+}
+
+.maskitem-criter{
+  width: 110rpx;
+	height: 110rpx;
+  line-height: 110rpx;
+	background-color: rgba(221, 36, 83, .7);
+  border-radius: 50%
+}
+.transition {
+  transition: all .3s;
+}
+.tag {
+  padding: 2rpx 12rpx;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 24rpx;
+  color: #fff;
+  background-color: rgba(208, 42, 79, 0.7);
+}
+.tag_group{
+  width:74rpx;
+  height: 36rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-image: url('http://zone-yingerfashion.oss-cn-shenzhen.aliyuncs.com/storage/images/system-image/e2c881f61324ad3a7728efd1d1a4774a.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

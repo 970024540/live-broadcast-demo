@@ -1,0 +1,3 @@
+<view catchtouchmove="handlerTouchMove" class="dragMove bg-danger" style="top:{{y}}px;left:{{x}}px">
+  <slot name="content"></slot>
+</view>

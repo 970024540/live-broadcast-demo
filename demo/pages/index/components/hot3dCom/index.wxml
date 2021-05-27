@@ -1,0 +1,50 @@
+<wxs src="../../../../utils/ossUrlTest.wxs" module="ossTool" />
+<view class="width-100" style="background: {{ goodsArea[goodsArea.bgType] }}">
+  <wxs src="../../index.wxs" module="tool" />
+  <swiper
+    style="height: {{swiperHeight}}rpx"
+    current="{{currentBannerIndex}}"
+    autoplay="{{false}}"
+    circular="{{false}}"
+    interval="3000"
+    duration="500"
+    previous-margin="175rpx"
+    next-margin="175rpx"
+    bindchange="bannerChange">
+    <swiper-item wx:for="{{source}}" wx:key="index">
+        <view style="height: {{swiperHeight}}rpx" class="animation-scale-up padding-t-10 banner-card {{currentBannerIndex == index ? 'banner-card-perspective-active' : 'banner-card-perspective'}}">
+          <view
+            style="transform: translate3d({{(currentBannerIndex - index) * 10}}rpx, 0, -100rpx) rotateX(0deg) rotateY({{currentBannerIndex > index ? (30) : (currentBannerIndex < index ? -30 : 0)}}deg);"
+            class="font-size-0 banner-item {{index == currentBannerIndex ? '' : 'banner-item-side'}}"
+            bindtap="clickGoodsItem" data-index="{{index}}" data-soid="热销榜单" data-goodsid="{{item.goods_id}}"
+          >
+            <view class="relative">
+              <image style="height: {{swiperHeight - 230}}rpx" lazy-load class="banner-goods-cover" 
+                src="{{ossTool.ossUrlTest(item.image_url, 200)}}" mode="aspectFill" />
+              <hotTag top="{{index + 1}}" tagScrollSite="{{other.tagScrollSite}}" tagBgColor="{{other.tagBgColor}}" />
+            </view>
+            <view class="flex-item padding-rl-10 relative" style="background-color: {{goodsArea.listItemColor}}">
+              <view class="padding-t-20 font-normal font-bold">
+                <text style="color: {{goodsArea.brandColor}}" class="margin-r-10 line-ellispsis-1 font-bold font-normal">{{item.brand_keywords}} {{ item.brand}}</text>
+              </view>
+              <view wx:if="{{other.showSell}}" class="padding-tb-10">
+                <text style="color: {{goodsArea.saleNumColor}}" class="margin-r-10 font-mini">销量: {{ item.sell_num }}</text>
+                <text style="color: {{goodsArea.browseNumColor}}" class="font-mini">浏览量: {{ item.browse_num }}</text>
+              </view>
+              <view wx:if="{{other.showName}}" class="line-ellispsis-1 font-normal" style="color: {{goodsArea.nameColor}}">
+                {{ item.name }}
+              </view>
+              <view class="padding-tb-10">
+                <text class="font-normal font-bold" style="color: {{goodsArea.priceColor}}">￥{{ item.price }}</text>
+                <text wx:if="{{other.sale}}" class="padding-l-10 line-through font-small" style="color: {{goodsArea.saleColor}}">￥{{ item.mktprice }}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </swiper-item>
+  </swiper>
+  <view class="bannerDots flex-center padding-tb-30">
+    <view class="dot {{currentBannerIndex==index?'dotActive':''}}" wx:for="{{source}}" wx:key="index"></view>
+  </view>
+</view>
+<image wx:if="{{temp_url}}" style="display: none;" src="{{ossTool.ossUrlTest(temp_url)}}" bindload="onImageLoad" binderror="onImageLoad"></image>

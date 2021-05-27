@@ -1,0 +1,22 @@
+.header {
+    padding: 15px 12px;
+    background: #fff;
+}
+.color-tmp {
+    color: #dd2642;
+}
+.space {
+    letter-spacing: 1px;
+}
+.icon {
+    position: absolute;
+    right: 0;
+}
+.color-tmp {
+    color: #dd2642;
+}
+.abr-20{
+    position: absolute;
+    right: 20rpx;
+    bottom:5rpx
+}

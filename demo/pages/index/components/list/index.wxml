@@ -1,0 +1,41 @@
+<wxs src="../../../../utils/ossUrlTest.wxs" module="ossTool" />
+<wxs src="../../index.wxs" module="tool" />
+<template name="list">
+  <view bindtap="clickGoodsItem" wx:for="{{data.data}}" class="animation-scale-up margin-20 flex-start bg-white" wx:key="index" data-index="{{index}}" data-soid="浏览" data-goodsid="{{item.goods_id}}">
+    <view class="link-img" style="width:240rpx">
+      <image mode="aspectFit" style="width:240rpx;height:240rpx" lazy-load src="{{ossTool.ossUrlTest(item.thumbnail_pic?item.thumbnail_pic:item.image_default[0], 200)}}" ></image>
+      <!-- <text wx:if="{{ ossTool.isFlashSaleGoods(item) }}" class="tag">一口价</text> -->
+      <text wx:if="{{ item.tag_name && item.tag_name.length }}" class="tag">{{ item.tag_name[0] }}</text>
+    </view>
+    <view class="flex-item padding-10 relative">
+      <text class="font-small" wx:if="{{store}}" style="display: inline-block;position: absolute;top: 10rpx;right: 0;padding: 10rpx 20px;color: #fff;background: linear-gradient(to right, #ef6283, #a02cb1);">仅剩{{ item.store }}件</text>
+      <view class="padding-t-20 font-normal line-ellispsis-1 font-bold" 
+        style="color: {{colors.brandColor}}">{{item.brand_alias}} {{ item.brand[0]}}</view>
+      <view wx:if="{{showName}}" class="margin-tb-10 line-ellispsis-2 font-normal" 
+        style="color: {{colors.nameColor}}">{{ item.name }}</view>
+      <view>
+      <view class="flex-space-between">
+        <view wx:if="{{ ossTool.isGroupGoods(item) && item.scheme_price }}">
+          <text class="font-small color-white bg-danger padding-tb-6 padding-rl-10 border-r-10">团</text>
+          <text class="font-big font-bold padding-rl-6" style="color: {{colors.priceColor}}">￥{{ ossTool.toFixed(item.scheme_price, 2) }}</text>
+        </view>
+        <view wx:elif="{{ item.is_bargain&&item.is_bargain!='0' }}">
+          <text class="font-small color-white bg-danger padding-tb-6 padding-rl-10 border-r-10">砍</text>
+          <text class="font-big font-bold padding-rl-6" style="color: {{colors.priceColor}}">￥{{ item.bargain_mini_price }}</text>
+        </view>
+        <view>
+          <text wx:if="{{!ossTool.isGroupGoods(item)}}" class="font-normal font-bold" style="color: {{colors.priceColor}}">￥{{ item.price }}</text>
+        <text wx:if="{{sale}}" class="padding-l-10 line-through font-small" style="color: {{colors.saleColor}}">￥{{ item.mktprice }}</text>
+        </view>
+      </view>
+        
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{data.config.moreItemBtn}}" style="padding: 40rpx 0;background: transparent;">
+    <navigator url="{{tool.myTool(data.config.moreItemLink)}}" class="text-center padding-tb-20"
+      style="border: {{'1px solid ' + colors.moreBorderColor}};color: {{colors.moreColor}};display: block;width: 320rpx;margin: 0 auto;background-color: {{colors.moreBgColor}};">
+      查看更多
+    </navigator>
+  </view>
+</template>

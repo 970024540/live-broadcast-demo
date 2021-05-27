@@ -1,0 +1,54 @@
+<wxs src="../../../../utils/ossUrlTest.wxs" module="ossTool" />
+<view class="width-100" style="background: {{ goodsArea[goodsArea.bgType] }}">
+  <wxs src="../../index.wxs" module="tool" />
+  <swiper
+    style="height: {{swiperHeight}}rpx"
+    current="{{currentBannerIndex}}"
+    autoplay="{{false}}"
+    circular="{{false}}"
+    interval="3000"
+    duration="500"
+    previous-margin="175rpx"
+    next-margin="175rpx"
+    bindchange="bannerChange">
+    <block wx:if="{{type == 'goods3d'}}">
+      <swiper-item wx:for="{{source}}" wx:key="index">
+        <view style="height: {{swiperHeight}}rpx" class="animation-scale-up banner-card {{currentBannerIndex == index ? 'banner-card-perspective-active' : 'banner-card-perspective'}}">
+          <view
+            style="transform: translate3d({{(currentBannerIndex - index) * 10}}rpx, 0, -100rpx) rotateX(0deg) rotateY({{currentBannerIndex > index ? (30) : (currentBannerIndex < index ? -30 : 0)}}deg);"
+            class="banner-item {{index == currentBannerIndex ? '' : 'banner-item-side'}}"
+            bindtap="clickGoodsItem" data-index="{{index}}" data-soid="种草清单" data-goodsid="{{item.goods_id}}"
+          >
+            <image lazy-load class="banner-goods-cover" src="{{ossTool.ossUrlTest(item.thumbnail_pic?item.thumbnail_pic:item.image_default[0], 200)}}" mode="widthFix" />
+            <view class="padding-rl-10 ">
+              <view class="font-small padding-tb-10" style="color: {{ goodsArea.brandColor }}">{{item.brand[0]|| item.brand_alias}}</view>
+              <view class="font-mini line-ellispsis-1" style="color: {{ goodsArea.nameColor }}">{{item.name}}</view>
+              <view class="padding-t-20 flex-start-center">
+                    <text class="font-normal font-bold" style="color: {{ goodsArea.priceColor }}">¥{{item.price}}</text>
+                    
+                    <text class="font-small padding-l-5  line-through" wx:if="{{item.showSale}}"  style="color:{{goodsArea.saleColor}}">¥{{item.mktprice}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </swiper-item>
+    </block>
+    <block wx:elif="{{type == 'image3d'}}">
+      <swiper-item wx:for="{{source}}" wx:key="index">
+        <view style="height: {{swiperHeight}}rpx" class="animation-scale-up banner-goods-cover {{currentBannerIndex == index ? 'banner-card-perspective-active' : 'banner-card-perspective'}}">
+          <navigator
+            style="transform: translate3d({{(currentBannerIndex - index) * 10}}rpx, 0, -100rpx) rotateX(0deg) rotateY({{currentBannerIndex > index ? (30) : (currentBannerIndex < index ? -30 : 0)}}deg);"
+            class="banner-item {{index == currentBannerIndex ? '' : 'banner-item-side'}}"
+            url="{{tool.myTool(item.link)}}"
+          >
+            <image lazy-load class="banner-goods-cover border-r-10" src="{{item.src}}" mode="widthFix" />
+          </navigator>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="bannerDots flex-center padding-tb-30">
+    <view class="dot {{currentBannerIndex==index?'dotActive':''}}" wx:for="{{source}}" wx:key="index"></view>
+  </view>
+</view>
+<image wx:if="{{temp_url}}" style="display: none;" src="{{ossTool.ossUrlTest(temp_url)}}" bindload="onImageLoad" binderror="onImageLoad"></image>

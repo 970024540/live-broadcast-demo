@@ -1,0 +1,73 @@
+.action-index {
+  z-index: 999;
+}
+.address-icon {
+  font-size: 80rpx;
+  color: #ddd;
+  padding: 32rpx 0;
+}
+.group {
+  padding: 0 10rpx;
+  font-size: 30rpx;
+  color: #fff;
+  background-color: #333;
+}
+.addr-list {
+  max-height: 800rpx;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.guanbiClass{
+  position: absolute;
+  left: 2rpx;
+  top: 2rpx;
+}
+.btnClose{
+  border-radius: 6rpx;
+  padding: 6rpx 16rpx;
+  color: #A4A4A4;
+}
+.pay-tool-inputs{
+  height: 90rpx;
+  border: 2rpx solid #b9b9b9;
+  border-radius: 6rpx;
+  box-shadow: 0 0 2rpx #e6e6e6;
+  display: flex;
+}
+.input-item {
+  flex:1;
+  height: 88rpx;
+  border-right: 2rpx solid #b9b9b9;
+  line-height: 88rpx;
+  text-align: center;
+}
+.input-item:last-child {
+  border-right: none;
+}
+.icon_dot {
+  display: inline-block;
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  background-color: black;
+  background-size: cover;
+}
+.link{
+  color: #3c8cfb;
+}
+.keyboard-item{
+  width: 32.5%;
+  height: 96rpx;
+  line-height: 96rpx;
+  color: black;
+  margin: 6rpx 0;
+}
+.keyboardBox{
+  background-color: #e3e3e3;
+}
+.keyboard-item:nth-child(10), .keyboard-item:nth-child(12), .keyboard-item:active {
+  background-color: #C8C9CD;
+}
+.keyboard-item:nth-child(12):active {
+  background-color: #fff;
+}

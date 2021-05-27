@@ -1,0 +1,50 @@
+
+.wrapper {
+  position: relative;
+  width: 70vw;
+  height: 100vh;
+  background: #fff;
+}
+.title {
+  text-align: center;
+  padding: 20rpx;
+  font-size: 24rpx;
+}
+.scroll {
+  position: absolute;
+  top: 100rpx;
+  bottom: 128rpx;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.scroll-top{
+  position: absolute;
+  top: 250rpx;
+  bottom: 128rpx;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.empty {
+  width: 100%;
+  position: absolute;
+  top: 100rpx;
+  bottom: 128rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+.logi_name{
+  font-size:28rpx;
+  padding:0 25rpx;
+}
+.padding-tb-10{
+  padding:10rpx 0
+}
+.color-light-success{
+  color:#28C76F;
+}

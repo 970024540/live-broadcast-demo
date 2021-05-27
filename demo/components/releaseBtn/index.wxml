@@ -1,0 +1,4 @@
+<view bindtap='buyerClick' style="bottom:{{bottom}}rpx;background-image: url('http://mall.yingerfashion.com/yinger-m/img/newUI/sexy.jpg');background-position:center;background-size:cover;" class="fixed-rb padding-rl-40 color-white bg-red line-height-80 margin-rb-28">
+  <text class="font-normal color-white"> </text>
+  <text class="iconfont padding-rl-20 font-1x icon-bianji" />
+</view>

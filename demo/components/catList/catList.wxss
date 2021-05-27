@@ -1,0 +1,18 @@
+.width-col-3 {
+  width: 33.33%;
+}
+.color-dark-gray {
+  color: #666666;
+}
+.padding-tb-35 {
+  padding-top: 35rpx;
+  padding-bottom: 35rpx;
+}
+.cat-image {
+  width: 120rpx;
+  height: 120rpx;
+}
+.brand-image {
+  width: 160rpx;
+  height: 120rpx;
+}

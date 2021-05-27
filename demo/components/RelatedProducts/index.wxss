@@ -1,0 +1,34 @@
+.img-144{
+  width: 144rpx;
+  height:144rpx;
+}
+.border-1px-red{
+  border: 1rpx solid #dd2453; 
+}
+.padding-18{
+  padding: 18rpx 20rpx 18rpx 18rpx;
+}
+.width-350{
+  width: 350rpx;
+}
+.width-480{
+  width:480rpx;
+}
+.bg-gray{
+  background-color: #F5F6F7;
+}
+.color-warning{
+  color:#fb7150;
+}
+.color-white{
+  color:#fff;
+}
+.tag {
+  padding: 2rpx 12rpx;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 24rpx;
+  color: #fff;
+  background-color: rgba(208, 42, 79, 0.7);
+}

@@ -1,0 +1,98 @@
+{
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": true,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.12.2",
+  "appid": "wxb8fa18d9cbae3072",
+  "projectname": "storelive",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
+      "list": []
+    },
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "currentL": -1,
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": 0,
+          "name": "pages/goodsDetailView/index",
+          "pathName": "pages/goodsDetailView/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 1,
+          "name": "直播列表",
+          "pathName": "packageActive/livePlay/index",
+          "query": "room_id=142&mid=",
+          "scene": null
+        },
+        {
+          "id": 2,
+          "name": "pages/brandView/index",
+          "pathName": "pages/brandView/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 3,
+          "name": "packageGoods/goodsDetailView/index",
+          "pathName": "packageGoods/goodsDetailView/index",
+          "query": "goods_id=159764&soid=&scene_id=&scene_type=ec_recommend&scene_relation=oneself",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

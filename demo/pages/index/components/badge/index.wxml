@@ -1,0 +1,4 @@
+<template name="badge">
+<wxs src="../../index.wxs" module="tool" />
+<view style="color:{{data.badge.color}};background-color:{{data.badge.bgColor}};opacity:{{data.badge.opacity/100}}" class="badge-module font-normal {{tool.badgePosition(data.badge.position)}}">{{data.badge.title}}</view>
+</template>

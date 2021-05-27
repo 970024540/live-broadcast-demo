@@ -1,0 +1,15 @@
+<view class="card {{ card.status == 0 ? 'hover' : '' }}" bindtap="showDetail">
+  <icon class="iconfont icon-yiguoqi posit" wx:if="{{ card.status == 0 }}"></icon>
+  <view class="note">￥{{ card.cardInfo.action_solution.total_amount }}</view>
+  <view class="text">
+    <view class="space-between">
+      <text class="decorate">{{cart_title}}</text>
+      <view style="line-height: 56rpx;">
+        <text style="padding-right: 6rpx;">详细</text>
+        <icon class="iconfont icon-xiangqing"></icon>
+      </view>
+    </view>
+    <view style="padding: 10rpx 0;">{{ card.cardInfo.cpns_name }}</view>
+    <view>有效期: {{ s_time }} - {{ e_time }}</view>
+  </view>
+</view>

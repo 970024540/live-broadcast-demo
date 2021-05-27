@@ -1,0 +1,54 @@
+<wxs src="../../utils/ossUrlTest.wxs" module="tool" />
+<view
+  bindtap='jumpGoodsDetail'
+  class="goods-item-{{listStyle}} {{listStyle == 3 ? 'flex-start-center padding-rl-20 relative' : ''}} {{listStyle == 2 ? (Index%2== 0 ? 'padding-l-24' : 'padding-r-24') : '' }} transition color-dark font-mini relative margin-b-40"
+  >
+  <view class="{{listStyle == 3 ? 'margin-r-20' : 'relative'}} flex-center font-size-0 transition">
+    <view class="flex-center relative">
+      <image lazy-load mode="aspectFit" class="transition goods-item-img" src="{{tool.ossUrlTest(goodsData.image_default[0], listStyle == 1 ? 0 : 200)}}"></image>
+      <text wx:if="{{tool.isGroupGoods(goodsData)}}" class="tag_group"></text> <!-- 团购标识 -->
+      <!-- <text wx:elif="{{tool.isFlashSaleGoods(goodsData)}}" class="tag">一口价</text> -->
+      <text wx:elif="{{ goodsData.tag_name && goodsData.tag_name.length }}" class="tag">{{ goodsData.tag_name[0] }}</text>
+    </view>
+    <view class="maskitem flex-center" wx:if="{{showResemble || saleout}}" catchtap="handleOpenAnalogy">
+      <view wx:if="{{showResemble}}" class="maskitem-criter text-center color-white font-bold font-sm" bindtap="selectResembleGoods" data-index="{{Index}}" data-item="{{goodsData}}">找相似</view>
+      <view wx:else class="padding-tb-10 padding-rl-20 margin-l-10 maskitem-red">
+        <view class="padding-tb-10 padding-rl-20 margin-r-10 maskitem-dark">已售馨</view>
+        <view class="padding-tb-10 padding-rl-20 margin-l-10 maskitem-red">我想要</view>
+      </view>
+    </view>
+  </view>
+  <view class="flex-col-start transition">
+    <view class="font-mini {{listStyle == 3 ? '' : 'padding-t-30'}} flex-space-between width-100">
+      <view class="flex-start-center">{{goodsData.brand[0]}} <text class="iconfont icon-htmal5icon29 font-mini color-gray padding-l-10"></text> <text class="font-mini color-gray">{{goodsData.buy_count}}</text> </view>
+      <view wx:if="{{goodsData.is_presell == 'true'}}" class="color-red">#预售</view>
+    </view>
+    <view class="flex-start color-gray padding-r-10 align-end">
+      <view class="flex-col-start flex-item font-mini">
+        <view class="margin-tb-10 line-ellispsis-2">{{goodsData.name}}</view>
+        <!-- <view wx:if="{{ tool.isGroupGoods(goodsData) && goodsData.scheme_price }}" class="font-medium font-bold color-dark">
+          <text class="font-small color-white bg-danger padding-tb-4 padding-rl-10 border-r-10">团</text>
+          <text class="font-normal padding-rl-6 color-danger">￥{{tool.toFixed(goodsData.price - goodsData.scheme_price, 2)}}</text>
+        </view>
+        <view wx:elif="{{ goodsData.is_bargain&&goodsData.is_bargain!='0' }}" class="font-medium font-bold color-dark">
+              <text class="font-small color-white bg-danger padding-tb-4 padding-rl-10 border-r-10">砍</text>
+          <text class="font-normal padding-rl-6 color-danger">￥{{goodsData.bargain_mini_price}}</text>
+        </view>-->
+        <view class="flex-space-between width-100">
+          <view class="flex-start-center">
+          <view wx:if="{{tool.isGroupGoods(goodsData)}}" class="font-medium font-bold color-dark">
+              <text class="font-small">￥</text>{{goodsData.scheme_price}}</view>
+            <view wx:else class="font-medium font-bold color-dark">
+              <text class="font-small">￥</text>{{tool.isGroupGoods(goodsData) && goodsData.scheme_price ? tool.toFixed(goodsData.price - goodsData.scheme_price, 2) : goodsData.price}}</view>
+            <view class="font-small padding-l-2 text-decoration">￥{{goodsData.mktprice}}</view>
+          </view>
+          <view wx:if="{{showResembleDot}}" class="iconfont icon-gengduo padding-r-10" catchtap="handleOpenAnalogy"></view>
+        </view>
+      </view>
+      <view catchtap="addFav" class="flex-col-center">
+        <view class="iconfont {{is_fav ? 'icon-aixin color-red' : 'icon-guanzhu2 color-gray'}} font-normal"></view>
+        <view class="font-small color-gray">{{fav_count||0}}</view>
+      </view>
+    </view>
+  </view>
+</view>

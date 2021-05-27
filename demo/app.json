@@ -1,0 +1,36 @@
+{
+  "pages": [
+    "pages/brandView/index",
+    "pages/newCart/index"
+  ],
+  "subpackages": [
+    {
+      "root": "packageGoods",
+      "name": "packageGoods",
+      "pages": [
+        "goodsDetailView/index",
+        "goodsListView/index"
+      ]
+    },
+    {
+      "root": "packageActive",
+      "name": "packageActive",
+      "pages": [
+        "livePlay/index"
+      ]
+    }
+  ],
+  "plugins": {
+    "live-player-plugin": {
+      "version": "1.2.2",
+      "provider": "wx2b03c6e691cd7370"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#464c5b",
+    "navigationBarTitleText": "影儿松江开元店",
+    "navigationBarTextStyle": "white"
+  },
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,5 @@
+.brand-logo{
+  opacity: 0.8;
+  margin-top:60rpx;
+  margin-bottom: 40rpx;
+}

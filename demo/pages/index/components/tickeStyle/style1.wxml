@@ -1,0 +1,19 @@
+<template name="Style1">
+ <view style="background:{{data.goodsArea[data.goodsArea.bgType] }};padding:{{data.goodsArea.paddingTb}}rpx {{data.goodsArea.paddingRl}}rpx;" class="width-100">
+      <view wx:if="{{data.tickets.length}}">
+        <i-row class="width-100">
+        <i-col span="{{data.childConfig.flex}}" class="bg-white" style="padding:{{data.childConfig.paddingTb}}rpx;" wx:for="{{data.tickets}}" wx:key="{{index}}">
+          <view bindtap="get_ticket" data-index="{{index}}" data-tabIndex="{{data._tabIndex}}" data-componentindex="{{data._componentsIndex}}" class="flex-col-center relative" >
+            <image lazy-load src="http://mall.yingerfashion.com/yinger-m/img/ticket/header1.png" mode="widthFix" style="width:180rpx"></image>
+             <span class="text-center width-100 font-mini">{{ item.brands || '全场通用' }}</span>
+             <text class="iconfont icon-yilingqu1" wx:if="{{item.isActive}}"  style="color:{{data.goodsArea.nameColor}}" style="font-size:60px;position:absolute;top:5px;left:5px;"></text>
+          </view>
+          <view style="color:{{data.goodsArea.priceColor}}" class="padding-t-20 text-center">
+                  ￥<span class="font-5x">{{ item.total_amount }}</span>
+              </view>
+              <view class="font-mini text-center color-gray padding-t-10" style="color:{{data.goodsArea.subtitleColor}}">{{ item.total_amount }}优惠券</view>
+        </i-col>
+      </i-row>
+      </view>
+    </view>
+</template>

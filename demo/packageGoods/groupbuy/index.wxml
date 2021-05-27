@@ -1,0 +1,124 @@
+<wxs module="filters" src="../../utils/filter.wxs"></wxs>
+<view class="flex-start align-items-stretch theme">
+  <view class="flex-item padding-tb-10 padding-rl-20 left color-white">
+    <view class="font-normal">
+      ￥{{ schemes[scheme_id].scheme_price }}
+      <text class="padding-l-20">{{ schemes[scheme_id].number }}人团</text>
+    </view>
+    <text class="decorate font-mini">单买价: ￥{{ price }}</text>
+    <text class="decorate font-mini margin-l-20">已售{{ totalBuy }}件</text>
+  </view>
+  <view class="padding-rl-20 text-center">
+    <text class="color-red" style="font-size: 20rpx;">{{isgroupStart?'距拼团开始还剩:':'距拼购结束还剩'}} \n</text>
+    <v-time desc="{{ (isgroupStart?schemes[scheme_id].from_time:schemes[scheme_id].to_time) * 1000 }}"></v-time>
+  </view>
+</view>
+<view wx:if="{{ !isShare && joinlist.length }}" class="padding-rl-20 margin-t-20 bg-white">
+  <view class="flex-space-between">
+    <view class="padding-tb-20 font-normal">{{ total }} 人已参团,点击可直接参与</view>
+    <view class="padding-tb-20 font-normal"  wx:if="{{joinlist.length>2}}" bindtap="lookGroupMore">查看更多</view>
+  </view>
+  <view style="height: {{ joinlist.length >= 2 ? '280rpx' : '' }};overflow: hidden;">
+    <view class="margin-b-20 flex-start-center" 
+      wx:for="{{ joinlist }}" wx:key="join_list_id" 
+      hidden="{{ !(index == suffix || index == suffix + 1) }}">
+
+      <image src="{{ item.avatar || default_img}}" style="width: 120rpx;height: 120rpx;border-radius: 50%;" />
+      <view class="flex-item padding-l-20 line-ellispsis-1 font-normal">{{ item.nickname || '暂无昵称' }}</view>
+      <view class="flex-col-center padding-rl-20">
+        <view class="font-mini">还差<text class="color-light-danger">{{ item.lack_number }}人</text>成团</view>
+        <view class="font-mini">剩余<v-time desc="{{ item.to_time * 1000 }}"></v-time></view>
+      </view>
+      <text class="spell" data-index="{{ index }}" bindtap="selectGroup">{{ member_id == item.originator_member_id ? '邀请好友' : '立即参团' }}</text>
+
+    </view>
+  </view>
+</view>
+<view class="margin-t-20 bg-white" style="overflow: hidden;">
+  <view wx:if="{{ isShare }}" class="padding-tb-40 padding-rl-20 flex-space-between">
+    <text class="font-normal font-bold" style="color: #2b2b2b;">注意</text>
+    <text class="font-mini" style="color: #666;">您当前可以参与编号为{{ join_list_id }}的拼单</text>
+  </view>
+  <view wx:if="{{ isShare }}" class="padding-tb-40 padding-rl-20 flex-space-between">
+    <text class="font-normal font-bold" style="color: #2b2b2b;">提示</text>
+    <text class="font-mini color-danger">{{ filters.lackNum(joinlist, join_list_id) == 0 ? '当前团已满' : '当前还差' + filters.lackNum(joinlist, join_list_id) + '人成团' }}</text>
+  </view>
+  <view wx:if="{{ isFull }}" class="padding-tb-40 padding-rl-20 flex-space-between">
+    <text class="font-normal font-bold" style="color: #2b2b2b;">注意</text>
+    <text class="font-mini" style="color: #666;">当前团已满,您可参与其他团或重新开团</text>
+  </view>
+  <view class="padding-tb-40 padding-rl-20 flex-space-between">
+    <text class="font-normal font-bold" style="color: #2b2b2b;">拼团须知</text>
+    <text class="font-mini" style="color: #666;">人满发货-人不满/逾期自动退款</text>
+  </view>
+  <view class="padding-20 font-normal font-bold" style="color: #2b2b2b;">拼团流程</view>
+  <view class="flex-start-center" style="padding-bottom: 80rpx;color: #2b2b2b;">
+    <view class="flex-item flex-col-center font-minium">
+      <text>支付</text>
+      <text>开团/参团</text>
+    </view>
+    <i class="iconfont icon-you font-1x" style="color: #fd4646;"></i>
+    <view class="flex-item flex-col-center font-minium">
+      <text>邀请</text>
+      <text>好友参团</text>
+    </view>
+    <i class="iconfont icon-you font-1x" style="color: #fd4646;"></i>
+    <view class="flex-item flex-col-center font-minium">
+      <text>达到人数</text>
+      <text>拼团成功</text>
+    </view>
+    <i class="iconfont icon-you font-1x" style="color: #fd4646;"></i>
+    <view class="flex-item flex-col-center font-minium">
+      <text>人不满</text>
+      <text>自动退款</text>
+    </view>
+  </view>
+</view>
+<i-modal title="参与{{ activity.nickname }}的拼单" 
+  data-name="show" 
+  visible="{{ show }}" 
+  ok-text="参与拼单" 
+  bind:ok="confirm" bind:cancel="cancel"
+>
+  <view class="padding-tb-10 font-normal">
+    仅剩<text class="color-light-danger">{{ activity.lack_number }}</text>名额, 
+    <v-time desc="{{activity.to_time * 1000}}"></v-time>后结束
+  </view>
+</i-modal>
+<i-action-sheet title="请选择成团规模" 
+  data-name="show1" 
+  visible="{{ show1 }}" 
+  actions="{{ menus }}" 
+  show-cancel 
+  bind:click="initiate" 
+  bind:cancel="cancel"
+>
+</i-action-sheet>
+<x-modal wx:if="{{show2}}" bind:onClose="lookGroupMore">
+  <view slot="modalContent" class="flex-col-start align-items-stretch">
+    <view class="padding-tb-20 text-center font-normal border-1px-b">正在参与拼单</view>
+    <view class="wrapper" style="height: 600rpx">
+      <view class="margin-t-20 flex-start-center margin-rl-10 border-1px-b padding-b-10" wx:for="{{ joinlist }}" wx:key="join_list_id">
+        <image src="{{ item.avatar || default_img }}" style="width: 80rpx;height: 80rpx;border-radius: 50%;" />
+        <view class="flex-item padding-l-20 line-ellispsis-1 font-normal">
+          {{ item.nickname || '暂无昵称' }}
+        </view>
+        <view class="flex-col-center padding-rl-20">
+          <view class="font-mini">
+            还差
+            <text class="color-light-danger">{{ item.lack_number }}人</text>
+            成团
+          </view>
+          <view class="font-mini">
+            剩余
+            <v-time desc="{{ item.to_time * 1000 }}"></v-time>
+          </view>
+        </view>
+        <view class="spell font-mini" data-index="{{ index }}" bindtap="selectGroup">
+          {{ member_id == item.originator_member_id ? '邀请好友' : '立即参团' }}
+        </view>
+      </view>
+      <text class="flex-center padding-tb-10" wx:if="{{joinlist.length == 20}}">仅显示20位团长</text>
+    </view>
+  </view>
+</x-modal>

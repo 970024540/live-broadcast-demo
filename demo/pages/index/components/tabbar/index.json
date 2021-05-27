@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "tab": "../tab/index",
+    "tab-item": "../tabItem/index",
+    "x-timer": "../../../../components/xTimer/index",
+    "i-spin": "../../../../dist/spin/index",
+    "tabbarMiddle":"../tabbarMiddle/index"
+  }
+}

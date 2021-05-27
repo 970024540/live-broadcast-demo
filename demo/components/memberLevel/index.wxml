@@ -1,0 +1,1 @@
+<view class="member-level iconfont {{lvl.icon}} color-white" style="background-color:{{color?color:lvl.color}}"></view>

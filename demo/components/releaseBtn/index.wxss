@@ -1,0 +1,14 @@
+.fixed-rb{
+  position: fixed;
+  right: 0;
+  bottom: 90rpx;
+}
+.line-height-80{
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+}
+.margin-rb-28{
+  margin-right: 28rpx;
+  margin-bottom: 28rpx;
+}

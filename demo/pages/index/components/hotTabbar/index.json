@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "tab": "../tab/index",
+    "tab-item": "../tabItem/index",
+    "i-spin": "../../../../dist/spin/index",
+    "hot3dCom": "../hot3dCom/index",
+    "hotSwiper":"../hotSwiper/index",
+    "hotTag": "../hotTag/index"
+  }
+}

@@ -1,0 +1,20 @@
+<template name="GridModule">
+  <import src="../../components/cover/index.wxml" />
+  <wxs src="../../index.wxs" module="tool" />
+  <view class="bg-white">
+    <header wx:if="{{data.showDesc}}" styles="{{data}}"></header>
+    <template wx:if="{{data.showCover}}" is="cover" data="{{data}}"></template>
+    <view wx:if="{{!!data}}" class="flex-start-center flex-wrap" style="padding: {{data.paddingTb*2}}rpx {{data.paddingRl*2}}rpx;background:{{ data.goodsArea[data.goodsArea.bgType]}}">
+      <view  wx:for="{{data.data}}" wx:key="index" class="flex-start-center flex-wrap flex-shrink-0"  style="width: {{100*item.span/24}}%">
+        <block wx:if="{{item.children.length}}">
+          <view wx:for="{{item.children}}" wx:key="index1" wx:for-item="item1" 
+          style="width: {{100*item1.span/24}}%;padding: {{data.childProperty.paddingTb * 2}}rpx {{data.childProperty.paddingRl* 2}}rpx;color: {{data.childProperty.color}}"  
+          class="font-size-0 border-box" bindtap="jumpTo" data-url="{{tool.myTool(item1.link)}}" data-apid="{{item1.apid}}">
+            <image  lazy-load src="{{item1.src}}" style="height:{{item1.height}}px" class="width-100"  mode="widthFix" ></image>
+            <view class="text-center font-normal color-dark" wx-if="{{data.showGridTitle&&item1.title}}">{{item1.title}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+</template>

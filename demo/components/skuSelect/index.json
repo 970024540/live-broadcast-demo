@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-action-sheet": "../../dist/action-sheet/index",
+    "i-input-number": "../../dist/input-number/index",
+    "i-icon": "../../dist/icon/index"
+  }
+}

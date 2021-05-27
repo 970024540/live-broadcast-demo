@@ -1,0 +1,55 @@
+<wxs src="../../utils/ossUrlTest.wxs" module="tool" />
+<view class="flex-start align-items-stretch theme">
+  <view class="flex-item padding-tb-10 padding-rl-20 left color-white">
+    <view class="font-normal">
+      ￥{{datas.scheme_price}}
+      <text class="padding-l-20">{{datas.number }}人团</text>
+    </view>
+    <text class="decorate font-mini">单买价: ￥{{datas.price}}</text>
+    <text class="decorate font-mini margin-l-20">已售{{datas.selled || 0}}件</text> 
+  </view>
+  <view class="padding-rl-20 text-center">
+    <text class="color-red" style="font-size: 20rpx;">{{ state[datas.type]}}\n</text>
+    <v-time bind:onTimeEnd = 'time_end' desc="{{ datas[timeType[datas.type]] * 1000 }}"></v-time>
+  </view>
+</view>
+<view class="padding-rl-20 margin-t-40 bg-white">
+    <view class="margin-b-20  flex-start-center">
+      <image mode="widthFix" src="{{tool.ossUrlTest(datas.brand_logo) }}" style="width: 150rpx;height: 120rpx" />
+      <view class="flex-item padding-l-20 line-ellispsis-1 font-normal">{{ datas.title || '暂无昵称' }}</view>
+      <view class="flex-col-center padding-rl-20">
+        <view class="font-mini">还差<text class="color-light-danger">{{datas.need}}件</text>拼成</view>
+      </view>
+      <button class="spell" size="mini" open-type="share" bindtap="selectGroup">立即分享</button>
+
+    </view>
+
+</view>
+<view class="margin-t-20 bg-white" style="overflow: hidden;">
+  <view class="padding-tb-40 padding-rl-20 flex-space-between">
+    <text class="font-normal font-bold" style="color: #2b2b2b;">拼团须知</text>
+    <text class="font-mini" style="color: #666;">人满发货-人不满/逾期自动退款</text>
+  </view>
+  <view class="padding-20 font-normal font-bold" style="color: #2b2b2b;">拼团流程</view>
+  <view class="flex-start-center" style="padding-bottom: 80rpx;color: #2b2b2b;">
+    <view class="flex-item flex-col-center font-minium">
+      <text>支付</text>
+      <text>开团/参团</text>
+    </view>
+    <i class="iconfont icon-you font-1x" style="color: #fd4646;"></i>
+    <view class="flex-item flex-col-center font-minium">
+      <text>邀请</text>
+      <text>好友参团</text>
+    </view>
+    <i class="iconfont icon-you font-1x" style="color: #fd4646;"></i>
+    <view class="flex-item flex-col-center font-minium">
+      <text>达到人数</text>
+      <text>拼团成功</text>
+    </view>
+    <i class="iconfont icon-you font-1x" style="color: #fd4646;"></i>
+    <view class="flex-item flex-col-center font-minium">
+      <text>人不满</text>
+      <text>自动退款</text>
+    </view>
+  </view>
+</view>

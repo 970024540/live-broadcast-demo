@@ -1,0 +1,30 @@
+<view class="border-box bg-white width-100">
+	<x-search></x-search>
+</view>
+<view class="flex-item bg-white sticky">
+	<x-tab tabs="{{tabs}}" currentTab="{{currentTab}}" bindtabChange="tabChange" trigger="always">
+		<view slot="item_0" class="iconfont icon-down font-small padding-l-2"></view>
+		<view slot="item_2" class="flex-col-center padding-l-2" style="height: 86rpx;">
+			<view style="height: 20%;" class="{{currentTab.index == 2 && priceAsc ? 'color-danger' : 'color-gray'}} iconfont icon-shang1 font-small"></view>
+			<view style="height: 90%;" class="{{currentTab.index == 2 && !priceAsc ? 'color-danger' : 'color-gray'}} iconfont icon-xia1 font-small"></view>
+		</view>
+		<view slot="right" bindtap="changeListStyle" class="flex-center padding-rl-20">
+			<view wx:if="{{listStyle == 1}}" class="iconfont color-gray icon-liebiaofenlei"></view>
+			<view wx:if="{{listStyle == 2}}" class="iconfont color-gray icon-liebiao"></view>
+			<view wx:if="{{listStyle == 3}}" class="iconfont color-gray icon-liebiao1"></view>
+		</view>
+	</x-tab>
+</view>
+<view class="flex-start flex-wrap padding-tb-24">
+	<goods-list-item wx:for="{{goods_list}}" wx:key="index" goodsData="{{item}}" Index="{{index}}" listStyle="{{listStyle}}" sourceId="{{soid}}" />
+	<i-load-more class="width-100" loading="{{!loadAll}}" tip="{{loadAll == true ? (goods_list.length == 0 ? '暂无数据' : '数据已全部加载') : '正在加载'}}" />
+</view>
+
+<i-drawer visible="{{currentTab.index == 3}}" mode="right" mask="{{true}}" bindclose="hideDrawer">
+	<view class="drawer bg-white">
+		<filter-popup facet_counts="{{facet_counts}}" fq="{{fq}}" bindfilterChange="filterChange" bindfilterDone="hideDrawer"></filter-popup>
+	</view>
+</i-drawer>
+<loginModal showMask="{{true}}" bind:onOk="handleOk" showLoginModal="{{showLoginModal}}"></loginModal>
+<!-- 我要礼物 -->
+<to-gift-home showGift="{{showGift}}" bind:onLogin="showLogin"></to-gift-home>

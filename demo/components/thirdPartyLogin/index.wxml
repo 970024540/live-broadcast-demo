@@ -1,0 +1,6 @@
+<view>
+  <button open-type="getPhoneNumber"  bindgetphonenumber="getPhoneNumber" class="flex-center backNone">
+    <view class="font-normal button-{{datas.buttonShape}} button-type-{{datas.buttonType}}" 
+      style="width:{{datas.btnWidth}}%;background:{{datas.btnGradient}}">{{datas.buttonText}}</view>
+  </button>
+</view>

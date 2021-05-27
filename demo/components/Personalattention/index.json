@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "doyenUse": "/components/doyenUse/index",
+    "userPageHeader": "/components/userPageHeader/index",
+    "i-icon": "../../dist/icon/index"
+  }
+}

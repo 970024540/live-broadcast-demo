@@ -1,0 +1,20 @@
+.hot-tag {
+  position: absolute;
+  left: 12rpx;
+  top: 0;
+  width: 54rpx;
+  height: 84rpx;
+  background-position: center;
+  background-size: cover;
+}
+.top-text {
+  position: absolute;
+  top: 28rpx;
+}
+.tag-class{
+  padding: 0rpx 20rpx;
+  position: absolute;
+  top: 50%;
+  left: -48rpx;
+  transform:translateY(-50%) rotate(90deg);
+}

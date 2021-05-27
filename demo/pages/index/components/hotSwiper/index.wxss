@@ -1,0 +1,20 @@
+.tag-class{
+  padding: 4rpx 30rpx;
+  border-top-left-radius: 40rpx;
+  border-bottom-left-radius: 40rpx;
+  background-color: black;
+}
+
+.dot {
+  width: 12rpx;
+  height: 12rpx;
+  margin: 0 6rpx;
+  border-radius: 6rpx;
+  background-color: #ddd;
+  transition: all .3s ease;
+}
+
+.dotActive {
+  width: 30rpx;
+  background-color: #7090e8;
+}

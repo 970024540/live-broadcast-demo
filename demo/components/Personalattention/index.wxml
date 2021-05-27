@@ -1,0 +1,16 @@
+<view class="bg-white margin-b-16">
+  <view wx:if="{{datas.uuid && false}}" class="padding-rl-24 padding-tb-30">
+    <userPageHeader showBtn="{{false}}" datas="{{datas}}" imgUrl="{{type}}" width="72rpx"></userPageHeader>
+  </view>
+  <view bindtap="comItemClick">
+    <view class="link-img border-box  relative">
+      <image mode='widthFix' style="max-height:440rpx;" src="{{datas.height?datas.cover_url:img_404}}"></image>
+      <i-icon wx:if="{{datas.is_video_cover_url=='true'}}" class="playClass" size='70' type="playon_fill" />
+    </view>
+    <block wx:if="{{title != '资讯'}}">
+      <view class="font-mini tiCla line-ellispsis-1 padding-rl-20">{{datas.title}}</view>
+      <view class="font-mini color-gray padding-rl-20 margin-b-36 line-ellispsis-2" wx:if="{{datas.description}}">{{datas.description}}</view>
+    </block>
+  </view>
+  <doyenUse datas="{{datas}}" showTitle="{{title != '资讯'}}" member_id="{{member_id}}"></doyenUse>
+</view>

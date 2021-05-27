@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-icon": "../../dist/icon/index",
+    "i-spin": "../../dist/spin/index",
+    "i-load-more": "../../dist/load-more/index",
+    "search-bar": "../searchBar/index"
+  }
+}

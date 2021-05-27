@@ -1,0 +1,22 @@
+<template name="grid-3-1">
+  <wxs src="../../index.wxs" module="tool" />
+  <view class="promotionModule flex-start  align-items-stretch bg-white padding-tb-10">
+    <!-- 提供三宫格/四宫格 -->
+    <view class="grid-cell flex-col flex-center" style="width:{{item.span/24*100}}%" class="padding-{{index%2?'l':'r'}}-5" data-i="{{item.span}}" wx:for="{{ data.data}}" wx:key="index" wx:for-index="index" wx:for-item="item">
+      <view wx:if="{{!item.children.length}}">
+        <text class="color-danger font-normal font-bold flex-center margin-b-10">{{data.title}}</text>
+         <x-timer type="{{data.countDownTheme}}" class="margin-tb-20" fromTime="{{data.timeCountConfig.fromTime}}" endTime="{{data.timeCountConfig.endTime}}"></x-timer>
+        <navigator url="{{tool.myTool(item.link)}}" class="link-img margin-t-10">
+          <image mode="aspectFit" lazy-load src="{{item.src}}" style="height:200rpx"></image>
+        </navigator>
+      </view>
+      <view wx:else>
+        <view class="grid-cell grid-cell-child width-100" wx:for="{{item.children}}" wx:key="index1" wx:for-index="index1" wx:for-item="item1" style="padding-top:{{data.paddingTb*2}}rpx">
+          <navigator url="{{tool.myTool(item1.link)}}" class="link-img">
+            <image src="{{item1.src}}" style="height:160rpx" lazy-load></image>
+          </navigator>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,22 @@
+/* packageGoods/goodsListView/filterPopup/index.wxss */
+.list-item {
+  display: inline-block;
+  padding: 10rpx 16rpx;
+  margin: 0 10rpx 19rpx 0;
+}
+.list-item-active {
+  background-color: #333;
+  color: #fff;
+}
+.price-input {
+    width: 140rpx;
+    background-color: #efeff4;
+    border: none;
+    padding: 10rpx;
+    height: 1.4em;
+    min-height: 1.4em;
+}
+
+.price-input:focus {
+    outline: none;
+}

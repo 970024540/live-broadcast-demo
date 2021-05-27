@@ -1,0 +1,26 @@
+<template name="ConfessionModule">
+  <import src="../../components/cover/index.wxml" />
+  <import src="../../components/tickdefault/index.wxml" />
+  <wxs src="../../index.wxs" module="tool" />
+  <header wx:if="{{data.showDesc}}" styles="{{data}}"></header>
+  <template wx:if="{{data.showCover}}" is="cover" data="{{data}}"></template>
+  <view style="background:{{data.goodsArea[data.goodsArea.bgType] }}" class="width-100">
+    <i-row class="width-100">
+      <view class="bg-white" wx:for="{{data.tickets}}" wx:key="{{index}}">
+        <view 
+          bindtap="get_confession" 
+          style='padding:{{data.goodsArea.paddingTb*2}}rpx {{data.goodsArea.paddingRl*2}}rpx;' 
+          data-item="{{item}}" 
+          class="flex-center relative">
+          <image  lazy-load src="{{item.src}}" class="width-100" mode="widthFix"></image>
+          <text 
+            class="iconfont icon-yilingqu1" 
+            wx:if="{{item.isActive}}" 
+            style="color:{{data.goodsArea.nameColor}}" 
+            style="font-size:60px;position:absolute;top:5px;left:5px;">
+          </text>
+        </view>
+      </view>
+    </i-row>
+  </view>
+</template>

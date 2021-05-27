@@ -1,0 +1,14 @@
+<template name="Style2">
+  <view>
+    <view style="background:{{data.goodsArea[data.goodsArea.bgType]}};padding: {{data.goodsArea.paddingTb*2}}rpx {{data.goodsArea.paddingRl*2}}rpx;" class="flex-start-center flex-wrap">
+    <view wx:for="{{data.tickets}}" wx:key="{{index}}" class="flex-start-center flex-wrap flex-shrink-0"  style="width: {{100*data.childConfig.flex/24}}%;padding: {{data.childConfig.paddingTb*2}}rpx {{data.childConfig.paddingRl*2}}rpx;">
+       <block>
+        <view bindtap="get_ticket" data-index="{{index}}" data-tabIndex="{{data._tabIndex}}" data-componentindex="{{data._componentsIndex}}" class="relative flex-center" style="width: 100%;line-height: 0">
+          <image  lazy-load src="{{item.src}}" class="width-100"  mode="widthFix" ></image>
+          <text class="iconfont icon-yilingqu1" wx:if="{{item.isActive}}"  style="color:{{data.goodsArea.nameColor}}" style="font-size:40px;position:absolute;top:5px;left:5px;"></text>
+        </view>
+       </block>
+    </view>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,13 @@
+{
+  "component": true,
+  "usingComponents": {
+    "startup": "../startup/index",
+    "rule": "../rule/index",
+    "record": "../record/index",
+    "game": "../game/index",
+    "play": "../play/index",
+    "showResult": "../showResult/index",
+    "redRainAddr": "../redRainAddr/index",
+    "loginModal": "../../loginModal/index"
+  }
+}

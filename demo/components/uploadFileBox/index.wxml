@@ -1,0 +1,35 @@
+<scroll-view scroll-x class="width-100 border-1px-b" style="display: flex;white-space: nowrap;">
+     <view class="padding-tb-40">
+      <view wx:for="{{tempFilePaths}}" wx:key="{{index}}" class="relative inline-block margin-l-20 box-150 vertical-align-top">
+        <image 
+          bindtap="imgYu" 
+          data-list="{{tempFilePaths}}" 
+          mode='aspectFit' 
+          wx:key="index" 
+          data-src="{{item}}"
+          class="width-100 height-100"
+          src="{{item}}">
+        </image>
+        <view class="bg-red color-white abso" data-i="{{item}}" bindtap="guanbiBind">
+          <view class="iconfont icon-guanbi"></view>
+        </view>
+      </view>
+      <video
+        wx:if="{{videoSrc}}" 
+        class="vertical-align-top margin-l-20 box-150" 
+        src="{{videoSrc}}">
+      </video>
+      <view class="margin-l-20 box-150 bg-gray inline-block" bindtap="imgBind">
+        <view class="text-center margin-t-20 margin-b-10">
+          <icon class="iconfont icon-camera1 font-2x"></icon>
+        </view>
+        <view class="color-gray font-normal text-center">添加图片</view>
+      </view>
+      <!-- <view class="box-150 bg-gray margin-l-20 inline-block" bindtap='videoBind'>
+        <view class="text-center margin-t-20 margin-b-10">
+          <icon class="iconfont icon-play font-2x"></icon>
+        </view>
+        <view class="color-gray font-normal text-center">添加视频</view>
+      </view> -->
+     </view>
+  </scroll-view>

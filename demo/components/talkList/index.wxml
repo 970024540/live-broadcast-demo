@@ -1,0 +1,13 @@
+<view class="talklist padding-rl-10 flex-item">
+  <view class="item margin-t-20 flex-start-center {{item.sendUserId == localUserId ? 'right' : ''}}"wx:for="{{currentChatList}}" wx:key="{{index}}">
+    <view class="link-img avatar">
+      <image src="{{item.avatar}}"></image>
+    </view>
+    <view class="talk-text-box {{item.sendUserId == localUserId ? 'bg-success color-white' : 'bg-gray'}}">
+      <pre wx:if="{{item.type == 0}}" class="talk-text padding-rl-5">{{ item.content }}</pre>
+      <image wx:elif="{{item.type == 1}}" class="talk-photo" src="{{item.content}}"></image>
+      <image wx:elif="{{item.type == 2}}" class="talk-video" src="{{item.content}}"></image>
+      <view wx:elif="{{item.type == 3}}" class="talk-goods">{{item.content}}</view>
+    </view>
+  </view>
+</view>

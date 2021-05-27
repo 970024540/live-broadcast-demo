@@ -1,0 +1,23 @@
+<view class="padding-tb-10 border-1px-t">
+  <!-- <view class="width-20 font-normal color-gray margin-l-20" bindtap='binLove'>
+    <text class="iconfont icon-aixin {{datas.isLiked ? 'color-red' : 'color-gray'}} "></text>
+    {{datas.liked}}
+  </view> -->
+  <!-- <view class="width-50 padding-rl-10 line-ellispsis-1">
+    <text wx:if="{{showTitle}}" class="font-normal">{{datas.title}}</text>
+  </view> -->
+  <view class="flex-end">
+   <view class="font-normal color-gray margin-r-20">
+      <text class="iconfont icon-appear color-gray"></text>
+      {{datas.browse}}
+    </view>
+       <!-- <button open-type="share" data-item="{{datas}}" class="share-button padding-rl-20 share color-gray  iconfont icon-zhuanfa2"></button> -->
+    <!-- <view class="font-normal color-gray margin-r-20" bindtap='binComments'>
+      <text class="iconfont icon-pinglun1 color-gray"></text>
+      {{datas.comment}}
+    </view> -->
+    <!-- <view class="padding-rl-20" bindtap='forward'>
+      <text class="iconfont icon-zhuanfa-mian color-gray"></text>
+    </view> -->
+  </view>
+</view>

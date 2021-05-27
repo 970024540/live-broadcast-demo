@@ -1,0 +1,35 @@
+<i-action-sheet visible="{{ showPopup }}" bind:cancel="hidePopup" class="action-index" i-class="action-index">
+  <view slot="header" class="bg-white">
+    <view class="flex-center font-normal margin-b-20" style="padding: 24rpx 32rpx;color: #333;">
+      <text class="font-bold font-big">{{title}}</text>
+      <icon class="iconfont guanbiClass icon-guanbi padding-rl-20 padding-tb-10" bindtap="hidePopup"></icon>
+    </view>
+    <view class="flex-col-center">
+      <view wx:if="{{type=='point'}}" class="width-80 padding-b-20 color-gray text-left font-mini">
+        已发送至尾号{{account}}的手机
+      </view>
+      <view wx:if="{{type=='pass'}}" class="pay-tool-inputs width-80">
+        <view class="input-item" wx:for="{{items}}" wx:key="index">
+          <text class="icon_dot" wx:if="{{password[index]}}"></text>
+        </view>
+      </view>
+      <view wx:if="{{type=='point'}}" class="pay-tool-inputs width-80">
+        <view class="input-item flex-col-center" wx:for="{{items}}" wx:key="index">
+          <text class="font-3x color-dark">{{password[index]}}</text>
+        </view>
+      </view>
+      <view class="flex-end margin-t-20 width-80">
+        <text wx:if="{{isLink}}" bindtap="linkSetting" class="link padding-r-20">支付密码设置</text>
+        <text wx:if="{{type=='point'&&smsTimer}}" class="btnClose font-mini" style="border: 2rpx solid #F0F0F0;">{{smsTimer}}秒后重发</text>
+        <text bindtap="get_vcode" wx:if="{{type=='point'&&!smsTimer}}" class="btnClose font-mini" style="border: 2rpx solid #3F3F3F;color:#7A7A7A;">重新发送</text>
+      </view>
+    </view>
+    
+    <view class="flex-space-around flex-wrap padding-t-20 margin-t-20 keyboardBox">
+      <view bindtap="keyUpHandle" data-item="{{item}}" class="keyboard-item bg-white font-bold font-1x" wx:for="{{keys}}" wx:key="index">{{item}}</view>
+      <view class="keyboard-item font-bold font-big" bindtap="delHandle">
+        <icon class="iconfont icon-fanhui" style="padding-bottom: 12rpx;"></icon>
+      </view>
+    </view>
+  </view>
+</i-action-sheet>

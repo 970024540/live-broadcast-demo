@@ -1,0 +1,5 @@
+<!--pages/index/components/hotArea/index.wxml-->
+<wxs src="../../../../utils/ossUrlTest.wxs" module="ossTool" />
+<view class="flex-center">
+  <image id="{{datas.apid}}" bindtap="handleTap1"  src="{{ossTool.ossUrlTest(datas.image)}}" style="width:{{display_width}}rpx;height:{{display_height}}rpx"></image>
+</view>

@@ -1,0 +1,4 @@
+<template name="CountdownModule">
+  <x-timer type="{{data.theme}}" class="margin-tb-20 bg-white" fromTime="{{data.from_time}}" toTime="{{data.to_time}}" 
+    preStartLabel="{{data.preStartLabel}}" moduleType="1" endLabel="{{data.endLabel}}" StartingLabel="{{data.StartingLabel}}"></x-timer>
+</template>

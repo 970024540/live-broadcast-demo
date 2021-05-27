@@ -1,0 +1,19 @@
+{
+  "name": "minipg",
+  "version": "1.0.0",
+  "description": "minipg",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/ence_co_ltd/mini_program.git"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "js-base64": "^2.5.1",
+    "md5": "^2.2.1"
+  }
+}

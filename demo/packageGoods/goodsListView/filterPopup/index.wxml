@@ -1,0 +1,59 @@
+<view class="flex-col-start height-100 width-100 bg-white padding-t-20 align-items-stretch">
+    <view class="padding-rl-24 flex-item content ovflow bg-white font-sm">
+      <view wx:for="{{fields}}" wx:for-index="key" wx:key="key">
+        <view bindtap="toggleList" data-key="{{key}}" class="fade flex-space-between padding-tb-20 border-1px-b font-sm font-bold">
+          <view>
+            {{item.label}}
+            <text wx:if="{{selectedItems[key]}}" class="padding-rl-10 color-gray font-mini fade">已选 {{selectedItems[key]['label']}}</text>
+          </view>
+          <view>
+            <view class="iconfont color-gray icon-xia1" wx:if="{{item.show}}"></view>
+            <view class="iconfont color-gray icon-shang1" wx:else></view>
+          </view>
+        </view>
+        <view hidden="{{!item.show}}" class="padding-tb-20 fade">
+          <view wx:if="{{key == 'price'}}" class="width-100">
+            <view class="font-sm color-gray padding-b-10">价格区间</view>
+            <view class="flex-start-center color-gray">
+                <input class="price-input font-sm input" type="number" data-index="1" bindinput="inputChange" value="{{price1}}" />
+                <view class="padding-rl-10">-</view>
+                <input class="price-input font-sm" type="number" data-index="2" bindinput="inputChange" value="{{price2}}" />
+                <view bindtap="priceInputQuery" class="text-center padding-rl-10 padding-tb-10 margin-l-10 font-mini border-1px">查询</view>
+                <view bindtap="clearPriceInput" wx:if="{{price1 || price2}}" class="text-center padding-rl-10 padding-tb-10 margin-l-10 font-mini border-1px">清除</view>
+            </view>
+            <view class="padding-tb-20">
+              <view
+                wx:for="{{item.list}}"
+                wx:for-item="item1"
+                wx:for-index="key1"
+                data-key="{{key}}"
+                data-key1="{{key1}}"
+                bindtap="clickItem"
+                wx:key="key1"
+                class="{{item1.selected ? 'list-item-active' : ''}} font-sm list-item border-1px text-center"
+              >
+                <view>{{item1.label}}</view>
+                <view class="font-small">{{item1.subLabel}}</view>
+              </view>
+            </view>
+          </view>
+          <view wx:else class="padding-tb-20">
+            <view
+              wx:for="{{item.list}}"
+              wx:for-item="item1"
+              wx:for-index="key1"
+              data-key="{{key}}"
+              data-key1="{{key1}}"
+              bindtap="clickItem"
+              wx:key="key1"
+              class="{{item1.selected ? 'list-item-active' : ''}} list-item padding-10 border-1px"
+            >{{item1.label}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="flex-start text-center font-normal font-bold border-1px-t">
+      <view bindtap="filterDone" data-state="{{false}}" class="flex-item padding-tb-20 bg-white">重置</view>
+      <view bindtap="filterDone" data-state="{{true}}" class="flex-item padding-tb-20 color-white bg-danger">确定<text wx:if="{{false}}">({{minCount}} 个结果)</text></view>
+    </view>
+  </view>

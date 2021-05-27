@@ -1,0 +1,68 @@
+var ossUrlTest = function (url, imageSize) {
+  var reg = getRegExp('aliyuncs\.com', 'ig');
+  var reg2 = getRegExp('^\/storage');
+  var reg3 = getRegExp('public\/');
+  var reg4 = getRegExp('^http');
+  var _url = 'https://zone.yingerfashion.com/images/defaultImages/404@320_320.jpg';
+  if (reg.test(url) || reg4.test(url)) {
+    //阿里云图片
+    _url = url.replace('http:', 'https:');
+    if (imageSize && url.indexOf('?x-oss-process') == -1) _url = _url + '?x-oss-process=image/resize,m_mfit,h_' + imageSize +',w_' + imageSize;
+  } else if (reg2.test(url)) {
+    //商派图片
+    _url = 'https://zone.yingerfashion.com' + url;
+  } else if (reg3.test(url)) {
+    var reg5 = getRegExp('/^\/public\//');
+    if (reg5.test(url)) {
+      _url = 'https://mall.yingerfashion.com' + url;
+    } else {
+      _url = 'https://mall.yingerfashion.com/' + url;
+    }
+  }
+  return _url;
+}
+var isGroupGoods = function(goods) {
+  // 小程序不支持解构复制
+  var now = getDate().getTime();
+  var past = getDate('2019/01/01 00:00:00').getTime() / 1000;
+  var future = getDate(now + 86400000).getTime() / 1000;
+  var is_groupbuy = goods.is_groupbuy || 0;
+  var groupbuy_from_time = goods.groupbuy_from_time == undefined ? past : goods.groupbuy_from_time;
+  var groupbuy_to_time = goods.groupbuy_to_time == undefined ? future : goods.groupbuy_to_time;
+  // return is_groupbuy == 1 && now > groupbuy_from_time * 1000 && now < groupbuy_to_time * 1000;
+  return is_groupbuy == 1 && (groupbuy_to_time == 0 ? true : now < groupbuy_to_time * 1000);
+}
+var isFlashSaleGoods = function (goods) {
+  var now = getDate().getTime();
+  return goods.to_time * 1000 > now;
+}
+var isListGroup = function (list) {
+  var result = false;
+  for (var i = 0; i < list.length; ++i) {
+    if (isGroupGoods(list[i])) {
+      result = true;
+      break;
+    }
+  }
+  return result;
+};
+var toFixed = function(value, num) {
+  return value.toFixed(num)
+}
+var formatDuration = function(duration) {
+  var h = Math.floor(duration / 3600);
+  var m = Math.floor((duration % 3600) / 60);
+  var s = Math.floor(duration % 60);
+  h = h > 9 ? h : '0' + h;
+  m = m > 9 ? m : '0' + m;
+  s = s > 9 ? s : '0' + s;
+  return (h > 0 ? h + ':' : '') + m + ':' + s;
+}
+module.exports = {
+  toFixed: toFixed,
+  ossUrlTest: ossUrlTest,
+  isGroupGoods: isGroupGoods,
+  isListGroup: isListGroup,
+  isFlashSaleGoods: isFlashSaleGoods,
+  formatDuration: formatDuration,
+}

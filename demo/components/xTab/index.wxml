@@ -1,0 +1,17 @@
+<view style="height: {{height}};line-height: {{height}}" class="tab border-box flex-space-around bg-white font-medium relative border-1px-b">
+  <view bindtap="changeTab" data-index="{{index}}" wx:for="{{mTabs}}" style="{{flat ? 'width: ' + 100/mTabs.length +'%' : 'padding: 0 40rpx'}}" class="flex-center text-center tab-item height-100 border-box {{index == activeTab.index ? 'tab-active' : ''}}" wx:key="index">
+    {{item.name}}
+    <view>
+      <slot name="item_{{index}}"></slot>
+    </view>
+  </view>
+  <slot name="right"></slot>
+  <view wx:if="{{mTabs[activeTab.index].options && mTabs[activeTab.index].options.length > 0 && showOptionsIndex == activeTab.index}}" class="tab-options bg-white text-center padding-rl-20">
+    <view data-options-index="{{index}}" bindtap="changeOptions" wx:for="{{mTabs[activeTab.index].options}}" wx:key="index" class="tab-options-item relative">
+      <text class="font-normal {{activeTab.optionsIndex == index ? 'font-bold' : ''}}">{{item.label}}</text>
+      <text hidden="{{activeTab.optionsIndex != index}}" class="font-small tab-item-checked-icon tab-options-item iconfont icon-zhengque"></text>
+    </view>
+  </view>
+  <view bindtap="maskClick" wx:if="{{mask && showOptionsIndex == activeTab.index}}" class="tab-mask" style="top: {{maskTop}}"></view>
+</view>
+

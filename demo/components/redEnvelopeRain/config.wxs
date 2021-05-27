@@ -1,0 +1,18 @@
+var dominRed = 'http://zone-yingerfashion.oss-cn-shenzhen.aliyuncs.com/storage/images/RedEnvelopeRain/';
+module.exports =  {
+  BASE: dominRed + '92eee3a059df1587fc9fd101fb8ced4b.png',
+  RULE: dominRed + 'b6af4b55818f07fa2dabe36af4916896.png',
+  COUNTDOWN_BACK: dominRed + '8ebeb55614e0b2fc77f5d3c306cc4211.png',
+  COUNTDOWN_NUMBERS: [
+    dominRed + 'b871f489a4835c8ed6bf87b455aba9c6.png', 
+    dominRed + 'dcb2077d24faf520de430d30464d1052.png', 
+    dominRed + '2514daa8800650c561cddb6f9c24be29.png', 
+    dominRed + '2425d3da4ee31e2be551318b0de99fff.png', 
+    dominRed + '467103d2293f1ae6d00a75d50cfe278f.png'
+  ],
+  HEART: dominRed + '8c7c643e1738d76a467d68d88d04d189.png',
+  PACKAGE: dominRed + '97ac30af950e460c183d8fa970164283.png',
+  COUPONBG: dominRed + '8b447bc8b21080f38778a8a933ee3e9a.png',
+  COUPONBG1: dominRed + '148f3e6f199dc7be4c821604c95aa09a.png',
+  FIREWORK: dominRed + 'f5d69ce0abf2a85a01aec384a1c2622a.png'
+}

@@ -1,0 +1,62 @@
+<view class="_redEnvelopRaion-Rule flex-col-center">
+    <view class="wrapper width-80 radio-group relative bg-pink">
+      <view class="addr-header flex-col-center" >
+        <text class="font-big">选择邮寄地址</text>
+      </view>
+    <view wx:if="{{addressList.length == 0}}" bindtap="handlePopup" data-type="0" class="width-100 color-white height-100 font-medium padding-b-40 flex-col-center">
+      <view class="iconfont icon-site-copy address-icon"></view>
+      <view>您还没有收货地址</view>
+      <view>点击这里添加</view>
+    </view>
+    <radio-group wx:else class="addr-list margin-t-20" bindchange="handleRadioChange">
+      <scroll-view scroll-with-animation scroll-y style="height:472rpx">
+        <view class="flex-space-between bg-pink color-white padding-rl-20 padding-tb-20" wx:for="{{addressList}}" wx:key="index">
+        <view bindtap="handlePopup" data-type="1" data-index="{{index}}" class="flex-start-center">
+          <view class="font-normal">
+            <view>
+              <text>{{item.name}}</text>
+              <text class="margin-rl-10">{{item.mobile}}</text>
+            </view>
+            <view class="">
+              {{item.area}}{{item.addr}}
+            </view>
+          </view>
+        </view>
+          <radio value='{{item.addr_id}}' color="#c55e78" checked="{{item.checked}}"></radio>
+        </view>
+      </scroll-view>
+    </radio-group>
+  <view class='flex-center width-100 text-center btn-addr'>
+      <view bindtap="handlePopup" data-type="0" class="bg-depink color-white padding-tb-20 flex-item">添加新地址</view>
+    </view>
+  </view>
+
+<i-action-sheet visible="{{ showAddressPopup }}" bind:cancel="close" class="action-index" i-class="action-index">
+  <view wx:if="{{showAddressPopup}}" slot="header">
+    <view class="flex-space-between head font-normal" style="padding: 24rpx 32rpx;color: #333;">
+      <text>编辑地址</text>
+      <icon class="iconfont icon-guanbi" style="padding-bottom: 12rpx;" bindtap="close"></icon>
+    </view>
+    <i-panel style="text-align: left;">
+      <i-input data-name="name" value="{{ name }}" type="text" title="*姓名" placeholder="姓名" bind:change="changeInput" />
+      <i-input data-name="mobile" value="{{ mobile }}" type="bumber" title="*手机号" placeholder="手机号" bind:change="changeInput" />
+      <i-input data-name="tel" value="{{ tel }}" type="number" title="电话" placeholder="电话" bind:change="changeInput" />
+      <i-input data-name="zip" value="{{ zip }}" type="number" title="邮编" placeholder="邮编" bind:change="changeInput" />
+      <adderss-picker color="{{'#d67c92'}}" id="address-picker" bindchange="bindAddrChange" label="收货区域" selected="{{regionAddr}}">
+  </adderss-picker>
+      <i-input data-name="addr" value="{{ addr }}" type="text" title="*详细地址" placeholder="详细地址" bind:change="changeInput" />
+      <i-input wx:if="{{showIdCard}}" data-name="idcard" value="{{ idcard }}" type="text" title="身份证" placeholder="非必填项(可自动识别)" bind:change="changeInput" />
+    </i-panel>
+    <view wx:if="{{showIdCard}}">
+      <view class="padding-t-20 padding-rl-30 font-normal color-danger text-left">如需购买跨境商品,请实名认证(非必填项)</view>
+      <id-card id="idcard" font="{{idcard_face_url}}" back="{{idcard_back_url}}" bind:discernHandle="discernHandle"></id-card>
+    </view>
+    <view class="flex-space-between group bg-pink">
+      <text class="padding-20" bindtap="close">取消</text>
+      <text class="padding-20" bindtap="confirm">提交</text>
+    </view>
+  </view>
+</i-action-sheet>
+    <button class="btn-pink margin-tb-40" bindtap="btnSubAddress">确定</button>
+    <text class="iconfont icon-guanbi color-white icon-close" bindtap="cancelShow"></text>
+</view>

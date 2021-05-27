@@ -1,0 +1,15 @@
+<template name="brand-scroller">
+<wxs src="../../index.wxs" module="tool" />
+<wxs src="../../../../utils/ossUrlTest.wxs" module="ossTool" />
+<view style="background-image:url({{data.bgImage}});backgroundSize:100% 100%;background-color:{{data.bgColor}}">
+  <scroll-view style="height:{{data.height}}rpx;" class="scroll-view_H nowrap width-100" scroll-x>
+    <view style="padding:{{data.paddingTb * 2}}rpx {{data.paddingRl * 2}}rpx">
+      <navigator url="{{tool.myTool(item.link)}}" class="slide-brand-cover inline-block margin-rl-10" wx:for="{{data.slides}}" wx:key="{{index}}">
+        <image model="aspectFit" lazy-load style="width:{{(750 - data.paddingRl * 4)/data.cols}}rpx" mode="widthFix" src="{{ossTool.ossUrlTest(item.src)}}"/>
+        <view wx:if="{{data.showName && item.brand}}" style="color:{{data.color}}" class="text-center font-normal">{{item.brand}}</view>
+      </navigator>
+    </view>
+  </scroll-view>
+</view>
+
+</template>

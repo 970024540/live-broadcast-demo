@@ -1,0 +1,42 @@
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 110;
+  tap-highlight-color: rgba(0, 0, 0, 0);
+  transition: opacity 400ms;
+}
+
+.mask-show {
+  opacity: 1;
+}
+
+.boxOne{
+  width: 750rpx;
+  height: 826rpx;
+  background-image: url('http://zone-yingerfashion.oss-cn-shenzhen.aliyuncs.com/storage/images/system-image/ae2c3cfc87242b1374dca62ba76b8bb2.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.box-kai{
+  background-color: #d92e3e;
+  padding: 10rpx 50rpx;
+  border-radius: 6rpx;
+}
+.Yes{
+  animation:sizes 0.5s linear alternate;
+}
+@keyframes sizes{
+  0%{transform: scale(01) }
+  50%{transform: scale(0.8) }
+  100%{transform: scale(1) }
+}
+.closeCla{
+  border: 2rpx solid white;
+  padding: 16rpx;
+  border-radius: 50%;
+}

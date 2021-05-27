@@ -1,0 +1,4 @@
+<view bindtap="jumpToChat">
+  <slot></slot>
+  <text wx:if="{{!useSlot}}" class="iconfont icon-kefu"></text>  
+</view>

@@ -1,0 +1,58 @@
+<wxs src="../../utils/ossUrlTest.wxs" module="tool" />
+<view class="height-100 width-100 bg-white flex-col-start align-items-stretch">
+  <view class="bg-white padding-rl-10 padding-b-10">
+    <searchBar bindconfirm="search" showResult="{{false}}"></searchBar>
+  </view>
+  <view class="flex-start height-100 align-items-stretch">
+    <view class="width-left border-1px-r padding-tb-10 ovflow">
+      <view class="">
+        <image data-list="selectedList" data-index="{{index}}" bindtap="handlePrevGoods" wx:for="{{selectedList}}" wx:key="{{item.goods_id}}" src="{{tool.ossUrlTest(item.cover)}}" class="selected-img margin-b-10"></image>
+      </view>
+    </view>
+    <view class="width-right padding-tb-10 bg-gray">
+      <scroll-view class="height-100" scroll-y bindscrolltolower="fetchGoods">
+        <view class="height-100 flex-space-around flex-wrap">
+          <view wx:for="{{goodsList}}" wx:key="index" class="flex-col-center padding-tb-10 goods-item bg-white margin-b-10">
+            <view data-id="{{item.goods_id}}" bindtap="chooseItem" class="item-icon font-4x iconfont {{item.selected ? 'icon-shoucang-shoucang color-warning' : 'icon-shoucang1 color-gray'}}"></view>
+            <image data-list="goodsList" data-index="{{index}}" bindtap="handlePrevGoods" class="goods-item-img border-r-10" src="{{tool.ossUrlTest(item.cover)}}"></image>
+            <view class="flex-item padding-rl-10 margin-t-10 font-mini line-ellispsis-2">{{item.name}}</view>
+          </view>
+          <i-load-more class="width-100" loading="{{loading}}" tip="{{loading ? '加载中' : (loadedAll && goodsList.length == 0) ? '暂无数据' : '数据加载完毕'}}"></i-load-more>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <view class="flex-end font-normal color-white padding-tb-20 padding-rl-20 bg-white border-1px-t">
+    <view bindtap="selectCancel" class="padding-rl-40 padding-tb-20 border-1px border-r-10 bg-dark-gray margin-r-20">取消</view>
+    <view bindtap="resetSelect" class="padding-rl-40 padding-tb-20 border-1px border-r-10 bg-danger margin-r-20">重置</view>
+    <view bindtap="selectOK" class="padding-rl-40 padding-tb-20 border-1px border-r-10 bg-blue margin-r-20">确认</view>
+    <view bindtap="shareNow" class="padding-rl-20 padding-tb-20 border-1px border-r-10 bg-success margin-r-20">快速分享</view>
+  </view>
+</view>
+<view hidden="{{!prevGoods && !showGuide}}" class="prev-modal flex-center">
+  <view bindtap="clickShareMask" hidden="{{!showGuide || prevGoods}}" class="height-100 width-100 flex-center">
+    <view class="flex-start text-center color-white font-normal">点击右上角 <view class="padding-l-20 iconfont icon-gengduo color-white font-3x"></view> ，选择“转发”，分享给朋友</view>
+  </view>
+  <view hidden="{{!prevGoods}}" class="width-70 bg-white border-r-10 font-normal">
+    <view class="flex-space-between padding-rl-20 padding-tb-10 border-1px-b">
+      <view></view>
+      <view>商品详情</view>
+      <view bindtap="closePrev" class="iconfont icon-guanbi font-2x color-gray"></view>
+    </view>
+    <view class="width-100 link-img">
+      <image style="height: 70vw" src="{{tool.ossUrlTest(prevGoods.cover || 'http://mall.yingerfashion.com/yinger-m/app/slice/def_avatar.jpg')}}"></image>
+    </view>
+    <view class="line-ellispsis-2 padding-rl-20 padding-t-10 font-mini color-gray">{{prevGoods.name}}</view>
+    <view class="flex-space-between font-mini padding-rl-20 padding-tb-10">
+      <view class="color-warning">￥{{prevGoods.price}}</view>
+      <view class="text-decoration color-gray">市场价￥{{prevGoods.mktprice}}</view>
+    </view>
+    <view class="flex-start-center padding-rl-20 padding-b-10">
+      <view class="font-small color-gray padding-r-20">参数/规格</view>
+      <view>
+        <view wx:for="{{prevGoods.computed_spec_info}}" wx:key="index" class="font-small color-warning">{{item}}</view>
+      </view>
+    </view>
+    <view data-id="{{prevGoods.goods_id}}" bindtap="chooseItem" class="text-center padding-tb-20 color-white {{prevGoods.selected ? 'bg-warning' : 'bg-success'}}">{{prevGoods.selected ? '取消关联' : '关联商品'}}</view>
+  </view>
+</view>

@@ -1,0 +1,23 @@
+[
+  {
+    "appid": "wx1d631d3614efe2ad",
+    "version": "1.3.3",
+    "title":"影儿时尚之都",
+    "AppSecret":"c5b6f01eab3e5752f9e4bbbd0cf46e01",
+    "uuid":"f3c5def2-c26d-4f4b-a042-38422397f2d4"
+  },
+  {
+    "appid": "wxb8fa18d9cbae3072",
+    "version": "1.3.3",
+    "title":"影儿松江开元店",
+    "AppSecret":"1110a68c5176e3c431a9b9d4644effbc",
+    "uuid":"f3c5def2-c26d-4f4b-a042-38422397f2d4"
+  },
+  {
+    "appid": "wx319d6f64a058fdb4",
+    "version": "1.3.3",
+    "title":"影儿丽达",
+    "AppSecret":"4fd46075160059fdd37772622a45a419",
+    "uuid":"f3c5def2-c26d-4f4b-a042-38422397f2d4"
+  }
+]

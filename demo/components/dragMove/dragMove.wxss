@@ -1,0 +1,6 @@
+.dragMove{
+  width:160rpx;
+  height:160rpx;
+  position: fixed;
+  z-index:9999;
+}

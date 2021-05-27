@@ -1,0 +1,17 @@
+<view wx:if="{{show}}" class="mask">
+  <view class="user-modal padding-t-40 padding-rl-40 bg-white color-dark font-normal">
+    <view class="flex-start-center color-gray"><image style="height: 50rpx; width: 50rpx; border-radius: 50%" src="http://mall.yingerfashion.com/yinger-m/img/logo_dog.png"></image> <text class="font-blod color-dark margin-rl-10">影儿商城</text>访问授权</view>
+    <view class="padding-tb-40 font-1x">您访问的服务，需要授权获取微信信息(包括微信头像、微信昵称等)</view>
+    <view class="flex-start padding-tb-20 border-1px-t border-1px-b">
+      <open-data type="userAvatarUrl" style="height: 80rpx; width: 80rpx;"></open-data>
+      <view class="flex-space-between flex-item">
+        <view class="margin-l-20 font-normal">
+          <view>微信个人信息</view>
+          <open-data class="color-gray font-mini" type="userNickName"></open-data>
+        </view>
+        <icon type="success_no_circle" size="16" />
+      </view>
+    </view>
+    <button open-type="getUserInfo" class="reset-btn color-white font-normal padding-tb-30 btn1 border-r-10" bindgetuserinfo="onGotUserInfo">立即授权</button>
+  </view>
+</view>

@@ -1,0 +1,45 @@
+<wxs src="../../../utils/ossUrlTest.wxs" module="tool" />
+<view class="_redEnvelopRaion-Record flex-col-center">
+    <view class="wrapper">
+      <view class="record-header color-white flex-col-center">
+        <text class="font-big">我的战绩</text>
+        <text class="font-mini">My Record</text>
+      </view>
+      <scroll-view scroll-y scroll-with-animation class="list color-white" style="height:860rpx">
+        <view wx:if="{{materials.length || LotteryList.length}}">
+          <view class="padding-tb-20 text-center font-big font-bold">恭喜您获得</view>
+          <view wx:if="{{materials.length}}" class="margin-tb-20 padding-l-10 font-normal">奖 品：</view>
+          <view class="margin-t-10 relative flex-start-center align-items-stretch" wx:for="{{materials}}" wx:key="index" bindtap="receivePrize" data-state="{{item.draw_status}}" data-rule="{{item.rule_id}}" data-lottery="{{item.lottery_id}}">
+            <view style="width: 100px;height: 90px;overflow: hidden" class="flex-center padding-l-20">
+              <image class="mirror height-100" mode="widthFix" src="{{tool.ossUrlTest(item.url)}}"></image> 
+            </view>
+            <text class="left padding-r-10 flex-item flex-space-between">
+              <text>{{ item.name }}</text>
+              <text>×1</text>
+              <text class="receiveTag font-small">{{item.draw_status == '0'?'未领取':'已领取'}}</text>
+            </text>
+          </view>
+          <view wx:if="{{LotteryList.length}}" class="padding-t-30 padding-l-10 font-normal">通用券：</view>
+          <view class="margin-t-10 flex-start-center relative align-items-stretch" wx:for="{{LotteryList}}" wx:key="index" data-cpns="{{item.cpns_id}}" bindtap="receivePrize" data-rule="{{item.rule_id}}" data-lottery="{{item.lottery_id}}">
+            <view style="width: 110px;height: 90px;overflow: hidden" class="flex-center">
+                <view class="gift coupons flex-start margin-t-30">
+                  <view class="cpns_name">￥{{item.total_amount}}</view>
+                </view>
+            </view>
+            <text class="left padding-r-10 flex-item flex-space-between">
+              <text>{{ item.cpns_name }}</text>
+              <text>×1</text>
+              <text class="receiveTag font-small">{{item.draw_status == '0'?'未领取':'已领取'}}</text>
+            </text>
+          </view>
+        </view>
+
+        <view wx:else class="height-100 flex-col-center">
+        <image mode="widthFix" class="margin-t-10 test" src="http://zone-yingerfashion.oss-cn-shenzhen.aliyuncs.com/storage/images/RedEnvelopeRain/8c7c643e1738d76a467d68d88d04d189.png"></image>
+          <text class="font-normal" style="line-height: 1.5;letter-spacing: 1px">您还未有战绩,</text>
+          <text class="font-normal" style="line-height: 1.5;letter-spacing: 1px">下次继续加油!</text>
+        </view>
+      </scroll-view>
+    </view>
+    <text class="iconfont icon-guanbi icon-close color-white margin-t-40" bindtap="cancelShow"></text>
+  </view>

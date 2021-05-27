@@ -1,0 +1,21 @@
+.list-img-1 {
+  height: 160rpx;
+  width: 160rpx;
+  flex-shrink: 0;
+}
+.list-img-2 {
+  height: 320rpx;
+  width: 320rpx;
+}
+.list-img-3 {
+  height: 700rpx;
+  width: 700rpx;
+}
+.padding-rl-5 {
+  padding-left: 5rpx;
+  padding-right: 5rpx;
+}
+.item-goods-cover {
+  height: 300rpx;
+  width: 250rpx;
+}

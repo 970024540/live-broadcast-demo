@@ -1,0 +1,13 @@
+<template name="brand-scroll">
+<wxs src="../../index.wxs" module="tool" />
+<wxs src="../../../../utils/ossUrlTest.wxs" module="ossTool" />
+<view  style="background-image:url({{data.bgImage}});backgroundSize:{{data.bgSize}};background-color:{{data.bgColor}}">
+  <scroll-view class="scroll-view_H nowrap width-100" scroll-x style="padding:{{data.paddingTb}}px {{data.paddingRl}}px">
+    <view bindtap="jumpTo" data-url="{{tool.myTool(item.link)}}" class="slide-brand-cover margin-r-20 inline-block" wx:for="{{data.slides}}" wx:key="{{index}}">
+      <image model="aspectFit" class="img-align" lazy-load style="height:{{item.height}}rpx;width:{{item.width}}rpx" src="{{ossTool.ossUrlTest(item.src)}}"/>
+      <view wx:if="{{data.showName}}" style="color:{{data.color}}" class="text-center font-normal">{{item.brand}}</view>
+    </view>
+  </scroll-view>
+</view>
+
+</template>

@@ -1,0 +1,99 @@
+
+ <view  class="livePlay">
+   <block wx:if="{{willPlay}}">
+    <view bindtap="itemClick" data-roomid="{{willPlay.roomid}}" data-status="{{willPlay.live_status}}" class="live-head-bg flex-col-center" style="background-image: url({{willPlay.share_img}});">  
+        <view class="live-head flex-col-end width-100 height-100 " >  
+
+          <view  wx:if="{{willPlay.live_status == 102}}" catchtap="dd" class="margin-b-40">
+            <subscribe class="live-begin padding-rl-20 font-1x text-center font-bold color-white" room-id="{{willPlay.roomid}}">开播提醒</subscribe>
+          </view>
+          <view wx:else class="live-begin padding-l-2 font-1x text-center margin-t-36 color-white width-40">正在直播</view>
+        </view>
+    </view>
+<!-- 
+    <view wx:if="{{willPlay.live_status == 102}}" class="live-remind flex-col-center">
+      <view class="live-begin-remind color-white font-1x">直播即将开始</view>
+      <view class="live-click text-center color-white font-sm font-bold">点击上方<text >开播提醒\n</text>或添加直播页面至我的小程序</view>
+    </view>
+    <view wx:else bindtap="itemClick" data-roomid="{{willPlay.roomid}}" data-status="{{willPlay.live_status}}" class="live-remind flex-col-center">
+      <view class="live-begin-remind color-white font-1x">直播正在进行</view>
+      <view class="live-click text-center color-white font-sm font-bold">立即进入直播间</view>
+    </view> -->
+   </block>
+
+
+  <view wx:if="{{willPlay && willPlay.goods && willPlay.goods.length}}" class="flex-col-center padding-t-20">
+    <!-- <view class="yiner-logo link-img">
+      <image mode="widthFix" src="../../images/yiner.png"></image>
+    </view> -->
+    <text class="goods-title font-1x font-bold live-more-head margin-tb-40">直播间推荐款</text>
+    <view class="margin-rl-20 padding-rl-40 flex-space-between flex-wrap" >
+      <view wx:for="{{willPlay.goods}}" bindtap="goodsClick" wx:key="id" data-index="{{index}}" class="goods-item margin-b-40 flex-col-center align-items-stretch">
+        <image class="goods-item-img" mode="aspectFill" src="{{item.images && item.images.url ? tool.ossUrlTest(item.images.url) : item.cover_img }}"></image>
+        <view class="margin-tb-10 line-ellispsis-1">
+          <text wx:if="{{item.brand && item.brand.brand_name}}" class="font-mini">{{item.brand ? item.brand.brand_name : ''}} | </text>
+          <text class="font-mini">{{item.name}}</text>
+        </view>
+        <view class="font-normal text-center font-bold">￥{{item.price}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{willPlayList.length}}" class=" live-more flex-col-center">
+    <text class="live-more-head text-center font-1x font-bold">更多精彩直播预告</text>
+    <text class="font-mini">▼</text>
+    <swiper 
+      class="live-swiper width-100"
+      style="height: {{swiperHeight}}rpx"
+      current="{{currentBannerIndex}}"
+      autoplay="{{false}}"
+      circular="{{false}}"
+      interval="3000"
+      duration="500"
+      previous-margin="140rpx"
+      next-margin="140rpx"
+      bindchange="bannerChange">
+      <swiper-item bindtap="itemClick" data-roomid="{{item.roomid}}" data-status="{{item.live_status}}" wx:key="id" wx:for="{{willPlayList}}">
+
+        <view class="relative animation-scale-up banner-goods-cover banner-card-perspective">
+          <view style="transform: translate3d({{-(currentBannerIndex - index) * 10}}rpx, 0px, {{currentBannerIndex == index?0:(-100)}}rpx     ) rotateX(0deg) rotateY({{currentBannerIndex > index ? (-20) : (currentBannerIndex < index ? 20 : 0)}}deg);height: 642rpx"
+            class="clear-float banner-item {{index == currentBannerIndex ? '' : 'banner-item-side'}}">
+            <image lazy-load class="banner-goods-cover" src="{{item.cover_img}}" mode="widthFix" />
+          </view>
+        </view>
+        <view style="height:140rpx;position:relative">
+          <view hidden="{{currentBannerIndex != index || item.live_status != 102}}" catchtap="dd" class="swiper-live-begin">
+            <subscribe class="live-begin font-1x text-center color-white" room-id="{{item.roomid}}">立即订阅</subscribe>
+          </view>
+          <view wx:if="{{currentBannerIndex == index  && item.live_status != 102}}" class="swiper-live-begin live-begin font-1x text-center color-white padding-rl-20 width-60">正在直播</view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <view class="lp-back  flex-col-start-center text-center">
+    <view class="lp-back-title relative width-90 font-bold font-1x">精彩回放</view>
+    <view wx:for="{{backPlayList}}"  wx:key="id" bindtap="itemClick" data-roomid="{{item.roomid}}" data-status="{{item.live_status}}" class="lp-back-item margin-b-36 width-90">
+      <view class="lp-back-head flex-space-between" >
+        <view class="lp-back-box">
+           <view class="lp-back-tag font-sm color-white">回放</view>
+           <view class="lp-back-text width-70 font-sm">{{item.name}}</view>
+        </view>
+        <view class="lp-back-date font-sm">{{item.end_time_str}}</view>
+      </view>
+      <view class="lp-back-movie link-img width-100">
+        <image mode="widthFix" src="{{item.share_img}}"></image>
+        <icon class="lp-back-play color-white width-100  iconfont icon-play"></icon>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="padding-tb-20 text-center">
+  <text wx:if="{{loadedAll}}" class="text-center color-gray">已全部加载</text>
+  <text wx:else class="text-center color-gray">正在加载</text>
+</view>
+
+<login-modal showLoginModal="{{showLoginModal}}" showMask bind:onOk="loginOK" bind:onCancelModal="loginOK" bind:onCancel="loginOK"></login-modal> 
+
+  

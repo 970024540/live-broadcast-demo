@@ -1,0 +1,274 @@
+<wxs src="../../../../utils/ossUrlTest.wxs"  module="tool"></wxs>
+<view style="{{moduleStyle}}">
+  <!-- 日常签到 -->
+    <block wx:if="{{signInRule.sign_type == 1}}">
+      <view class="width-100 link-img relative">
+        <image src="{{tool.ossUrlTest(options.bannerBg)}}" class="width-100" mode="widthFix"></image>
+        <view wx:if="{{options.showPoint}}" class="point-box flex-center">
+          <view class="flex-col-center color-white">
+            <view class="font-big">你的可用积分</view>
+            <view class="font-6x margin-tb-20">{{user_point}}</view>
+            <view class="border-1px padding-rl-40 font-normal" style="background-color: {{options.primaryColor}};border-color: white;border-radius: 14px">棉花</view>
+          </view>
+        </view>
+      </view>
+      <view style="{{signinStyle}} ;box-shadow: 0px 3px 10px #c7c7c7" class="relative">
+        <view class="flex-space-between margin-t-20">
+          <view class="flex-start-center">
+            <!-- <view class="flex-shrink-0">签到提醒 </view>
+            <inline-x-switch></inline-x-switch> -->
+          </view>
+          <view bindtap="setShowPopupType" data-type="1" style="color: {{options.primaryColor}}" class="font-normal"><i-icon type="feedback" size="20" class="rule-icon font-big margin-r-10" style="color: {{options.primaryColor}}" />规则</view>
+        </view>
+        <view class="flex-start flex-row margin-tb-20 scroll-x">
+          <view wx:for="{{cycleArr}}" wx:key="index" style="width: {{signInRule.cycle > 6 ? '14.2%' : ((100 / (signInRule.cycle || 4)) + '%')}}" class="flex-col-center flex-shrink-0 relative">
+            <view wx:if="{{index > 0}}" style="background-color: {{item <= nowToZero ? options.primaryColor : '#ddd'}}" class="flex-item cycle-bar"></view>
+            <block wx:if="{{cycleSignInData[item]}}">
+              <image wx:if="{{options.iconImgActive}}" src="{{tool.ossUrlTest(options.iconImgActive)}}" class="icon-img" mode="aspectFit"></image>
+              <text wx:else class="iconfont icon-xuanzhong" style="color: {{options.primaryColor}}; font-size: 48rpx" class="day-item"></text>
+            </block>
+            <block wx:else>
+              <image wx:if="{{options.iconImg}}" src="{{tool.ossUrlTest(options.iconImg)}}" class="icon-img" mode="aspectFit"></image>
+              <text wx:else class="iconfont icon-xuanzhong" style="font-size: 48rpx" class="day-item"></text>
+            </block>
+            <view wx:if="{{item <= nowToZero && cycleSignInData[item]}}" style="color: {{options.primaryColor}}; border-color: {{options.primaryColor}}" class="not-signin-btn font-mini">已签</view>
+            <view wx:if="{{item < nowToZero && !cycleSignInData[item]}}" style="color: {{options.primaryColor}}; border-color: {{options.primaryColor}};opacity: {{canMakeUpDay == item ? 1 : 0.5}};" class="not-signin-btn font-mini" bindtap="doMakeUpSignIn" data-item="{{item}}">补签</view>
+          </view>
+        </view>
+        <view class="flex-col-center padding-t-20">
+          <view class="font-normal">当前还剩 <text style="color: {{options.primaryColor}}">{{signInRule.usable_make_up_nums}}/{{signInRule.make_up_nums}} 次</text>补签机会</view>
+          <view
+          bindtap="signInNow"
+          style="background-color: {{!!cycleSignInData[nowToZero] ? '#f1f1f1' : options.primaryColor}}"
+          class="signin-btn text-center margin-tb-20 {{!!cycleSignInData[nowToZero] ? 'color-gray' : 'color-white'}}"
+        >{{!!cycleSignInData[nowToZero] ? '今日已签' : '立即签到'}}</view>
+        </view>
+      </view>
+    </block>
+    <!-- 活动签到 -->
+    <block wx:elif="{{signInRule.sign_type == 2}}">
+      <view class="width-100 link-img relative">
+        <image src="{{tool.ossUrlTest(options.bannerBg)}}" class="width-100" mode="widthFix"></image>
+        <view wx:if="{{options.showPoint}}" class="point-box flex-center">
+          <view class="flex-col-center color-white">
+            <view class="font-big">你的可用积分</view>
+            <view class="font-6x margin-tb-20">{{user_point}}</view>
+            <view class="border-1px padding-rl-40 font-normal" style="background-color: {{options.primaryColor}};border-color: white;border-radius: 14px">棉花</view>
+          </view>
+        </view>
+      </view>
+      <view style="{{signinStyle}};box-shadow: 0px 3px 10px #c7c7c7" class="relative">
+        <view wx:if="{{noticeArr.length}}" class="flex-start-center margin-b-20">
+          <text style="color: {{options.primaryColor}};font-size: 28rpx" class="iconfont icon-xiaoxi"></text>
+          <swiper class="signin-notice-bar flex-item" autoplay vertical circular interval="3000">
+            <swiper-item wx:for="{{noticeArr}}" wx:key="index">
+              <text class="line-ellispsis-1 padding-rl-20">{{item}}</text>
+            </swiper-item>
+          </swiper>
+        </view>
+        <view style="background-color: {{options.primaryColor}}; border-radius: {{options.contentRadius * 2}}rpx" class="flex-col-center padding-20 color-white relative">
+          <view class="font-normal color-white margin-t-10">您已{{signInRule.type == 0 ? '连续' : '累计'}}签到</view>
+          <view bindtap="setShowPopupType" data-type="2" class="font-normal padding-rl-20 border-r-20" style="position: absolute; top: 30rpx; right: 20rpx; color: {{options.myPrizeColor}}; background-color: {{options.myPrizeBgColor}}">我的奖品</view>
+          <view bindtap="showMakeUpList" class="font-normal padding-rl-20 border-r-20" style="position: absolute; top: 80rpx; right: 20rpx; color: {{options.myPrizeColor}}; background-color: {{options.myPrizeBgColor}}">助力列表</view>
+          <view class="flex-start margin-tb-20 relative">
+            <view wx:for="{{totalSigninDays}}" wx:key="index" style="color: {{options.primaryColor}}" class="total-day-box border-r-10 flex-center font-3x fong-bold margin-rl-10">{{item}}</view>
+            <view class="font-normal total-signin-label">天</view>
+          </view>
+          <view class="flex-start-center width-100 padding-rl-20">
+            <view style="width: 76rpx;color: {{options.primaryColor}}" class="bg-white padding-tb-10 padding-rl-10 font-normal font-bold margin-r-20 border-r-20">{{signInRule.type == 0 ? '连续签到' : '累计签到'}}</view>
+            <view class="flex-start-center flex-item scroll-x">
+              <view wx:for="{{ruleItem}}" wx:key="index" style="width: {{ruleItemWidth}}" class="rule-item flex-start-center padding-t-10">
+                <view
+                  class="rule-item-bar flex-item"
+                  style="background-color: {{signinPrizeList[item.days] ? options.ruleItemGotColor : options.ruleItemDisabledColor}}"
+                ></view>
+                <view class="flex-col-center" bindtap="getPrizeByDay" data-item="{{item}}">
+                  <view
+                    class="rule-item-day rule-item-day-bg flex-center"
+                    style="background-color: {{signinPrizeList[item.days] ? (signinPrizeList[item.days].received_all ? options.ruleItemGotColor : options.ruleItemActiveColor) : options.ruleItemDisabledColor}}"
+                  >
+                    <image wx:if="{{options.iconImgActive}}" src="{{tool.ossUrlTest(options.iconImgActive)}}" class="icon-img" mode="aspectFit"></image>
+                    <text wx:else style="color: {{options.primaryColor}};font-size: 36rpx" class="iconfont icon-aixin"></text>
+                  </view>
+                  <view class="font-normal">{{signinPrizeList[item.days] ? (signinPrizeList[item.days].received_all ? '已领取' : '领取') : item.days + '天'}}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="flex-space-between margin-t-20">
+          <view bindtap="setShowPopupType" data-type="1" style="color: {{options.primaryColor}}" class="font-normal"><i-icon type="feedback" size="20" class="rule-icon font-big margin-r-10" style="color: {{options.primaryColor}}" />规则</view>
+          <view class="flex-start-center">
+            <!-- <view class="flex-shrink-0">签到提醒 </view>
+            <inline-x-switch></inline-x-switch> -->
+          </view>
+        </view>
+        <view class="flex-start flex-wrap margin-tb-20">
+          <view wx:for="{{daysList}}" wx:key="index" class="flex-col-center flex-col-6 margin-b-20 flex-shrink-0">
+            <view style="color: {{item.status ? options.primaryColor : false}}" class="color-gray font-mini">{{item.label}}</view>
+            <block wx:if="{{item.type == 'past' || item.type == 'current'}}">
+              <image wx:if="{{options.iconImgActive}}" src="{{tool.ossUrlTest(options.iconImgActive)}}" class="icon-img" mode="aspectFit"></image>
+              <text wx:else style="color: {{item.status ? options.primaryColor : '#ddd'}};font-size: 36rpx" class="iconfont icon-aixin"></text>
+            </block>
+            <block wx:else>
+              <image wx:if="{{options.iconImg}}" src="{{tool.ossUrlTest(options.iconImg)}}" class="icon-img" mode="aspectFit"></image>
+              <text wx:else style="color:#ddd;font-size: 36rpx" class="iconfont icon-aixin"></text>
+            </block>
+            <view wx:if="{{item.status}}" style="color: {{options.primaryColor}}; border-color: {{options.primaryColor}}" class="not-signin-btn font-mini">已签</view>
+            <view wx:elif="{{item.type == 'current' && !item.status}}" bindtap="signInNow" style="color: {{options.primaryColor}}; border-color: {{options.primaryColor}}" class="not-signin-btn font-mini">签到</view>
+            <view wx:elif="{{item.type == 'past' && !item.status}}" style="background-color: {{options.primaryColor}}; border-color: {{options.primaryColor}}; opacity: {{canMakeUpDay == item.date ? 1 : 0.5}}" class="not-signin-btn font-mini color-white" bindtap="doMakeUpSignIn" data-item="{{item}}">补签</view>
+            <view wx:elif="{{signInRule.sign_in_point > 0}}" class="color-gray font-mini margin-b-10">+{{signInRule.sign_in_point}}</view>
+          </view>
+        </view>
+        <view class="flex-col-center">
+          <view class="font-normal">当前还剩 <text style="color: {{options.primaryColor}}">{{signInRule.usable_make_up_nums}}/{{signInRule.make_up_nums}} 次</text>补签机会</view>
+          <view
+          bindtap="signInNow"
+          style="background-color: {{!!formatSignInData[today] ? '#f1f1f1' : options.primaryColor}}"
+          class="signin-btn text-center margin-tb-20 {{!!formatSignInData[today] ? 'color-gray' : 'color-white'}}"
+        >{{!!formatSignInData[today] ? '今日已签' : '立即签到'}}</view>
+        </view>
+      </view>
+    </block>
+</view>
+
+<view wx:if="{{showPopupType > 0}}" class="modal-box flex-col-center" bindtap="closePopup" catchtouchmove="dd">
+  <view  wx:if="{{showPopupType == 1}}" style="width: 600rpx" class="border-r-12 bg-white padding-20">
+    <view class="font-big font-bold margin-b-20 text-center">签到规则</view>
+    <scroll-view style="max-height: 400rpx;" scroll-y class="padding-rl-20 min-height-100">
+      <text class="text-left color-dark conditions-lines font-normal">{{signInRule.conditions || '暂无说明'}}</text>
+    </scroll-view>
+    <view class="flex-center">
+      <view bindtap="closePopup" style="background-color: {{options.primaryColor}}" class="signin-btn color-white text-center">知道了</view>
+    </view>
+  </view>
+  <view wx:if="{{showPopupType == 2}}" style="width: 600rpx" class="border-r-12 bg-white padding-20">
+    <view class="font-big font-bold margin-b-20 text-center">我的奖品</view>
+    <view wx:if="{{prizeGetedList.length == 0}}" class="flex-col-center min-height-100 font-big">
+      <view>您暂时还没有奖品</view>
+      <view>快去领取吧</view>
+    </view>
+    <scroll-view wx:else class="padding-rl-20 min-height-100" style="max-height: 240px">
+      <view wx:for="{{prizeGetedList}}" wx:key="index">
+        <view class="width-100 margin-b-10 text-left">{{index + 1}}.  
+          <block wx:if="item.type == 'point'">{{item.prize}}积分</block>
+          <block wx:if="item.type == 'gift'">{{item.gift_name}}</block>
+          <block wx:if="item.type == 'coupon'">{{item.cpns_name}}</block>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="flex-center">
+      <view bindtap="closePopup" style="background-color: {{options.primaryColor}}" class="signin-btn color-white text-center">知道了</view>
+    </view>
+  </view>
+  <view
+    wx:if="{{showPopupType == 3}}"
+    style="width: 600rpx; background: {{popupBgImg.img ? 'url(' + tool.ossUrlTest(popupBgImg.img) + ') center top/contain no-repeat;' : 'white;'}}"
+    class="border-r-12 bg-white"
+  >
+    <view wx:if="{{!popupBgImg.img}}" class="font-big margin-b-20 text-center">恭喜你</view>
+    <view wx:else style="height: 240rpx;width: 600rpx;"></view>
+    <swiper style="height: 480rpx" indicator-dots="{{prizeNotGetList.length > 1}}">
+      <swiper-item wx:for="{{prizeNotGetList}}" wx:key="index" class="flex-col-center font-big">
+        <view wx:if="{{!popupBgImg.img}}">{{signInRule.type == 0 ? '连续' : '累计'}}签到<span class="signin-color-primary">{{item.days}}</span>天, 获得了</view>
+        <view wx:if="{{!popupBgImg.img}}" class="signin-color-primary line-ellispsis-1 text-center margin-rl-20">
+          <block wx:if="{{item.type == 'point'}}">{{item.prize}}积分</block>
+          <block wx:if="{{item.type == 'gift'}}">{{item.gift_name}}</block>
+          <block wx:if="{{item.type == 'coupon'}}">{{item.cpns_name}}</block>
+        </view>
+        <image wx:if="{{item.url}}" src="{{tool.ossUrlTest(item.url)}}" mode="aspectFit" class="prize-popup-img margin-t-20"></image>
+        <view wx:else class="prize-popup-img flex-center color-white font-2x" style="bakcground: transparent;">
+          <view wx:if="{{item.type == 'point'}}">{{item.prize}}积分</view>
+          <view wx:if="{{item.type == 'gift'}}">{{item.gift_name}}</view>
+          <view wx:if="{{item.type == 'coupon'}}">{{item.cpns_name}}</view>
+        </view>
+        <view class="flex-center padding-tb-20 margin-b-20">
+          <block wx:if="{{item.type == 'gift'}}">
+            <view bindtap="chooseGiftAddress" data-item="{{item}}" style="background-color: {{options.primaryColor}}" class="signin-btn color-white text-center">填写收货地址</view>
+          </block>
+          <view wx:else catchtap="handleDoReceivePrize" data-item="{{item}}" style="background-color: {{options.primaryColor}}" class="signin-btn color-white text-center">收下</view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+  <block wx:if="{{showPopupType == 4}}">
+    <view wx:if="{{!popupBgImg.img}}" style="width: 600rpx" class="border-r-12 bg-white padding-20">
+      <view class="font-big font-bold margin-b-20 text-center">补签</view>
+      <view class="flex-col-center min-height-100 font-normal">
+        <view>分享到微信好友</view>
+        <!-- 需要好友助力 -->
+        <view wx:if="signInRule.help_sign_status">好友助力成功</view>
+        <view class="margin-tb-10">即可获取补签次数</view>
+        <view class="margin-tb-20 flex-center">
+          <view style="background-color: {{options.primaryColor}}" class="active-list-img margin-r-20 flex-center">
+            <text style="color:#fff;font-size:64rpx" class="iconfont icon-weixin"></text>
+          </view>
+        </view>
+      </view>
+      <view class="flex-center padding-tb-10 margin-t-20">
+        <button open-type="share" style="background-color: {{options.primaryColor}}" class="reset-btn signin-btn color-white text-center">立即分享</button>
+      </view>
+    </view>
+    <view wx:else>
+      <view style="width: 600rpx" class="relative">
+        <image src="{{tool.ossUrlTest(popupBgImg.img)}}" class="width-100" mode="widthFix"></image>
+        <button open-type="share" wx:if="{{popupBgImg.showBtn}}" style="top: {{popupBgImg.btnTop}}rpx; left: {{popupBgImg.btnLeft}}rpx; width: {{popupBgImg.btnWidth}}rpx; height: {{popupBgImg.btnHeight}}rpx; position: absolute; background-color: rgba(0,0,0,0)"></button>
+        <view wx:else class="flex-center padding-tb-10 margin-t-20 width-100" style="position: abaolute; bottom: -100rpx">
+          <button open-type="share" style="background-color: {{options.primaryColor}}" class="reset-btn signin-btn color-white text-center">立即分享</button>
+        </view>
+      </view>
+    </view>
+  </block>
+  <view wx:elif="{{popupBgImg.img && (showPopupType == 5 || showPopupType == 6 || showPopupType == 7)}}" style="width: 600rpx" class="relative">
+    <image src="{{tool.ossUrlTest(popupBgImg.img)}}" mode="widthFix" class="width-100"></image>
+    <view wx:if="{{popupBgImg.showPoint}}" style="top: {{popupBgImg.pointTop}}rpx; left: {{popupBgImg.pointLeft}}rpx; color: {{popupBgImg.pointColor}}; font-size: {{popupBgImg.pointSize}}rpx; position: absolute">+{{showPopupType_point}}</view>
+    <view wx:if="{{popupBgImg.showDays}}" style="top: {{popupBgImg.daysTop}}rpx; left: {{popupBgImg.daysLeft}}rpx; color: {{popupBgImg.daysColor}}; font-size: {{popupBgImg.daysSize}}rpx; position: absolute">{{showPopupType_day}}</view>
+    <view bindtap="modalBtnClick" data-link="{{popupBgImg.btnLink}}" wx:if="{{popupBgImg.showBtn}}" style="top: {{popupBgImg.btnTop}}rpx; left: {{popupBgImg.btnLeft}}rpx; width: {{popupBgImg.btnWidth}}rpx; height: {{popupBgImg.btnHeight}}rpx; position: absolute; background-color: rgba(0,0,0,0)"></view>
+  </view>
+  <scroll-view wx:elif="{{showPopupType == 8}}" style="width: 600rpx; height: 600rpx" catchtap="dd" scroll-y class="relative bg-white padding-20 border-r-20">
+    <view class="flex-start padding-tb-10 border-1px-b">
+      <text style="width: 220rpx">助力人</text>
+      <text style="width: 260rpx">时间</text>
+      <text style="width: 80rpx" class="text-right">状态</text>
+    </view>
+    <view wx:for="{{makeUpList}}" class="flex-start padding-tb-10">
+      <text style="width: 220rpx">{{item.name}}</text>
+      <text style="width: 260rpx" class="font-mini">{{item.time}}</text>
+      <text style="width: 80rpx" class="{{item.status ? 'color-success' : 'color-gray'}} text-right">{{item.status ? '成功' : '失败'}}</text>
+    </view>
+    <view wx:if="{{makeUpList.length == 0}}" style="margin-top: 100rpx;"class="flex-center">
+      <text  class="font-mini color-gray text-center">还没有好友助力哦</text>    
+    </view>
+    <view wx:else class="flex-center padding-tb-10">
+      <text wx:if="{{!makeUpListLoadedAll}}" bindtap="getMakeUpList" class="border-1px border-r-10 font-mini color-gray padding-rl-20 padding-tb-10">查看更多</text>
+      <text wx:elif="{{makeUpList.length > 10}}" class="font-mini color-gray padding-10">没有更多啦</text>
+    </view>
+  </scroll-view>
+  <view wx:if="{{false}}" class="padding-t-20 flex-center">
+    <i-icon type="close" color="#fff" size="22" />
+  </view>
+</view>
+
+<i-actionsheet visible="{{ showAddrInfo }}" i-class="i-class-actionsheet" i-class-header="i-class-header">
+  <view slot="header" class="border-r-t-20 bg-white">
+    <view style="height:600rpx" class="border-r-t-20">
+      <view class="flex-space-between padding-tb-20 padding-rl-20">
+        <view class="flex-start">
+          <text>配送地址</text>
+          <!-- <text class="color-warning padding-l-10">(只能修改一次)</text> -->
+        </view>
+        <text bindtap="changeShowAddr" class="iconfont icon-guanbi"></text>
+      </view>
+      <c-address
+        wx:if="{{showAddrInfo}}"
+        showListOnly="{{true}}"
+        showAddrList="{{true}}"
+        bindonChange="changeAddrId"
+      >
+      </c-address>
+    </view>
+    <view class="flex-center padding-rl-20">
+      <view class="bg-primary margin-tb-20 width-100 padding-tb-20 border-r-10 color-white"  bindtap="sumbitAddrInfo">确定</view>
+    </view>
+  </view>
+</i-actionsheet>

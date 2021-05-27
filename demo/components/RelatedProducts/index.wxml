@@ -1,0 +1,29 @@
+<wxs src="../../utils/ossUrlTest.wxs" module="tool" />
+<view class="flex-start-center bg-white padding-18">
+  <view bindtap="jumpGoodsDetail" class="relative">
+    <image  lazy-load mode="aspectFill" style="width:{{imgWidth}}rpx;height:{{imgWidth}}rpx;" 
+        src="{{tool.ossUrlTest(datas.m_url ||  datas.default_image, 200)}}" />
+    <text wx:if="{{tool.isGroupGoods(datas)}}" class="tag">团购</text>
+    <text wx:elif="{{tool.isFlashSaleGoods(datas)}}" class="tag">一口价</text>
+    <text wx:elif="{{ datas.tag_name && datas.tag_name.length }}" class="tag">{{ datas.tag_name[0] }}</text>
+  </view>
+  <view class="flex-item flex-space-between width-col-1" bindtap="getGoodsDetail" data-goodsid="{{datas.goods_id}}">
+    <view class="margin-rl-20 width-col-1 {{commonInit=='btn'?'width-480':''}} ">
+      <view class="font-mini color-gray text-left line-ellispsis-1">{{datas.brand_name||datas.name}}        </view>
+      <view class="font-sm color-gray text-left line-ellispsis-2 width-col-1">{{commonInit=='radio'?datas.name:datas.goods_name}}</view>
+      <view class="font-mini margin-tb-10 bg-gray padding-rl-10 {{spec_info?'color-warning':'color-gray'}}" style="width:{{spec_info?'60%':'30%'}};padding-top:5rpx;padding-bottom:5rpx">{{spec_info?spec_info:"颜色 / 尺码"}}</view>
+      <view class="text-left flex-space-between width-col-1">
+        <view>
+        <text wx:if="{{datas.price&&tool.isGroupGoods(datas)}}" class="font-big font-bold color-dark">￥{{tool.toFixed(datas.scheme_price, 2)}}</text> 
+        <text wx:if="{{datas.price&&!tool.isGroupGoods(datas)}}" class="font-big font-bold color-dark">￥{{tool.isFlashSaleGoods(datas) ? tool.toFixed(datas.price - datas.scheme_price, 2) : datas.price}}</text> 
+        <text wx:if="{{datas.mktprice}}" class="color-gray font-small text-decoration">￥{{datas.mktprice}}</text>
+        </view>
+       <view wx:if="{{commonInit=='btn'}}" class="btn color-danger border-1px-red">{{btnText}}</view>
+       <view wx:else>
+        <radio  bindtap='radioClick' checked="{{datas.checked}}" color="#dd2453"/>
+       </view>
+      </view>
+    </view>
+  </view>
+</view>
+  <sku-select goods_data="{{goods_data}}" scheme_price="{{ scheme_price }}" goodsPopupType="{{goodsPopupType}}" bind:hidePopup="hidePopup" bind:computeSpecItem="computeSpecItem" bind:submitHandle="submitHandle"></sku-select>

@@ -1,0 +1,22 @@
+<view wx:if="{{datas.uuid}}" class="user-page-header">
+  <view class="flex-start-center" bindtap='imgClick'>
+    <image 
+      lazy-load 
+      style="width: {{width}};height: {{width}};" 
+      class="avatar" 
+      src="{{datas.avatar_image||img_404}}">
+    </image>
+    <view class="flex-item flex-start align-end color-white padding-l-20">
+      <view class="flex-item">
+        <view class="font-medium {{colorText == 'dark' ? 'color-dark' : 'color-white'}}">{{datas.nickname||'影儿会员'}}</view>
+        <view class="font-mini margin-r-20 line-ellispsis-1 {{colorText == 'dark' ? 'color-gray' : 'color-white'}}">{{datas.info|| ''}}</view>
+      </view>
+      <view 
+        wx:if="{{showBtn}}"
+        bindtap="clickHandle" 
+        class="header-btn color-white text-center font-mini {{datas.isAttention ? 'header-btn-gray' : 'bg-red'}}">
+        {{datas.isAttention ? '已关注' : '关注'}}
+      </view>
+    </view>
+  </view>
+</view>

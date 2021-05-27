@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-spin": "../../../../dist/spin/index"
+  }
+}

@@ -1,0 +1,28 @@
+<view class="loginModal flex-center" wx:if="{{showLoginModal}}" style="background-color:{{showMask?'rgba(0,0,0,0.5)':rgba(0,0,0,0)}};">
+  <view class="bg-white width-80 border-r-10 padding-tb-10 padding-rl-10">
+    <view class="flex-center">
+      <text class="padding-tb-20 font-1x color-gray">微店登陆</text>
+    </view>
+    <i-panel>
+        <i-input bind:change="handleChange" data-key="username" disabled='{{true}}' value="{{ username }}" type="number" title="手机号" placeholder="请输入手机号" />
+        <view class="flex-start" wx:if="{{loginType}}">
+          <i-input class="width-70" bind:change="handleChange" data-key="vcode" value="{{ vcode }}" type="number" title="验证码" placeholder="请输入验证码" />
+          <view class="width-30 margin-t-10">
+            <i-button class="margin-0" disabled="{{isVcodeSended}}" type="primary" bind:tap="getVcode" size="small">{{isVcodeSended?vcode_time:'验证码'}}</i-button>
+          </view>
+        </view>
+        <i-input wx:if="{{!loginType}}" bind:change="handleChange" data-key="password" value="{{ password }}" type="password" title="密码" placeholder="请输入密码" />
+    </i-panel>
+    <view class="flex-center padding-t-30">
+      <i-button class="width-50" bind:tap="handleCancel">取消</i-button>
+      <i-button class="width-50" type="success" bind:tap="loginClick">确认</i-button>
+    </view>
+    <view class="flex-end padding-rl-20">
+      <!-- <view class="padding-b-20">
+        <icon class="iconfont padding-r-10 font-3x icon-weixin color-success"></icon>
+        <text>微信授权</text>
+      </view> -->
+      <!-- <text bind:tap="changeLoginType" class="padding-b-20 color-success">{{loginType?'密码登录':'验证码'}}</text> -->
+    </view>
+  </view>
+</view>

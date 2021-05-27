@@ -1,0 +1,56 @@
+@import '../../iconfont/iconfont.wxss';
+.action-index {
+    z-index: 999;
+}
+.scroll {
+    height: 800rpx;
+    text-align: left;
+}
+.title {
+    padding: 20rpx;
+    text-align: left;
+    color: #fff;
+    font-size: 28rpx;
+    background-color: rgba(23, 24, 25, 0.9);
+}
+
+.tip {
+    margin: 0 20rpx;
+    padding: 40rpx;
+    display: flex;
+    align-items: center;
+    color: #19be6b;
+    background-color: #f5f6f7;
+}
+
+.btn-group {
+    width: 100%;
+    display: flex;
+    border-top: 1rpx solid #ccc;
+}
+.item {
+    flex: 1;
+    text-align: center;
+    padding: 30rpx 0;
+    font-size: 28rpx;
+}
+.red {
+    background: #d53642;
+    color: #fff;
+}
+
+.bg-gray {
+    background-color: #eee;
+}
+.line {
+    font-size: 28rpx;
+    text-align: right;
+}
+
+.sev {
+    padding: 24rpx 20rpx 10rpx 20rpx;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+  

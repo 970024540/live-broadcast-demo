@@ -1,0 +1,159 @@
+page {
+  width: 100vw;
+  height: 100vh;
+}
+.live-head {
+  align-items: center;
+}
+.live-head-bg {
+  height: 600rpx;
+  background-size: cover;
+  border-bottom: 10rpx solid black;
+}
+
+.live-conpon {
+  letter-spacing: 6rpx;
+}
+.swiper-live-begin {
+  position: absolute;
+  bottom: 144rpx;
+  z-index: 99;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.live-begin view,.live-begin, .subscribe--live-player-subscribe__btn {
+  font-weight: 600;
+  height: 60rpx;
+  line-height: 60rpx;
+  width: 260rpx;
+  background-color:black;
+  letter-spacing: 8rpx;
+  border-radius: 60rpx;  
+}
+.live-remind {
+  line-height: 48rpx;
+  letter-spacing: 6rpx;
+  font-family: YouYuan;
+  background-color: gray;
+  height: 264rpx;
+}
+.live-click text {
+  color: #ff0000;
+}
+.goods-item {
+  width: 300rpx;
+}
+.goods-item-img {
+  height: 360rpx;
+  width: 300rpx;
+}
+.yiner-logo {
+  width: 24%;
+}
+.live-more {
+  height: 1028rpx;
+}
+.live-more-head {
+  letter-spacing: 6rpx;
+}
+.live-swiper{
+  padding-top: 18px;
+}
+.lp-back-title {
+  height: 100rpx;
+  line-height: 100rpx;
+  letter-spacing: 6rpx;
+  border-bottom: 1rpx solid #4d4d4d;
+}
+
+.lp-back-head {
+  height: 106rpx;
+}
+.lp-back-date {
+  color: #a0a0a0;
+}
+
+.lp-back-tag {
+  padding-left: 4rpx;
+  float: left;
+  width: 80rpx;
+  height: 34rpx;
+  line-height: 34rpx;
+  background-color: #a0a0a0;
+  letter-spacing: 6rpx;
+}
+.lp-back-box {
+  width: 76%;
+}
+.lp-back-text {
+  letter-spacing: 2rpx;
+  white-space: nowrap;
+  float: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: left;
+  line-height: 34rpx;
+  margin-left: 22rpx;
+}
+.lp-back-movie {
+  background-color: gray;
+  height: 540rpx;
+  position: relative;
+}
+.lp-back-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  line-height: 540rpx;
+  transform: translate(-50%,-50%);
+  font-size: 156rpx;
+  background-color: rgba(0, 0, 0, .6);
+  opacity: .6;
+}
+
+.banner-item {
+  transition: all .3s ease;
+}
+
+.banner-item-side::after {
+  content: "";
+  display: block;
+  background-color: rgba(0, 0, 0, .3);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  transition: all .3s ease;
+}
+
+.banner-card {
+  height: 750rpx;
+  width: 400rpx;
+  transition: all .3s ease;
+}
+.banner-card-perspective {
+  -webkit-perspective: 500;
+  perspective: 500;
+  perspective-origin: center center;
+  -webkit-perspective-origin: center center;
+}
+.banner-card-perspective-active {
+  -webkit-perspective: none;
+  perspective: none;
+}
+.banner-goods-cover {
+  width: 100%;
+  height: 100%;
+  transition: all .3s ease;
+}
+
+
+
+
+
+
+
+

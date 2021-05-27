@@ -1,0 +1,49 @@
+<import src="../index/modules/swiperModule/index.wxml" />
+<import src="../index/modules/brandModule/index.wxml" />
+<import src="../index/modules/vstoreCardModule/index.wxml" />
+<import src="../index/modules/promotionModule/index.wxml" />
+<import src="../index/modules/videoModule/index.wxml" />
+<import src="../index/modules/goodsListModule/index.wxml" />
+<import src="../index/modules/navibarModule/index.wxml" />
+<import src="../index/modules/imageModule/index.wxml" />
+<import src="../index/modules/freestyleModule/index.wxml" />
+<import src="../index/modules/gridModule/index.wxml" />
+<import src="../index/modules/textModule/index.wxml" />
+<import src="../index/modules/swiper3d/index.wxml" />
+<import src="../index/modules/ticketModule/index.wxml" />
+<import src="../index/modules/couponModule/index.wxml" />
+<import src="../index/modules/richtextModule/index.wxml" />
+<import src="../index/modules/goodsGroupModule/index.wxml"/>
+<import src="../index/modules/hotSaleModule/index.wxml"/>
+<import src="../index/modules/articleModule/index.wxml"/>
+<import src="../index/modules/pullupModule/index.wxml"/>
+<import src="../index/modules/countdownModule/index.wxml"/>
+<import src="../index/modules/confessionModule/index.wxml"/>
+<import src="../index/modules/hotAreaModule/index.wxml"/>
+<import src="../index/modules/collapseModule/index.wxml"/>
+<view class="bg-gray flex-col-start height-100 items-stretch">
+  <view class="border-box search-fixed bg-white width-100">
+    <x-search tigger="{{true}}" showResult="{{false}}" bindsubmit="brandSearchSubmit"></x-search>
+  </view>
+  <view class="content-box height-100 width-100">
+    <scroll-view scroll-y :style="{'height': scrollHeight+'px'}" class="height-100" scroll-with-animation="true" bindscrolltolower="scrollToLower"  bindscroll="scroll"  scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+      <block wx:if="{{modules.length}}">
+        <view wx:for="{{modules}}" wx:key="{{x}}" wx:for-item="cpt" wx:for-index="x" id="{{cpt.data.apid}}">
+          <template  wx:if="{{cpt.name}}" is="{{cpt.name}}"  data="{{...cpt}}" />
+        </view>
+      </block>
+      <i-load-more
+        class="width-100" 
+        wx:if="{{loading}}" 
+        tip="数据已全部加载" 
+        loading="{{ !loading }}">
+      </i-load-more>
+    </scroll-view>
+  </view>
+  <view style="position:absolute;width:45px;height:45px; bottom:40rpx;right:10px;border-radius:50%;background-color:rgba(0,0,0,0.5)" class="flex-col-center color-white" wx:if="{{isTopBtn}}" bindtap="goTop">
+  <view class="iconfont icon-shang1 font-noraml"></view>
+  <view class="font-small">TOP</view>
+</view>
+</view>
+<i-toast id="toast" />
+<loginModal showMask="{{true}}" bind:onCancel="handleCancel" bind:onOk="handleOk" showLoginModal="{{showLoginModal}}"></loginModal>

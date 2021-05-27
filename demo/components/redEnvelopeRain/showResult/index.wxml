@@ -1,0 +1,30 @@
+<wxs src="../config.wxs" module="config" />
+<wxs src="../../../utils/ossUrlTest.wxs" module="tool" />
+<view class="getPrize flex-col-center">
+    <view class="wrapper">
+      <view class="result-header flex-col-center">
+        <view wx:if="{{isPrize}}" class="flex-col-center color-white">
+          <text class="font-normal">恭喜您获得</text>
+          <text class="font-big flex-col-center">{{prizeType == 'coupons'?prizeMsg.total_amount+ '元' + prizeMsg.cpns_name:prizeMsg.name}}</text>
+        </view>
+        <text wx:else class="font-big color-white">游戏结束，感谢您的参与!</text>
+      </view>
+      <view class="back1 flex-col-center section">
+          <view wx:if="{{isPrize}}" class="gift width-100">
+            <view wx:if="{{prizeType == 'coupons'}}" class="width-80 margin-t-40 relative" style="height: 120px">
+              <image mode="widthFix" src="{{config.COUPONBG}}" class="width-100" alt=""></image>
+              <text class="cpns_name">￥{{prizeMsg.total_amount}}</text>
+            </view>
+              <image mode="widthFix" wx:else src="{{tool.ossUrlTest(prizeMsg.url)}}" class="width-40" alt=""></image>
+          </view>
+        <view class="flex-col-center" wx:else>
+          <text class="font-normal color-white" style="line-height: 1.5;letter-spacing: 1px">{{overShow?'游戏奖品可在':'很遗憾,您未中奖'}}</text>
+          <text class="font-normal color-white" style="line-height: 1.5;letter-spacing: 1px">{{overShow?'“我的战绩”中查看':'下次继续加油!'}}</text>
+          <image  mode="widthFix" class="margin-t-20 width-40" width="36" src="{{config.HEART}}"></image>
+        </view>
+      </view>
+    </view>
+    <button class="btn-pink margin-tb-40" bindtap="getPrize">{{isPrize?'立即领取':'返回商城'}}</button>
+    <text wx:if="{{gameStatus}}" class="iconfont icon-guanbi color-white icon-close" bindtap="cancelShow"></text>
+    <button wx:else class="btn-clear margin-tb-10" bindtap="seeRecord">查看我的战绩</button>
+  </view>

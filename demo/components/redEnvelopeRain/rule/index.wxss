@@ -1,0 +1,55 @@
+@import "../common.wxss";
+._redEnvelopRaion-Rule {
+  position: absolute;
+  top: 0;left: 0;bottom: 0;right: 0;
+  z-index: 2889;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.rule-header {
+  padding: 10rpx 0;
+  background-color: #000;
+}
+.wrapper {
+  width: 82%;
+  position: relative;
+}
+.wrapper::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  top: -16rpx;left: -20rpx;right: 4rpx;bottom: -40rpx;
+  background: center/100% 100% url('http://zone-yingerfashion.oss-cn-shenzhen.aliyuncs.com/storage/images/RedEnvelopeRain/5870ac268b1cb39551308e02a7409be5.png') no-repeat;
+}
+.list {
+  overflow-y: auto;
+  border-bottom-left-radius: 12rpx;
+  border-bottom-right-radius: 12rpx;
+  height: 782rpx;
+}
+.preventTouchMove{
+    top: 0rpx ; 
+    left:   0rpx ; 
+    width:   100% ; 
+    height:   100% ; 
+    overflow:   hidden ; 
+    position:   fixed ; 
+    z-index:   0 ; 
+}
+.joinGame {
+    width: 310rpx;
+    height: 68rpx;
+    line-height: 68rpx;
+    border-radius: 44rpx;
+    font-size: 36rpx;
+    color: #fff;
+    background-color: #CD748A;
+    border: none;
+    outline: none;
+    text-align: center;
+    letter-spacing: 2rpx;
+}
+.winnerMsg{
+  box-shadow: 0 4px 16px rgba(0,0,0,.8) inset;
+  height: 64rpx;
+  background-color: #BD001E;
+}

@@ -1,0 +1,9 @@
+<template name="NavibarModule">
+ <wxs src="../../index.wxs" module="tool" />
+    <view class="navibar flex-start">
+        <view class="flex-item flex-col-center" wx:for="{{data.items}}" wx:key="index" data-urlpath="{{tool.jumpToUrl(item.link)}}" bindtap="jumpUrl">
+            <image  lazy-load style="width:88rpx;height:88rpx" src="{{item.src}}" />
+            <view class="text font-small margin-tb-10" style="font-size:{{datas.fontSize}}rpx;color: {{data.fontColor}}">{{ item.title }}</view>
+        </view>
+    </view>
+</template>

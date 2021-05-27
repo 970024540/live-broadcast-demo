@@ -1,0 +1,32 @@
+@import '../../app.wxss';
+.talklist {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.right {
+  flex-direction: row-reverse;
+}
+.talk-text-box {
+  padding: 5px;
+  line-height: 1;
+  font-size: 16px;
+  border-radius: 5px;
+  max-width: 70%;
+}
+.talk-text {
+  font-family: inherit;
+  /* word-break: break-all; */
+  white-space: pre-wrap;
+  overflow: hidden;
+}
+.talk-photo {
+  width: 100px;
+  height: 100%;
+}
+.avatar {
+  margin: 0 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  align-self: flex-start;
+}

@@ -1,0 +1,44 @@
+@import '../../iconfont/iconfont.wxss';
+.card {
+  position: relative;
+  margin: 0 10rpx 20rpx 10rpx;
+  display: flex;
+  color: #fff;
+  background: #ee8583;
+  border-radius: 10rpx;
+}
+.posit {
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+  font-size: 80rpx;
+  color: #666;
+}
+.hover {
+  box-shadow: inset 0 0 0 100px hsla(0,0%,100%,.3);
+}
+.note {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 220rpx;
+  height: 220rpx;
+  font-size: 42rpx;
+  border-right: 1rpx solid #fff;
+}
+.text {
+  flex: 1;
+  padding: 10rpx 20rpx;
+  display: flex;
+  flex-direction: column;
+  font-size: 22rpx;
+}
+.space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.decorate {
+  padding: 4rpx 16rpx;
+  background: #ef9a9a;
+}

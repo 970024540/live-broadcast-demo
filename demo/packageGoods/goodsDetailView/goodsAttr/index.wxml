@@ -1,0 +1,20 @@
+<view>
+  <view bindtap="showGoodsAttr" class="flex-space-between padding-l-30 margin-r-20 font-normal font-bold padding-tb-40">
+    <view class="padding-l-30">规格/参数</view>
+    <view class="padding-r-20 iconfont icon-you"></view>
+  </view>
+  <i-action-sheet visible="{{ show }}" bind:cancel="hideGoodsAttr" mask-closable="{{ true }}">
+    <view slot="header" style="height: 1000rpx">
+      <view class="height-100 width-100 bg-white flex-col-start align-items-stretch clear-float">
+        <view class="text-center font-normal padding-tb-20">规格/参数</view>
+        <view class="flex-item ovflow padding-rl-20 padding-b-30">
+          <view wx:for="{{attrs}}" wx:key="index" class="text-left font-normal color-gray flex-start padding-20 border-1px-b">
+            <view style="width: 120rpx;" class="font-bold">{{item.key}}</view>
+            <view class="padding-l-30">{{item.value}}</view>
+          </view>
+        </view>
+        <view bindtap="hideGoodsAttr" class="bg-danger padding-tb-20 color-white font-normal text-center">完 成</view>
+      </view>
+    </view>
+  </i-action-sheet>
+</view>

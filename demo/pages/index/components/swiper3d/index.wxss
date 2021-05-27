@@ -1,0 +1,59 @@
+.banner-item {
+  position: relative;
+  transition: all .3s ease;
+}
+
+.banner-item-side::after {
+  content: "";
+  display: block;
+  background-color: rgba(0, 0, 0, .3);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  transition: all .3s ease;
+}
+
+.banner-card {
+  height: 750rpx;
+  width: 400rpx;
+  transition: all .3s ease;
+}
+.banner-card-perspective {
+  -webkit-perspective: 1200rpx;
+  perspective: 1200rpx;
+  perspective-origin: center center;
+  -webkit-perspective-origin: center center;
+}
+.banner-card-perspective-active {
+  -webkit-perspective: none;
+  perspective: none;
+}
+.banner-goods-cover {
+  width: 400rpx;
+  height: 400rpx;
+  transition: all .3s ease;
+}
+
+.bannerDots {
+  width: 100%;
+  left: 0;
+  bottom: 80rpx;
+  height: 12rpx;
+}
+
+.dot {
+  width: 12rpx;
+  height: 12rpx;
+  margin: 0 6rpx;
+  border-radius: 6rpx;
+  background-color: #ddd;
+  transition: all .3s ease;
+}
+
+.dotActive {
+  width: 30rpx;
+  background-color: #7090e8;
+}

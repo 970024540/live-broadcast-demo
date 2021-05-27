@@ -1,0 +1,7 @@
+<template name="NoticeBarModule">
+  <swiper wx:if="{{data.list.length>0}}" class="notice-bar text-center" style="background-color:{{data.bgColor}}" autoplay circular vertical interval="3000">
+    <swiper-item class="flex-center" wx:for="{{data.list}}" wx:key="{{index}}">
+      <text style="color:{{data.color}}" class="line-ellispsis-1">{{item.login_account}}抽中了{{item.name?item.name:item.cpns_name}}</text>
+    </swiper-item>
+  </swiper> 
+</template>

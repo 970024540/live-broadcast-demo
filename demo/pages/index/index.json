@@ -1,0 +1,33 @@
+{
+  "navigationBarTitleText": "影儿商城",
+  "usingComponents": {
+    "x-timer": "../../components/xTimer/index",
+    "i-modal": "../../dist/modal/index",
+    "i-toast": "../../dist/toast/index",
+    "loginModal": "../../components/loginModal/index",
+    "c-modal": "../../components/couponModal/index",
+    "v-time": "../../components/vTime/index",
+    "header":"./components/header/index",
+    "swiper3d": "./components/swiper3d/index",
+    "i-row": "../../dist/row/index",
+    "i-col": "../../dist/col/index",
+    "i-tabs": "../../dist/tabs/index",
+    "i-tab": "../../dist/tab/index",
+    "Persona-lattention":"../../components/Personalattention/index",
+    "i-load-more": "../../dist/load-more/index",
+    "release-btn":"../../components/releaseBtn/index",
+    "tabbar":"./components/tabbar/index",
+    "tab": "./components/tab/index",
+    "tab-item": "./components/tabItem/index",
+    "hot-tabbar":"./components/hotTabbar/index",
+    "to-gift-home":"../../components/toGiftHome/index",
+    "x-search": "/components/xSearch/index",
+    "i-icon": "../../dist/icon/index",
+    "hotArea": "./components/hotArea/index",
+    "collapse":"./components/collapse/index",
+    "red-envelope-rain": "../../components/redEnvelopeRain/index",
+    "authIdentityModal":"../../components/authIdentityModal/index"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#464c5b"
+}

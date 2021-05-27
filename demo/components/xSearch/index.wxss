@@ -1,0 +1,124 @@
+/* components/xSearch/index.wxss */
+.x-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+.x-search-bar {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  left: 70rpx;
+  bottom: 12rpx;
+  padding: 0 10rpx;
+  z-index: 2;
+  color: #808080;
+}
+.x-search-bar-focus {
+  justify-content: flex-start;
+  width: 60rpx;
+}
+.img-search {
+  flex-shrink: 0;
+  padding-right: 18rpx;
+}
+.search-input {
+  font-size: 24rpx;
+  width: 100%;
+  padding: 10rpx 60rpx;
+  border-radius: 3px;
+  color: #333;
+  background-color: #fff;
+}
+.search-cancel {
+  flex-shrink: 0;
+  padding: 0 20rpx;
+  color: #ccc;
+}
+.search-list {
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+  width:100%;
+  background: rgba(255,255,255,1);
+}
+.padding-rl-10{
+  padding:0 10rpx;
+}
+.padding-rl-20{
+  padding-right: 20rpx;
+  padding-left: 20rpx;
+}
+.padding-tb-10{
+  padding-top: 10rpx;
+  padding-left: 10rpx;
+}
+.padding-tb-20{
+  padding-top: 20rpx;
+  padding-left: 20rpx;
+}
+.padding-rl-40{
+  padding-right: 40rpx;
+  padding-left: 40rpx;
+}
+.margin-b-10{
+  margin-bottom: 10rpx
+}
+.font-normal{
+  font-size:28rpx;
+}
+.font-mini{
+  font-size:24rpx;
+}
+.flex-space-between{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.color-dark{
+  color:#495060;
+}
+.flex-center{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.search-bar {
+  display: inline-block;
+  padding: 3px 20rpx;
+  border: 1px solid #ddd;
+  border-radius: 28rpx;
+}
+.search-bar:active {
+  background-color: ghostwhite;
+}
+.search-btn:active {
+  background-color: darkgoldenrod;
+}
+.search-list-item {
+  display: inline-block;
+  margin-bottom:10rpx;
+}
+.search-list-item::after {
+  content: "";
+  padding-right: 10rpx;
+  line-height: 1;
+  vertical-align: text-bottom;
+}
+.search-btn {
+  height: 56rpx;
+  line-height: 56rpx;
+}
+.margin-tb-20{
+  margin-top:20rpx;
+  margin-bottom: 20rpx;
+}
+.hot-list-item {
+  padding: 4rpx;
+  background-color: #fff4f5;
+  border: 1rpx solid #fae7e8;
+}

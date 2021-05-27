@@ -1,0 +1,48 @@
+ @import '../common.wxss';
+  .wrapper {
+    width: 480rpx;
+    position: relative;
+  }
+  .wrapper::after {
+    content: '';
+    position: absolute;
+    top: -50rpx;
+    left: -64rpx;
+    right: -64rpx;
+    bottom: 0;
+    background: center/100% 100% url('http://zone-yingerfashion.oss-cn-shenzhen.aliyuncs.com/storage/images/RedEnvelopeRain/36c7248b2db663c0866d2d54735c0568.png') no-repeat;
+  }
+  .result-header {
+    padding: 10rpx 0;
+    height: 110rpx;
+    background-color: #000;
+  }
+  .section {
+    height: 532rpx;
+    overflow: hidden;
+  }
+  .back1 {
+    background: 0px 0px/240px 266px no-repeat #bd0012;
+  }
+  .gift {
+    margin-top: 80rpx;
+    -webkit-box-reflect: below 0 linear-gradient(transparent, rgba(0, 0, 0, 0.4));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .getPrize {
+    position: fixed;
+    left: 50%;
+    top: 48%;
+    transform: translate(-50%,-50%);
+    z-index: 999;
+  }
+  .cpns_name {
+    position: absolute;
+    top: 80rpx;
+    left: 24rpx;
+    font-size: 86rpx;
+    color: #FDE9E9;
+    text-shadow: 4rpx 4rpx #c54d4d;
+  }

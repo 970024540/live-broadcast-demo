@@ -1,0 +1,6 @@
+<template name="RichtextModule">
+<view>
+  <rich-text  nodes="{{data.content}}" class="link-img2 rich bg-white" bindtap="tap"></rich-text>
+</view>
+ 
+</template>

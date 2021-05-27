@@ -1,0 +1,132 @@
+var tabbars = [
+  "/pages/index/index", "/pages/cat/index", "/pages/discoveryView/index","/pages/cart/index","/pages/user/index",
+];
+var page = {
+  'festivalView': '/packageActive/festivalView/index',
+  'catListView': '/packageGoods/goodsListView/index',
+  'topicDetailView': '/packageActive/pageDetail/index',
+  'brandView': '/packageActive/brandView/index',
+  'detailView': '/packageGoods/goodsDetailView/index',
+  'good-detail.html': '/packageGoods/goodsDetailView/index',
+  'flashSaleView': '/packageActive/flashSaleView/index',
+  'category':'/pages/cat/index',
+  'index': '/pages/index/index',
+  'personalDetails': '/packageCommunity/PersonalDetails/index',
+  'discoveryView':'/pages/discoveryView/index',
+  'loginView': '/pages/loginByMsg/index',
+  'newPreferentialView': '/packageActive/newPreferentialView/index',
+  'girlfriendsTicket': '/packageActive/girlfriendsTicket/index',
+  'toGiftView':'/packageActive/toGiftView/index',
+  'billView': '/packageActive/billView/index',
+  'signInView':'/packageActive/signInView/index',
+  'homeView': '/pages/index/index',
+  'undefined': '/pages/index/index',
+}
+var floatPage={
+  'drawLost': '/pages/game/drawLost?gameType=drawLost',
+  'confessionWall': '/pages/game/drawLost?gameType=confessionWall',
+  'MidAutumnGame':'/pages/game/drawLost?gameType=midAutumnGame'
+}
+var myTool = function (val) {
+  var params = {};
+  var jump_url = '';
+  if(val=="#" || val==null) return;
+  var arr = val.split('/');
+  var _url = arr[arr.length - 1];
+  var page_url = _url.split('?');
+
+  if (!!page[page_url[0]]) {
+    var params_str = (page_url.length > 1 ? "?" + page_url[1]:'');
+    jump_url = page[page_url[0]] + params_str;
+   
+  } else {
+    jump_url = val || '/pages/index/index';
+  }
+  return jump_url;
+}
+var myFloatTool =function(val){
+  var params = {};
+  var jump_url = '';
+  if (val == "#" || val == null) return;
+  var arr = val.split('/');
+  var _url = arr[arr.length - 1];
+  var float_url = arr[arr.length - 2];
+  var page_url = _url.split('?');
+  var float_page_url = float_url?float_url.split('?'):[];
+  if (!!page[page_url[0]]) {
+    var params_str = (page_url.length > 1 ? "?" + page_url[1] : '');
+    jump_url = page[page_url[0]] + params_str;
+
+  } else if (!!floatPage[float_page_url[0]]){
+    jump_url = floatPage[float_page_url[0]];
+  }else{
+    jump_url = val || '/pages/index/index';
+  }
+  return jump_url;
+}
+var jumpToUrl = function (val) {
+  var params = {};
+  var jump_url = '';
+  
+  if (val == "#" || val == null) return;
+  var arr = val.split('/');
+  var _url = arr[arr.length - 1];
+  var page_url = _url.split('?');
+  var path = page[page_url[0]];
+  if (!!path) {
+    var params_str = (page_url.length > 1 ? "?" + page_url[1] : '');
+    jump_url = path + params_str;
+  } else {
+    path = '/pages/index/index';
+    jump_url = '/pages/index/index';
+  }
+  return {
+    type:tabbars.indexOf(path)!=-1?'tabbar':'normal',
+    url: jump_url
+  }
+  
+}
+var badgePosition=function(val){
+  switch(val){
+    case 0:
+      return 'badge-left-top'
+    break
+    case 1:
+      return 'badge-right-top'
+      break
+    case 2:
+      return 'badge-right-bottom'
+      break
+    case 3:
+      return 'badge-left-bottom'
+      break
+  }
+}
+var handleGoodsgroup = function(obj) {
+  return {
+    'bgColor': obj.bgColor, 
+    'lineColor': obj.lineColor, 
+    'activeColor': obj.activeColor, 
+    'defaultColor': obj.defaultColor, 
+    'type': obj.type, 
+    'showSale': obj.showSale, 
+    'showStore': obj.showStore,
+    'columns': obj.columns || 2,
+    'tagSite': obj.tagSite || '1',
+    'tagColor': obj.tagColor||'#000',
+    'showSell': obj.showSell,
+    'tagScrollSite': obj.tagScrollSite||'1',
+    'showName': obj.showName,
+    'tagBgColor': obj.tagBgColor||'#000',
+    'tabGradient':obj.tabGradient||'',
+    'scrollNumber':obj.scrollNumber||3,
+    'tabFontSize':obj.tabFontSize||14
+  }
+}
+module.exports = {
+  myTool: myTool,
+  badgePosition: badgePosition,
+  handleGoodsgroup: handleGoodsgroup,
+  jumpToUrl: jumpToUrl,
+  myFloatTool: myFloatTool
+}

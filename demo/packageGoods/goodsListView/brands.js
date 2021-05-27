@@ -1,0 +1,41 @@
+module.exports.brands =  [{
+  brand_id: "1",
+  brand_name: "音儿",
+  brand_url: "/yinger-m/img/index/fenlei_01.jpg"
+}, {
+  brand_id: "2",
+  brand_name: "恩裳",
+  brand_url: "/yinger-m/img/index/fenlei_02.jpg"
+}, {
+  brand_id: "3",
+  brand_name: "诗篇",
+  brand_url: "/yinger-m/img/index/fenlei_03.jpg"
+}, {
+  brand_id: "7",
+  brand_name: "歌中歌",
+  brand_url: "/yinger-m/img/index/fenlei_04.jpg"
+}, {
+  brand_id: "8",
+  brand_name: "奥丽嘉朵",
+  brand_url: "/yinger-m/img/index/fenlei_05.jpg"
+}, {
+  brand_id: "9",
+  brand_name: "十二篮",
+  brand_url: "/yinger-m/img/index/fenlei_06.jpg"
+}, {
+  brand_id: "10",
+  brand_name: "诗篇蓝标",
+  brand_url: "/yinger-m/img/index/fenlei_09.jpg"
+}, {
+  brand_id: "11",
+  brand_name: "音儿蓝标",
+  brand_url: '/yinger-m/img/index/fenlei_07.jpg'
+}, {
+  brand_id: "12",
+  brand_name: "恩裳蓝标",
+  brand_url: "/yinger-m/img/index/fenlei_08.jpg"
+}, {
+  brand_id: "13",
+  brand_name: "十二篮蓝标",
+  brand_url: "/yinger-m/img/index/fenlei_010.jpg"
+}]

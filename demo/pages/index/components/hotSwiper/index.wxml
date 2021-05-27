@@ -1,0 +1,43 @@
+<wxs src="../../../../utils/ossUrlTest.wxs" module="ossTool" />
+<view class="width-100" style="background: {{ goodsArea[goodsArea.bgType] }}">
+  <wxs src="../../index.wxs" module="tool" />
+  <swiper
+    style="height: {{swiperHeight}}rpx"
+    current="{{currentBannerIndex}}"
+    autoplay="{{false}}"
+    circular="{{false}}"
+    interval="3000"
+    duration="500"
+    bindchange="bannerChange">
+    <swiper-item wx:for="{{source}}" wx:key="index" bindtap="clickGoodsItem" data-index="{{index}}" data-soid="热销榜单" data-goodsid="{{item.goods_id}}">
+      <view wx:if="{{other.tagSite=='1'}}" class="flex-end padding-tb-20">
+        <text wx:if="{{other.showSell}}" class="tag-class font-mini color-white">销量:{{ item.sell_num }} 浏览量:{{ item.browse_num }}</text>
+      </view>
+      <view wx:else class="flex-center">
+        <view class="flex-space-between width-80">
+          <text class="padding-tb-20 font-bold" style="color:{{other.tagColor}};font-size:{{other.tabFontSize*2}}rpx;">TOP {{index==9?index+1:'0'+(index+1)}}</text>
+          <text wx:if="{{other.showSell}}" class="tag-class font-mini color-white">销量:{{ item.sell_num }} 浏览量:{{ item.browse_num }}</text>
+        </view>
+      </view>
+      <view class="flex-center">
+        <view wx:if="{{other.tagSite=='1'}}" class="width-20" style="color:{{other.tagColor}};font-size:{{other.tabFontSize*2}}rpx;">
+          <view class="text-center font-bold">TOP</view>
+          <view class="text-center font-bold">{{index==9?index+1:'0'+(index+1)}}</view>
+        </view>
+        <view class="width-80">
+          <view class="link-img" style="height:640rpx">
+            <image lazy-load src="{{ossTool.ossUrlTest(item.image_url, 200)}}"/>
+          </view>
+          <view class="flex-space-between padding-t-20">
+            <text class="width-80 line-ellispsis-1" style="color: {{goodsArea.brandColor}}">{{item.brand_keywords}} {{item.brand}}</text>
+            <text class="padding-r-20 font-big font-bold" style="color: {{ goodsArea.priceColor }}">￥{{ item.price }}</text>
+          </view>
+          <view wx:if="{{other.showName}}" style="color: {{goodsArea.nameColor}}" class="line-ellispsis-1">{{item.name}}</view>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+  <view class="bannerDots flex-center padding-tb-30">
+    <view class="dot {{currentBannerIndex==index?'dotActive':''}}" wx:for="{{source}}" wx:key="index"></view>
+  </view>
+</view>

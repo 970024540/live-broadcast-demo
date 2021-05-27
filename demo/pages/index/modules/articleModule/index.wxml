@@ -1,0 +1,30 @@
+<wxs src="../../../../utils/ossUrlTest.wxs" module="ossTool" />
+<template name="ArticleModule" class="bg-white">
+  <import src="../../components/cover/index.wxml" />
+  <import src="../../components/badge/index.wxml" />
+  <view class="relative bg-white">
+    <wxs module="pageTest">
+      module.exports = {
+        getTest : function(title,article_id){
+          var type=0;
+          if(title.indexOf('达人')!=-1) {
+            return '/packageActive/pageDetail/index?showCommentsBar=true&page=true&page_id=' + article_id;
+          }
+          if(title.indexOf('买家')!=-1) type=1;
+          if(title.indexOf('生活')!=-1) type=2;
+          if(title.indexOf('娱乐')!=-1) type=3;
+          return '/packageCommunity/PersonalDetails/index?type='+ type + '&article_id=' + article_id        
+        }
+      }
+    </wxs>
+    <navigator url="{{pageTest.getTest(data.badge.title,data.page.article_id)}}" class="link-img line-height-0" style="padding-top:{{data.cover.paddingTb}}rpx;padding-bottom:{{data.cover.paddingTb}}rpx">
+      <image  lazy-load src="{{ossTool.ossUrlTest(data.cover.coverUrl)}}" mode="widthFix"></image>
+    </navigator>
+    <!-- <template wx:if="{{data.showCover}}" is="cover" data="{{data}}"></template> -->
+    <template wx:if="{{data.showBadge}}" is="badge" data="{{data}}"></template>
+  </view>
+  <view class="padding-rl-20 padding-b-20 bg-white">
+    <view class="space font-bold color-gary" style="font-size: {{data.desc.titleSize * 2}}rpx; color:{{data.desc.titleColor}}; text-align: {{data.desc.align}}">{{ data.desc.title }}</view>
+    <view class="space " style="font-size: {{data.desc.subtitleSize * 2}}rpx; color: {{data.desc.subtitleColor}}">{{ data.desc.subTitle || '' }}</view>
+  </view>
+</template>

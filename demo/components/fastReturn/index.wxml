@@ -1,0 +1,48 @@
+<i-action-sheet visible="{{ show }}" class="action-index" i-class="action-index">
+    <view slot="header">
+        <view class="title">取件信息填写</view>
+        <scroll-view class="scroll" scroll-y="{{ true }}">
+            <i-cell-group>
+                <i-input title="姓名" data-name="contact" placeholder="寄件人姓名" value="{{formData.contact}}" bindchange="inputChange"></i-input>
+                <i-input title="手机号" data-name="mobile" placeholder="寄件人手机号" value="{{formData.mobile}}" bindchange="inputChange"></i-input>
+                <i-cell title="付款方式" is-link value="{{entity}}" bindtap="whoPay"></i-cell>
+                <picker mode="selector" range="{{providers}}" range-key="value" bindchange="provChange">
+                    <i-cell title="服务商" is-link value="{{express_name}}"></i-cell>
+                </picker>
+                <picker wx:if="{{ appoint }}" mode="date" start="{{ startDate }}" bindchange="appointChange" data-name="date">
+                    <i-cell title="预约上门(日期)" is-link value="{{ date }}"></i-cell>
+                </picker>
+                <picker wx:if="{{ appoint }}" mode="time" start="09:00" end="15:00" bindchange="appointChange" data-name="time">
+                    <i-cell title="预约上门(时间)" is-link value="{{ time }}"></i-cell>
+                </picker>
+                <adderss-picker id="address-picker" bindchange="bindAddrChange" label="寄件地址" selected="{{regionAddr}}" />
+                <i-input title="街道地址" data-name="address" maxlength="{{ 50 }}" placeholder="街道地址" value="{{formData.address}}" bindchange="inputChange"></i-input>
+                <i-input title="客户备注" data-name="remark" type="textarea" maxlength="{{ 50 }}" placeholder="客户备注" value="{{formData.remark}}" bindchange="inputChange"></i-input>
+                <i-cell title="服务说明" value="申请审核通过后将会有快递员上门取件"></i-cell>
+            </i-cell-group>
+            <view class="bg-gray" style="padding: 20rpx 0">
+                <view class="tip">
+                    <icon class="iconfont icon-guanzhu"></icon>
+                    <view class="font-mini">商家确认售后申请后，会自动为您呼叫指定快递服务商上门取件，请您保持联系方式畅通。多品牌时因退货地址不同，将为你对指定快递服务商下多个快递运单，请与快递员进行核实，将商品放入指定运单包裹内寄回(注意：同品牌多件商品时，也只会有一个快递包裹寄回)。所产生费用由快递服务商跟您核对收取</view>
+                </view>
+            </view>
+            <view class="bg-gray" style="padding-bottom: 20rpx;">
+                <view style="margin: 0 20rpx;padding: 20rpx;background-color: #f5f6f7;">
+                    <view class="line" style="letter-spacing: 1px">省内件：一公斤以内约12元，超出每公斤加2元</view>
+                    <view class="line" style="letter-spacing: 1px">省外件：一公斤以内约18元，超出每公斤加8元</view>
+                    <text>\n</text>
+                    <view class="line" style="color: #dd2453">* 以上为参考价，以当地服务商及实际情况为准</view>
+                </view>
+                <checkbox-group class="sev" bindchange="handleService">
+                    <label>
+                        <checkbox value="1" checked="{{ checked }}" />我已阅读并确认上述内容
+                    </label>
+                </checkbox-group>
+            </view>
+        </scroll-view>
+        <view class="btn-group">
+            <view class="item" bindtap="close">关闭</view>
+            <view class="item red" bindtap="confirm">提交</view>
+        </view>
+    </view>
+</i-action-sheet>

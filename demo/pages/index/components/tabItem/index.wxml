@@ -1,0 +1,4 @@
+<view class="i-tabs-tab text-center" bindtap="handleClickItem" style="border-bottom: {{ current == key ? '2px solid ' + lineColor : '' }};">
+  <text class="{{ current == key ? 'font-bold' : '' }} text-center" 
+    style="color: {{ current == key ? activeColor : defaultColor }};text-shadow:{{current==key?'0px 0px 12rpx '+tabShadowColor:''}}">{{ title }}</text>
+</view>

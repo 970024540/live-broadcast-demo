@@ -1,0 +1,39 @@
+<template name="FreestyleModule">
+  <import src="../../components/cover/index.wxml" />
+  <template wx:if="{{data.showCover}}" is="cover" data="{{data}}"></template>
+  <header wx:if="{{data.showDesc}}" styles="{{data}}"></header>
+  <view class="flex-start width-100">
+    <view class="flex-item padding-r-5 width-50">
+      <view style="height: 640rpx;" class="relative link-img width-100" bindtap="jumpPage" data-item="{{data.left}}">
+        <image  lazy-load src="{{data.left.cover}}" mode="aspectFit" class="width-100"></image>
+        <view class="desc font-small">
+          <view class="line-ellispsis-1">{{ data.left.name }}</view>
+          <view>{{ data.left.common }}</view>
+        </view>
+        <text class="iconfont video  icon-play" wx:if="{{data.left.type == 'video'}}"></text>
+      </view>
+    </view>
+    <view class="flex-item padding-l-5 flex-col-start width-50">
+      <view class="flex-item margin-b-10 width-100">
+        <view style="height: 315rpx;" class="relative link-img width-100" bindtap="jumpPage" data-item="{{data.rtop}}">
+          <image  lazy-load src="{{data.rtop.cover}}" mode="aspectFit" class="width-100"></image>
+          <view class="desc font-small">
+            <view class="line-ellispsis-1">{{ data.rtop.name }}</view>
+            <view>{{ data.rtop.common }}</view>
+          </view>
+          <text class="iconfont video icon-play" wx:if="{{data.rtop.type == 'video'}}"></text>
+        </view>
+      </view>
+      <view class="flex-item width-100">
+        <view style="height: 315rpx;" class="relative link-img width-100" bindtap="jumpPage" data-item="{{data.rbtm}}">
+          <image  lazy-load src="{{data.rbtm.cover}}" mode="aspectFit" class="width-100"></image>
+          <view class="desc font-small">
+            <view class="line-ellispsis-1">{{ data.rbtm.name }}</view>
+            <view>{{ data.rbtm.common }}</view>
+          </view>
+          <text class="iconfont video icon-play" wx:if="{{data.rbtm.type == 'video'}}"></text>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

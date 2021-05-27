@@ -1,0 +1,6 @@
+<template name="cover">
+  <wxs src="../../index.wxs" module="tool" />
+  <navigator url="{{tool.myTool(data.cover.link)}}" class="link-img line-height-0" style="padding-top:{{data.cover.paddingTb}}rpx;padding-bottom:{{data.cover.paddingTb}}rpx">
+    <image src="{{data.cover.coverUrl}}" mode="widthFix"  lazy-load></image>
+  </navigator>
+</template>

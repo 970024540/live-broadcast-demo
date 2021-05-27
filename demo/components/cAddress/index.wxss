@@ -1,0 +1,19 @@
+.action-index {
+  z-index: 999;
+}
+.address-icon {
+  font-size: 80rpx;
+  color: #ddd;
+  padding: 32rpx 0;
+}
+.group {
+  padding: 0 10rpx;
+  font-size: 30rpx;
+  color: #fff;
+  background-color: #333;
+}
+.addr-list {
+  max-height: 800rpx;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}

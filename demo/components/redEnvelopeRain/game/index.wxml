@@ -1,0 +1,5 @@
+<wxs src="../config.wxs" module="config" />
+<view class="full flex-col-center" style="background:center/375px 498px no-repeat url({{config.COUNTDOWN_BACK}})">
+    <!-- 倒计时 -->
+    <image src="{{config.COUNTDOWN_NUMBERS[count]}}"></image>
+</view>

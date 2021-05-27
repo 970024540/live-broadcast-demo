@@ -1,0 +1,40 @@
+.backNone{
+  background: none;
+}
+.modal-button {
+  padding: 10rpx 30rpx;
+}
+.button-circle {
+  border-radius: 36rpx;
+}
+.button-type-primary {
+  background: #2d8cf0;
+  color: #fff;
+}
+.button-type-ghost {
+  background: transparent;
+}
+.button-type-dashed {
+  background: transparent;
+  border: 1px dashed #eee;
+}
+.button-type-text {
+  background: transparent;
+  border: none;
+}
+.button-type-info {
+  background: #2db7f5;
+  color: #fff;
+}
+.button-type-success {
+  background: #19be6b;
+  color: #fff;
+}
+.button-type-warning {
+  background: #f90;
+  color: #fff;
+}
+.button-type-error {
+  background: #ed3f14;
+  color: #fff;
+}

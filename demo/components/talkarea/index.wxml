@@ -1,0 +1,27 @@
+<view class="talkarea">
+  <view class="bg-white flex-start-center margin-tb-10">
+    <view class="padding-rl-10 flex-col-center" style="flex:1">
+      <text class="iconfont icon-yuyin talkarea-voice"></text>
+    </view>
+    <view style="flex:8" class="relative">
+      <input class="talk-input" type="text" bindinput="onInput" bindconfirm="onConfirm" />
+      <view class="iconfont icon-biaoqing1 font-4x biaoqing color-gray" style="z-index:1000" bindtap="handlePopup" data-type="0"></view>
+    </view>
+    <view class="padding-rl-10 flex-col-center" style="flex:1" bindtap="handlePopup" data-type="1">
+      <text class="iconfont icon-plus talkarea-add font-1x"></text>
+    </view>
+  </view>
+  <view wx:if="{{showPopup}}" class="bg-gray padding-rl-20 padding-tb-20 " style="min-height:360rpx">
+    <view wx:if="{{popupType==0}}" class="flex-start flex-wrap padding-20">
+      <view wx:for="{{104}}" class="padding-rl-10">
+        <image style="width:40rpx;height:40rpx" src="{{'https://res.wx.qq.com/mpres/htmledition/images/icon/emotion/'+item+'.gif'}}"></image>
+      </view>
+    </view>
+    <view wx:else class="flex-wrap flex-space-around">
+      <view class="flex-col-center talkarea-box-item" wx:for="{{8}}">
+        <text class="iconfont icon-shangchuan font-2x"></text>
+        <text class="font-mini">上传图片</text>
+      </view>
+    </view>
+  </view>
+</view>

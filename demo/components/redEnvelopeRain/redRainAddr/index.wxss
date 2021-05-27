@@ -1,0 +1,82 @@
+@import "../common.wxss";
+._redEnvelopRaion-Rule {
+  position: absolute;
+  top: 0;left: 0;bottom: 0;right: 0;
+  z-index: 2889;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.addr-header {
+  padding: 10rpx 0;
+  background-color: #000;
+  color: #fff;
+}
+.wrapper {
+  min-height: 600rpx;
+  border-radius: 10rpx;
+  overflow: hidden
+}
+.wrapper::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  top: -16rpx;left: -20rpx;right: 4rpx;bottom: -40rpx;
+}
+.list {
+  overflow-y: auto;
+  border-bottom-left-radius: 12rpx;
+  border-bottom-right-radius: 12rpx;
+  height: 782rpx;
+}
+.joinGame {
+    width: 310rpx;
+    height: 68rpx;
+    line-height: 68rpx;
+    border-radius: 44rpx;
+    font-size: 36rpx;
+    color: #fff;
+    background-color: #bd0012;
+    border: none;
+    outline: none;
+    text-align: center;
+    letter-spacing: 2rpx;
+}
+.action-index {
+  z-index: 999;
+}
+.address-icon {
+  font-size: 120rpx;
+  color: #ddd;
+  padding: 32rpx 0;
+}
+.group {
+  padding: 0 10rpx;
+  font-size: 30rpx;
+  color: #fff;
+  border-radius: 20rpx 20rpx 0 0 ;
+}
+.addr-list {
+  max-height: 800rpx;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.bg-pink {
+  background-color: #bd0012;
+}
+.bg-depink {
+  box-shadow: 0 -2rpx 1rpx rgba(0, 0, 0, .2);
+  background-color: #bd0012;
+}
+.bg-black {
+  background-color: black
+}
+.margin-r-2 {
+  margin-right: 2rpx;
+}
+.btn-addr {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.radio-group {
+  padding-bottom: 86rpx;
+}

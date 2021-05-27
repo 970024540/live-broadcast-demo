@@ -1,0 +1,20 @@
+<view style="padding: 0 18px">
+    <view style="padding: 20rpx 0 10rpx 0;font-size: 16px;font-weight: bold;color: #dd2453;">自行寄回退货地址:</view>
+
+    <view wx:for="{{ address }}" wx:key="{{ item.brand_name }}">
+        <view wx:if="{{ brands[item.brand_name] }}"
+            style="margin: 30px 0 20px 0;padding-left: 3px;border-left: 3px solid #333;color: #333;font-weight: bold;display: flex;flex-direction: column;">
+            <text style="font-size: 15px;">{{ item.name }}</text>
+            <text style="font-size: 16px;">{{ item.brand_name == 'MAKEUP' ? 'MAKEUP' : 'CLOTHES' }}</text>
+        </view>
+        <view wx:if="{{ brands[item.brand_name] }}"
+            style="font-size: 13px;color: #333;line-height: 1.8;letter-spacing: 1px;">
+            <text style="font-weight: bold;">地址:\n</text>
+            <text>{{ item.receive.addr }}\n</text>
+            <text style="font-weight: bold;">联系人:\n</text>
+            <text>{{ item.receive.contact }}\n</text>
+            <text style="font-weight: bold;">联系电话:\n</text>
+            <text>{{ item.receive.phone }}</text>
+        </view>
+    </view>
+</view>

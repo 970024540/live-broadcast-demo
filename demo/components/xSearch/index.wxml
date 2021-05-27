@@ -1,0 +1,45 @@
+<!--components/xSearch/index.wxml-->
+<view class="flex-start-center width-100 border-1px-b padding-tb-10">
+  <search-bar id="searchBar" class="flex-item" value="{{initValue}}" showResult="{{showResult}}" bindfocus="inputFocus" bindinput="bindKeyInput" bindconfirm="submit" resultTop="98rpx" bindhiddenResCancel="inputCancel">
+    <view class="height-100 width-100 ovflow">
+      <i-load-more style="width: 100%" wx:if="{{loading}}" tip="{{!loading ? '数据已全部加载' : '正在请求'}}" loading="{{ loading }}"></i-load-more>
+      <view wx:if="{{searchSuggestList.length}}" class="width-100 font-normal">
+        <view wx:for="{{searchSuggestList}}" wx:key="index" class="flex-space-between  font-normal padding-rl-40 padding-tb-20" bindtap="searchByChoose" data-item="{{item.term}}">
+          <text>{{item.term}}</text>
+        </view>
+      </view>
+      <view wx:else>
+        <view wx:if="{{showHistorySearchList && searchHistory.length}}" class="margin-tb-20 font-normal padding-rl-40">
+          <view class="flex-space-between padding-tb-20">
+            <view>最近搜索</view>
+            <view class="iconfont icon-iconfont05 color-gray font-2x" capture-catch:tap="clearSearchHistory"></view>
+          </view>
+          <view class="search-list-item" wx:for="{{searchHistory}}" wx:key="index" bindtap="searchByChoose" data-item="{{item}}">
+            <text class="search-bar line-ellispsis-1">{{item}}</text>
+          </view>
+        </view>
+        <view wx:if="{{showHotSearchList && hotSearchList.length}}" class="margin-tb-20 font-normal padding-rl-40">
+          <view class="flex-space-between padding-tb-20">
+            <view>热门搜索</view>
+            <i-icon size="18" color="#666" type="refresh" capture-catch:tap="refreshHotList" />
+          </view>
+          <view class="flex-start flex-wrap">
+            <view class="width-50 padding-10" wx:for="{{hotSearchList}}" wx:key="index" bindtap="searchByChoose" data-item="{{item.params}}">
+              <view class="hot-list-item flex-start-center border-r-10">
+                <view class="bg-white link-img border-r-10 flex-shrink-0" style="width: 120rpx; height: 120rpx;">
+                  <image src="{{item.image_url}}" class="border-r-10" mode="aspectFit"></image>
+                </view>
+                <view class="padding-rl-20">{{item.name}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view wx:if="{{!searchHistory.length && !hotSearchList.length}}" class="font-normal flex-center color-gray padding-tb-20">
+          暂无历史记录
+        </view>
+      </view>
+    </view>
+
+  </search-bar>
+  <i-icon wx:if="{{showImgSearch}}" bindtap="imageSearch" class='img-search' size="28" color="#424242" type="camera" />
+</view>

@@ -1,0 +1,32 @@
+<wxs src="../../../../utils/ossUrlTest.wxs" module="ossTool" />
+<wxs src="../../index.wxs" module="tool" />
+<import src="../swiperModule/index.wxml" />
+
+<block wx:for="{{datas}}" wx:for-index="key" wx:key="key">
+  <view wx:if="{{(key == 'modal' && showModal)|| (key == 'new_guy' && showNewGuyModal)}}" class="modal-mask flex-center">
+    <view class="modal-move" style="width:{{item.contentWidth}}%" isBackColor="{{false}}">
+      <view class="flex-center">
+        <view class="flex-space-between width-80">
+          <view wx:if="{{item.countdownVisable}}" style="color:{{item.countdownColor}};background:{{item.countdownBgColor}}" class="color-danger font-normal font-bold tcr">{{duration}}</view>
+          <view wx:else></view>
+          <view wx:if="{{item.title}}" class="font-normal" style="color:{{item.color}}">{{item.title}}</view>
+          <view wx:if="{{item.closeable}}" class="iconfont icon-guanbi tc" style="background-color:{{item.buttonBgColor}};color:{{item.buttonColor}}" bindtap="closeModal"></view>
+          <view wx:else></view>
+        </view>
+      </view>
+      <view wx:if="{{item.isSwiper}}" class="flex-center">
+        <view style='width:{{item.coverWidth*100}}%'>
+          <template is="SwiperModule" data="{{data:item.swiperData}}" ></template>
+        </view>
+      </view>
+      <view wx:else bindtap="jumpClick" data-isBtnLogin="{{item.isBtnLogin}}" data-url="{{tool.myTool(item.imgHref)}}" class="flex-center margin-tb-20">
+        <image  lazy-load style="width: 80%;" src="{{ossTool.ossUrlTest(item.src)}}" mode="widthFix"></image>
+      </view>
+
+      <view wx:if="{{item.buttonVisable&&!item.isBtnLogin}}" class="padding-tb-10 flex-center">
+        <view style="width:{{item.btnWidth}}%;background:{{item.btnGradient}}" class="font-normal text-center modal-button button-{{item.buttonShape}} button-type-{{item.buttonType}}">{{item.buttonText}}</view>
+      </view>
+      <btn-login wx:if="{{item.buttonVisable&&item.isBtnLogin}}" pageId="{{pageId}}" datas="{{item}}"></btn-login>
+    </view>
+  </view>
+</block>

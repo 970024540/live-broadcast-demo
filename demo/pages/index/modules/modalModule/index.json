@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "v-time": "/components/vTime/index",
+    "x-modal": "/components/xModal/index",
+    "btn-login":"/components/thirdPartyLogin/index"
+  }
+}

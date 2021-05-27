@@ -1,0 +1,8 @@
+<view class="flex-space-around padding-tb-20">
+  <view bindtap="pickImage" data-type="0">
+    <image class="idcard-img" src="{{font_url || font_cover}}"></image>
+  </view>
+  <view bindtap="pickImage"  data-type="1">
+    <image class="idcard-img" src="{{back_url || back_cover}}"></image>
+  </view>
+</view>

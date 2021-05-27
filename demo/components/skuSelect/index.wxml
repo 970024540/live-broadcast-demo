@@ -1,0 +1,62 @@
+<wxs src="../../utils/ossUrlTest.wxs" module="tool" />
+<wxs src="../../utils/filter.wxs" module="filter" />
+<i-action-sheet visible="{{ showPopup }}" bind:cancel="hidePopup" bind:click="handleClickItem2">
+    <view wx:if="{{showPopup}}" slot="header">
+        <view class="sku-content">
+          <view class="flex-col-start height-100">
+            <view  class="relative flex-start width-100 padding-rl-20 padding-tb-10 border-box">
+              <view bindtap="showImgPrev" class="link-img goods-img height-100 border-r-10">
+                <image mode="aspectFill" src="{{tool.ossUrlTest(goods_cover)}}"></image>
+              </view>
+              <view class="text-left padding-rl-20">
+              <view class="text-left">
+                <text wx:if="{{goodsPopupType==7 || goodsPopupType == 8}}" class="font-1x padding-b-10 color-danger">¥{{chooseProduct.price ? filter.toFixed(chooseProduct.price - scheme_price, 2) : filter.toFixed(goods_data.price - scheme_price, 2) }}</text>
+                <text wx:elif="{{goodsPopupType==5}}" class="font-1x padding-b-10 color-danger">¥{{scheme_price}}</text>
+                <text wx:else class="font-1x padding-b-10 color-danger">¥{{chooseProduct.price ? chooseProduct.price : goods_data.price}}</text>
+              </view>
+                <view class="text-left">
+                <text wx:if="{{goodsPopupType == 7}}" class="font-normal padding-b-10 color-dark">剩余库存{{store}}件</text>
+                <text wx:else class="font-normal padding-b-10 color-dark">库存{{storeCount}}件</text>
+                </view>
+                <view class="text-left">
+                  <text class="font-normal padding-b-10 color-dark">{{chooseProduct.spec_info ? '已选择:' + selectedSpec : '请选择:' + notSelectSpec}}</text>
+                </view>
+                <view class="text-left"><text class="font-normal padding-b-10 color-dark">货号: {{chooseProduct.bn ? chooseProduct.bn : goods_data.bn}}</text></view>
+                <slot name="prepay"></slot>
+              </view>
+              <view bindtap="hidePopup" class="goods-popup-close color-gray"><i-icon size="20" type="close" /></view>
+            </view>
+            <view class="goods-popup-body padding-rl-20 flex-content border-box">
+                <view wx:for="{{spec_item}}" wx:for-item="value" wx:for-index="key" wx:key="key"  class="border-1px-t padding-b-20">
+                  <view class="text-left margin-tb-20"><text class="color-dark padding-tb-20 font-normal">{{value.name}}</text></view>
+                  <view class="flex-start flex-wrap">
+                    <view
+                      class="padding-rl-20 font-normal color-dark spec-item border-r-10 {{item.disabled || item.store == 0 ? 'spec-item-disabled' : (item.name == value.selected ? 'spec-item-active' : '')}}"
+                      wx:for="{{value.children}}"
+                      wx:key="index"
+                      data-click-spec="{{[key, index]}}"
+                      bindtap="selectSpec"
+                      >{{item.name}}</view>
+                  </view>
+                </view>
+                <view class="border-1px-t border-1px-b">
+                  <view class="flex-space-between padding-tb-40">
+                    <text class="color-dark font-normal">购买数量</text>
+                    <i-input-number value="{{selectedCount}}" min="1" max="{{goodsPopupType == 7? store : maxCount}}" step="1" bindchange="changeBuyCount"></i-input-number>
+                  </view>
+                </view>
+            </view>
+            <view wx:if="{{goodsPopupType==1}}" class="goods-btn width-100 flex-start font-normal">
+              <view bindtap="submit" data-submit-type="2" class="reset-btn padding-tb-30 width-50 bg-dark">加入购物车</view>
+              <view bindtap="submit" data-submit-type="3" class="reset-btn padding-tb-30 width-50 bg-danger">立即购买</view>
+            </view>
+            <view wx:else class="goods-btn width-100 flex-start font-normal">
+              <view wx:if="{{goodsPopupType == 4}}" bindtap="submit" class="reset-btn width-100 padding-tb-30 bg-success"
+                data-submit-type="{{goodsPopupType}}">预付定金</view>
+              <view wx:else class="reset-btn padding-tb-30 bg-danger width-100" bindtap="submit" 
+                data-submit-type="{{goodsPopupType}}">确定</view>
+            </view>
+          </view>
+        </view>
+    </view>
+</i-action-sheet>

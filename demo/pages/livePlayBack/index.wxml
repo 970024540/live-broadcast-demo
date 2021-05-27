@@ -1,0 +1,71 @@
+<video
+  id="video"
+  class="video relative"
+  src="{{currentSrc}}"
+  object-fit="contain"
+  autoplay
+  show-fullscreen-btn="{{true}}"
+  bindtap="videoClick"
+  bindloadedmetadata="loadedmetadata"
+  bindended="ended"
+  >
+  <!-- poster="{{poster}}" -->
+  
+  <view style="top: {{statusBarHeight + 3}}px" class="header flex-start-center padding-10">
+    <text catchtap="goBack" class="iconfont icon-fanhui color-white font-bold font-1x"></text>
+    <view class="flex-start-center">
+      <image src="http://mall.yingerfashion.com/yinger-m/img/logo_dog.png" class="logo margin-rl-10"></image>
+      <view class="flex-col-start padding-r-10">
+        <text class="font-small color-white line-ellispsis-2" style="max-width: 240rpx">{{name}}</text>
+        <!-- <text class="font-small color-white">{{viewCount}}已人观看</text> -->
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{showGoodsTimeLine && !showGoodsList}}" class="goods-timeline flex-start">
+    <view wx:for="{{goods}}" wx:key="index" catchtap="goodsTimelineClick" data-index="{{index}}" class="margin-l-10 flex-shrink-0 relative border-r-10">
+      <image src="{{item.cover_img}}" class="goods-timeline-img" mode="aspectFill"></image>
+      <text class="goods-index goods-timeline-index color-white font-mini text-center">{{index + 1}}</text>
+      <text class="timeline-price text-center color-white font-mini">￥{{item.price}}</text>
+      <view wx:if="{{goodsSeekIndex == index}}" class="goods-timeline-mask flex-center">
+        <text class="color-white font-mini text-center padding-rl-20" catchtap="goodsClick" data-index="{{index}}">查看详情</text>
+      </view>
+    </view>
+  </view>
+
+  <view wx:elif="{{!showGoodsList}}" class="toolbar flex-col-center">
+    <!-- <view catchtap="showToast" class="toolbar-item flex-col-center margin-b-30">
+      <view class="toolbar-item-circle flex-center">
+        <text class="iconfont icon-aixin color-white font-2x"></text>
+      </view>
+      <text class="color-white font-mini">{{upvoteCount}}</text>
+    </view>
+    <view catchtap="showToast" class="toolbar-item flex-col-center margin-b-30">
+      <view class="toolbar-item-circle flex-center">
+        <text class="iconfont icon-pinglun1 color-white font-3x"></text>
+      </view>
+      <text class="color-white font-mini">{{commentCount}}</text>
+    </view> -->
+    <view catchtap="showGoodsListHandle" class="toolbar-item-circle flex-center" style="background: #7786d6">      
+      <text class="iconfont icon-5gouwudai2 color-white font-1x"></text>
+    </view>
+  </view>
+  
+  <view wx:if="{{showGoodsList}}" catchtap="doNothing" class="goods-list padding-rl-20 border-r-10 flex-col-start align-items-stretch">
+    <view class="flex-space-between padding-tb-20">
+      <text></text>
+      <text class="font-big color-white">直播商品</text>
+      <text catchtap="hideGoodsListHandle" class="font-big padding-rl-20 color-white">x</text>
+    </view>
+    <view class="flex-item ovflow">
+      <view wx:for="{{goods}}" wx:key="index" bindtap="goodsClick" data-index="{{index}}" class="flex-start bg-white border-r-10 margin-b-20 align-items-stretch padding-10 relative">
+        <image src="{{item.cover_img}}" class="goods-img" mode="aspectFill"></image>
+        <text class="goods-index color-white font-mini text-center">{{index + 1}}</text>
+        <view class="flex-col-space-between padding-rl-20 padding-tb-10">
+          <text>{{item.name}}</text>
+          <text class="color-danger font-normal">￥{{item.price}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</video>

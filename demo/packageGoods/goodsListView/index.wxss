@@ -1,0 +1,42 @@
+/* packageGoods/goodsListView/index.wxss */
+.goods-item-cover {
+  width: 340rpx;
+  height: 340rpx;
+}
+
+.drawer {
+  height: 100vh;
+  width: 576rpx;
+}
+.drawer-content {
+  position: absolute;
+  top: 0;
+  width: 576rpx;
+  bottom: 0;
+  right: 0;
+}
+.price-label {
+  height: 54rpx;
+  line-height: 52rpx;
+  width: 158rpx;
+  margin: 0 19rpx 29rpx 0;
+}
+.price-label:nth-of-type(1) {
+  width: 127rpx;
+}
+.price-label:nth-of-type(3n) {
+  margin: 0 0 29rpx 0;
+}
+.brand-image {
+  width: 170rpx;
+  height: 73rpx;
+  margin: 0 29rpx 29rpx 0;
+}
+.brand-image:nth-of-type(2n) {
+  margin: 0 0 29rpx 0;
+}
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}

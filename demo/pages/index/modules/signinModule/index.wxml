@@ -1,0 +1,3 @@
+<template name="SigninModule">
+  <signin id="signin-view" data="{{data}}"></signin>
+</template>

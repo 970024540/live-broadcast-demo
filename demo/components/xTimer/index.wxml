@@ -1,0 +1,43 @@
+<view wx:if="{{moduleType=='2'}}" class="x-timer font-normal bg-white padding-tb-20 flex-start">
+  <view class="flex-start-center color-white" style="background-color: {{type}};padding:10rpx {{padding_rl*2}}rpx;">
+    <view wx:if="{{!isOpenText}}" class="font-normal padding-rl-8 color-white">{{!timeType?preStartLabel:(timeType==1?StartingLabel:endLabel)}}</view>
+    <view class="flex-center">
+      <view wx:if="{{!isSimple}}" class="x-timer-item">{{ day<'10' ? '0'+day : day }}</view>
+    <view class="padding-rl-8" wx:if="{{!isSimple}}">天</view>
+    <view class="x-timer-item">{{ hour<'10' ? '0'+hour : hour }}</view>
+    <view class="padding-rl-8"> : </view>
+    <view class="x-timer-item">{{ minute<'10' ? '0'+minute : minute }}</view>
+    <view class="padding-rl-8"> : </view>
+    <view class="x-timer-item">{{ second<'10' ? '0'+second : second }}</view>
+    </view>  
+  </view>
+</view>
+<view wx:elif="{{moduleType=='1'}}" class="x-timer font-normal padding-tb-20">
+  <view class="flex-center">
+    <view wx:if="{{!isOpenText}}" class="font-normal padding-rl-8"  style="color: {{type}};">{{!timeType?preStartLabel:(timeType==1?StartingLabel:endLabel)}}</view>
+    <view class="flex-center">
+      <view wx:if="{{!isSimple}}" class="x-timer-item" style="background-color: {{type}}">{{ day<'10' ? '0'+day : day }}</view>
+    <view class="padding-rl-8" style="color: {{type}};" wx:if="{{!isSimple}}">天</view>
+    <view class="x-timer-item" style="background-color: {{type}}">{{ hour<'10' ? '0'+hour : hour }}</view>
+    <view class="padding-rl-8" style="color: {{type}};"> : </view>
+    <view class="x-timer-item" style="background-color: {{type}}">{{ minute<'10' ? '0'+minute : minute }}</view>
+    <view class="padding-rl-8" style="color: {{type}};"> : </view>
+    <view class="x-timer-item" style="background-color: {{type}}">{{ second<'10' ? '0'+second : second }}</view>
+    </view>  
+  </view>
+</view>
+<view wx:else class="x-timer font-normal padding-tb-20">
+  <!-- <view wx:if="{{isOpenText}}" class="font-normal">{{timeType==0?'距活动开始:':timeType==1?'据活动结束:':'活动已结束:'}}</view> -->
+  <view class="flex-center">
+    <view wx:if="{{!isOpenText}}" class="font-normal padding-rl-8"  style="color: {{theme[type].bgColor}};">{{!timeType?preStartLabel:(timeType==1?StartingLabel:endLabel)}}</view>
+    <view class="flex-center">
+      <view wx:if="{{!isSimple}}" class="x-timer-item" style="background-color: {{theme[type].bgColor}};color: {{theme[type].color}}">{{ day<'10' ? '0'+day : day }}</view>
+    <view class="padding-rl-8" style="color: {{theme[type].bgColor}};" wx:if="{{!isSimple}}">天</view>
+    <view class="x-timer-item" style="background-color: {{theme[type].bgColor}};color: {{theme[type].color}}">{{ hour<'10' ? '0'+hour : hour }}</view>
+    <view class="padding-rl-8" style="color: {{theme[type].bgColor}};"> : </view>
+    <view class="x-timer-item" style="background-color: {{theme[type].bgColor}};color: {{theme[type].color}}">{{ minute<'10' ? '0'+minute : minute }}</view>
+    <view class="padding-rl-8" style="color: {{theme[type].bgColor}};"> : </view>
+    <view class="x-timer-item" style="background-color: {{theme[type].bgColor}};color: {{theme[type].color}}">{{ second<'10' ? '0'+second : second }}</view>
+    </view>  
+  </view>
+</view>

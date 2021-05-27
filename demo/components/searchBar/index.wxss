@@ -1,0 +1,58 @@
+/* components/searchBar/index.wxss */
+.search-bar {
+  display: flex;
+  height: 80rpx;
+  align-items: center;
+  box-sizing: border-box;
+  position: relative;
+}
+.search-input {
+  height: 80rpx;
+  width: 100%;
+  padding: 0 20rpx 0 100rpx;
+  color: #333;
+  font-size: 32rpx;
+  border-radius: 6rpx;
+}
+.search-bar-icon, .search-cancel {
+  height: 80rpx;
+  line-height: 80rpx;
+  flex-shrink: 0;
+  padding: 0 20rpx;
+  color:#ffffff;
+}
+.search-bar-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #666;
+  padding: 0 48rpx;
+}
+.search-cancel {
+  color: #666;
+}
+.bg-gray{
+  background-color: #F5F5F5;
+}
+.result {
+  position: fixed;
+  top: 99rpx;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  background: #fff;
+  overflow: hidden;
+  border-top: 2rpx solid #ddd;
+}
+.mask{
+  position: absolute;
+  top:100rpx;
+  left:0;
+  bottom: 0;
+  right:0;
+  background:rgba(0, 0, 0, 0);
+}
+.mask-show{
+  opacity: 1;
+}

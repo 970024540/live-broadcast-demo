@@ -1,0 +1,13 @@
+<template name="PromotionModule">
+  <import src="../../components/grid/grid-3-1.wxml" />
+  <import src="../../components/grid/grid-3-2.wxml" />
+  <import src="../../components/grid/grid-4-1.wxml" />
+  <view class="promotionModule bg-white">
+    <view class="pullup-header relative link-img" wx:if="{{data.showHeader}}" style="padding-top:{{data.header.paddingTb*2}}rpx;padding-bottom:{{data.header.paddingTb*2}}rpx">
+      <image  lazy-load src="{{data.header.coverUrl}}" style="height:{{data.header.height}}rpx"></image>
+    </view>
+  </view>
+  <view>
+    <template is="{{data.type}}" data="{{data}}"></template>
+  </view>
+</template>

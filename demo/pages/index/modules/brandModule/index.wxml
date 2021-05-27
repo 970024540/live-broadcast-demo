@@ -1,0 +1,9 @@
+
+<template name="BrandModule" class="bg-white">
+  <import src="../../components/brandScroll/index.wxml" />
+  <import src="../../components/brandScroller/index.wxml" />
+  <import src="../../components/brandGrid/index.wxml" />
+    <view wx:if="{{!data.isSticky}}" class="bg-white">
+      <template is="{{data.type}}" data="{{data}}" />
+    </view>
+</template>

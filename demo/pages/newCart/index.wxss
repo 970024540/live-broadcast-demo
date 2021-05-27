@@ -1,0 +1,95 @@
+@import '../../app.wxss';
+page{
+  background-color:#f6f6f6
+}
+.content {
+    width: 100%;
+    flex: 100;
+    overflow: auto;
+}
+.cart-image{
+  width:20rpx;
+  height:20rpx;
+}
+
+.cart-bottom{
+ position:fixed;
+ bottom:0;
+ left:0;
+ z-index: 100;
+}
+.margin-b-50{
+  margin-bottom:100rpx
+}
+.list-img-1 {
+  height: 160rpx;
+  width: 160rpx;
+  flex-shrink: 0;
+}
+.list-img-2 {
+  height: 320rpx;
+  width: 320rpx;
+}
+.list-img-3 {
+  height: 700rpx;
+  width: 700rpx;
+}
+.padding-rl-5 {
+  padding-left: 5rpx;
+  padding-right: 5rpx;
+}
+.disabled-text {
+  border-radius: 10rpx;
+  background-color: #aaa;
+  margin-right: 5rpx;
+}
+.align-center {
+  align-self: center;
+}
+.simler-btn {
+  border: 1px solid #fb7150;
+  border-radius: 20rpx;
+}
+.btn{
+  background-color: rgb(50, 51, 52);
+  width:300rpx;
+  height:60rpx;
+  margin-top:40rpx;
+  line-height:40rpx
+}
+.font-50{
+font-size: 100rpx;
+color:rgb(216, 217, 218);
+}
+.cart-content{
+  padding-bottom: 100rpx;
+}
+checkbox .wx-checkbox-input{
+  border-radius: 50%;
+  width:40rpx;
+  height:40rpx;
+}
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked{
+   border-color: #dd2543;
+   background: #dd2543;
+}
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
+   border-radius: 50%;/* 圆角 */
+   width: 40rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
+   height: 40rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
+   line-height: 40rpx;
+   text-align: center;
+   font-size:30rpx; /* 对勾大小 30rpx */
+   color:#fff; /* 对勾颜色 白色 */
+   background: transparent;
+   transform:translate(-50%, -50%) scale(1);
+   -webkit-transform:translate(-50%, -50%) scale(1);
+}
+.text-break {
+  white-space: pre-wrap;
+}
+.swipeout {
+  border-bottom: none!important;
+}

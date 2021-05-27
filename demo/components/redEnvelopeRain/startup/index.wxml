@@ -1,0 +1,10 @@
+<wxs src="../config.wxs" module="config" />
+<view class="full flex-col-center">
+    <view class="width-100 flex-col-center relative">
+      <image mode="widthFix" style="width: 96%" src="{{config.BASE}}"></image> 
+      <text class="iconfont icon-guanbi icon-home font-small icon-close" bindtap="cancelShow"></text>
+    </view>
+    <button class="btn-pink margin-tb-20" bindtap="homeSelect" data-sel="start">猛戳抢红包</button>
+    <button class="btn-clear margin-tb-20" bindtap="homeSelect" data-sel="rule">活动规则</button>
+    <button class="btn-clear margin-tb-20" bindtap="homeSelect" data-sel="record">查看我的战绩</button>
+  </view>

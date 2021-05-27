@@ -1,0 +1,5 @@
+<view class="xRadio">
+  <view wx:for="{{items}}">
+    <text>{{item.label}}</text>
+  </view>
+</view>

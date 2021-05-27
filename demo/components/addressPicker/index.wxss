@@ -1,0 +1,7 @@
+/* components/addressPicker/index.wxss */
+.action-index {
+  z-index: 9999;
+}
+.mask-picker {
+  background-color: rgba(0,0,0,0.3);
+}

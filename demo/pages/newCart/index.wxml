@@ -1,0 +1,182 @@
+<wxs src="../../utils/ossUrlTest.wxs" module="tool" />
+<view wx:if="{{!cart.length && !disabled_goods.length}}" class="bg-white" style="padding:100rpx 0">
+  <view class="flex-col-center font-normal  padding-tb-20 color-dark">
+    <view class="iconfont icon-gouwuchekong font-50"></view>
+    <view wx:if="{{!member_id}}" bindtap="loginBtn" class="font-mini margin-tb-10 text-center color-white font-normal btn">登录</view>
+    <navigator wx:else url="/pages/brandView/index" class="font-mini text-center  font-normal color-white padding-t-20 btn">去逛逛</navigator>
+  </view>
+</view>
+<wxs module="toggleList">
+  var priceFixed = function (price) {
+    return parseFloat(price).toFixed(2);
+  }
+  module.exports.priceFixed = priceFixed;
+</wxs>
+<view style="padding-bottom: 100rpx" class="padding-t-20 padding-rl-20">
+  <view wx:for="{{cart}}" wx:for-index="groupIndex" wx:for-item="groupItem" wx:key="{{groupItem.brand}}" class="margin-b-20">
+    <view class="flex-space-between padding-rl-20 bg-white font-normal color-dark padding-t-20">
+      <view>
+        <checkbox bindtap="checkGroup" data-group-index="{{groupIndex}}" color="#dd2543" checked="{{groupItem.checked && groupItem.disabledCount < groupItem.goods.length}}" disabled="{{groupItem.disabledCount == groupItem.goods.length}}" />{{groupItem.brand}}
+      </view>
+      <view wx:if="{{groupItem.cpns_id}}" data-cpnsid="{{groupItem.cpns_id}}" bindtap="getCpnsList" class="padding-rl-20 color-gray">领券</view>
+    </view>
+    <view wx:for="{{groupItem.goods}}" wx:key="{{item.obj_ident}}">
+      <i-swipeout operateWidth="{{100}}" actions="{{actionsSwipe}}" data-group-index="{{groupIndex}}" data-item-index="{{index}}" bindchange="handlerCloseButton" i-class="swipeout">
+        <view slot="content">
+          <view class="flex-start-center">
+            <view bindtap="checkItem" data-group-index="{{groupIndex}}" data-item-index="{{index}}">
+              <checkbox color="#dd2543" checked="{{item.checked}}" disabled="{{item.disabled}}" />
+            </view>
+            <navigator url="/packageGoods/goodsDetailView/index?goods_id={{item.min_buy.goods_id}}">
+              <image class="border-r-10 list-img-1" mode="aspectFit" src="{{tool.ossUrlTest(item.obj_items.thumbnail_url)}}"></image>
+            </navigator>
+            <view class="padding-rl-10">
+              <view class="line-ellispsis-2 text-break font-mini {{item.disabled ? 'color-gray' : 'color-dark'}}">
+                <text wx:if="{{item.obj_items.collocation_id}}" class="font-mini margin-r-10 color-warning">套装</text>{{item.min_buy.name}}
+              </view>
+              <!-- <view wx:for="{{item.sales_orders_arr}}" wx:for-item="sales_orders_item" wx:key="sales_orders_index" class="font-mini color-danger margin-t-10 padding-rl-10">{{sales_orders_item}}</view> -->
+              <text wx:if="{{item.disabled}}" class="font-mini color-danger margin-tb-10 padding-rl-10">{{item.disabled_reason}}</text>
+              <text wx:else bindtap="changeSku" data-group-index="{{groupIndex}}" data-item-index="{{index}}" class="font-mini color-gray margin-tb-10 padding-rl-10 bg-gray">{{item.obj_items.spec_info}} <text class="font-normal color-gray iconfont icon-xia1"></text></text>
+              <view wx:if="{{item.product_reduce_price != '0.00'}}" class="font-mini color-warning">比加入时降价{{item.product_reduce_price}}元</view>
+              <view class="flex-space-between margin-tb-10">
+                <text class="font-bold font-normal">¥{{item.obj_items.price.price}}</text>
+                <!-- <text class="font-bold font-normal">¥{{item.subtotal_price}}</text> -->
+                <i-input-number value="{{item.quantity}}" min="1" max="{{item.disabled ? 1 : item.maxCount}}" data-group-index="{{groupIndex}}" data-item-index="{{index}}" bindchange="handleChangeNum" />
+              </view>
+            </view>
+          </view>
+        </view>
+      </i-swipeout>
+    </view>
+  </view>
+  <view wx:if="{{disabled_goods.length}}" class="margin-b-20 bg-white">
+    <view class="flex-space-between padding-rl-20 bg-white font-normal color-dark padding-t-20">
+      <view>失效的商品{{disabled_goods.length}}件</view>
+      <view class="flex-start color-warning fong-mini">
+        <view bindtap="addToFav" class="margin-rl-20">移到收藏夹</view>
+        <view bindtap="clearDisabledGoods">清空失效商品</view>
+      </view>
+    </view>
+    <view wx:for="{{disabled_goods}}" wx:key="{{item.obj_ident}}" class="padding-rl-20 padding-tb-20">
+      <view class="flex-start align-items-stretch">
+        <view class="align-center flex-shrink-0 font-mini padding-rl-10 disabled-text color-white bg-gray">失效</view>
+        <image class="border-r-10 list-img-1" mode="aspectFit" src="{{tool.ossUrlTest(item.obj_items.thumbnail_url)}}"></image>
+        <view class="padding-rl-10 flex-col-space-between padding-tb-10">
+          <view class="line-ellispsis-2 text-break font-mini {{item.disabled ? 'color-gray' : 'color-dark'}}">
+            <text wx:if="{{item.obj_items.collocation_id}}" class="font-mini margin-r-10 color-warning">套装</text>{{item.min_buy.name}}
+          </view>
+          <view class="flex-space-between width-100 font-mini">
+            <view>{{item.disabled_type==1?'商品下架':'商品无库存'}},已不能购买</view>
+            <view bindtap="selectResembleGoods" data-index="{{index}}" class="color-warning padding-rl-20 simler-btn">找相似</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view style="padding-bottom: 100rpx">
+  <wxRecommend goodsData="{{goodId}}" wx:if="{{wxRecommend}}" params="{{urlParams}}" optionsParams="{{optionsParams}}" dataType="buy_to_buy_items" listType="list" soid="买了又买" scene_id="1905099073483"></wxRecommend>
+</view>
+
+<view wx:if="{{cart.length}}" class="cart-bottom width-100 bg-white">
+  <view class="flex-space-between align-items-stretch">
+    <view bindtap="checkAll" class="flex-start-center padding-l-20 bg-white font-normal color-danger">
+      <checkbox color="#dd2543" checked="{{checkedAll}}" />
+      <view class="font-mini flex-shrink-0 margin-rl-20">{{checkedAll ? '取消' : '全选'}}</view>
+      <view wx:if="{{showDelSelectBtn}}" catchtap="delSelected" class="font-mini margin-l-10">删除</view>
+    </view>
+    <view class="flex-start align-items-stretch flex-shrink-0">
+      <view class="flex-col-center font-mini color-dark padding-rl-20 text-right">
+        <view>合计: ￥{{cart_total_price}}</view>
+        <view wx:if="{{total_quantity > 0 && discount_amount > 0 || !!discount_detail.order_lottery && discount_detail.order_lottery.name}}" bindtap="showDiscountDetail" class="font-small color-danger">
+          优惠: ￥{{discount_amount}} 明细<text class="iconfont icon-shang1 line-height-1"></text>
+        </view>
+      </view>
+      <view class="flex-shrink-0 bg-red color-white flex-center font-normal padding-rl-20 padding-tb-30" bindtap="buyNow">
+        <text class="font-normal {{!!total_quantity?'':''}}">去结算</text>
+        <text class="font-normal color-white">({{total_quantity}})</text> 
+      </view>
+    </view>
+  </view>
+</view>
+<block wx:if="{{goodsPopupType}}">
+  <sku-select goods_data="{{goods_data}}" goodsPopupType="{{goodsPopupType}}" currentSelectId="{{currentSelectId}}" currentSelectNum="{{currentSelectNum}}" bind:hidePopup="hidePopup" bind:submitHandle="submitHandle"></sku-select>
+</block>
+<block wx:if="{{showPopupList > 0}}">
+  <x-modal bind:onClose="hideCpnsList" isBackColor="{{false}}">
+    <view slot="modalContent" catchtap="doNothing" catchtouchmove="doNothing" class="flex-col-start align-items-stretch bg-white font-normal padding-rl-40 padding-tb-20" style="position: absolute; bottom: 0; right: 0; left: 0; height: 80%;">
+      <block wx:if="{{showPopupList == 1}}">
+        <view class="padding-tb-20 color-gray text-center">领取优惠券</view>
+        <scroll-view scroll-y="true" style="height:80%;">
+        <view class="flex-item padding-tb-20">
+          <view wx:for="{{cpnsList}}" wx:key="index" class="flex-space-between">
+            <view class="font-normal padding-tb-10">
+              <view class="font-1x font-bold color-warning">{{item.total_amount}}元</view>
+              <view class="margin-tb-10">{{item.cpns_name}}</view>
+              <view class="color-gray">有效时间:
+                <text class="font-mini">{{item.time_range}}</text>
+              </view>
+            </view>
+            <view wx:if="{{item.status == 1}}" class="flex-shrink-0 color-gray">已领取</view>
+            <view wx:else catchtap="getCard" data-index="{{index}}" style="border: 1px solid #fb7150; border-radius: 10rpx" class="flex-shrink-0 padding-rl-20 color-warning">领取</view>
+          </view>
+        </view>
+        </scroll-view>
+      </block>
+      <block wx:if="{{showPopupList == 2}}">
+        <view class="padding-t-20 padding-b-10 font-bold text-center">优惠明细</view>
+        <view class="padding-b-20 color-gray text-center font-mini">实际优惠请以订单确认页为准</view>
+        <view class="flex-item ovflow padding-tb-20">
+          <view class="flex-space-between font-bold margin-b-10">
+            <text class="">商品总价</text>
+            <text>￥{{subtotal}}</text>
+          </view>
+          <!-- sales_orders -->
+          <view wx:if="{{discount_detail.sales_orders.rule && discount_detail.sales_orders.rule.rule_name}}" class="flex-space-between margin-tb-10">
+            <view>
+              <text class="color-gray font-mini">{{discount_detail.sales_orders.rule.rule_name}}</text>
+              <!-- <text wx:if="{{discount_detail.sales_orders.rule.order_type == 2}}" class="font-mini color-gray">(可随机抽取奖品一件)</text>
+              <text wx:if="{{discount_detail.sales_orders.rule.order_type == 3}}" class="font-mini color-gray">(随机赠送赠品一件)</text> -->
+            </view>
+            <text class="color-warning">-￥{{toggleList.priceFixed(discount_detail.sales_orders.discount_amount)}}</text>
+          </view>
+          
+          <!-- order_reduction -->
+          <view wx:if="{{discount_detail.order_reduction && discount_detail.order_reduction.name}}" class="flex-space-between margin-tb-10">
+            <text class="color-gray font-mini">{{discount_detail.order_reduction.name}}</text>
+            <text class="color-warning">-￥{{toggleList.priceFixed( discount_detail.order_reduction.discount_amount)}}</text>
+          </view>
+  <view wx:if="{{discount_detail.order_lottery && discount_detail.order_lottery.name}}" class="margin-tb-10">
+            <view class="flex-space-between margin-b-10">
+              <text class="color-gray font-mini">{{discount_detail.order_lottery.name}}</text>
+              <view bindtap="togglePrizeDescription" class="font-mini color-dark">
+                抽奖规则<text class="iconfont {{show_prize_description ? 'icon-shang1' : 'icon-xia1'}} line-height-1"></text>
+              </view>
+            </view>
+            <view wx:if="{{show_prize_description}}" class="border-1px ovflow padding-rl-10 padding-tb-10" style="height: 200rpx;">
+              <text class="font-small color-gray">{{discount_detail.order_lottery.prize_description}}</text>
+            </view>
+          </view>
+          <!-- <view wx:if="{{discount_detail.coupons.length}}" class="margin-b-10">
+            <text class="font-bold">优惠券：</text>
+            <text wx:for="{{discount_detail.coupons}}" wx:key="index" class="color-gray font-mini">{{item.cpns_name}}、</text>
+          </view>
+          <view wx:if="{{discount_detail.gifts.length}}">
+            <text class="font-bold">{{discount_detail.rule.order_type == 2 ? '奖品：' : discount_detail.rule.order_type == 2 ? '赠品：' : ''}}</text>
+            <text wx:for="{{discount_detail.gifts}}" wx:key="index" class="color-gray font-mini">{{item.name}}、</text>
+          </view> -->
+           <view class="flex-space-between font-bold margin-b-10 margin-t-20">
+            <text>共优惠</text>
+            <text class="color-warning">-￥{{discount_amount}}</text>
+          </view>
+             <view class="flex-space-between font-bold margin-b-10">
+            <text>合计</text>
+            <text class="">￥{{cart_total_price}}</text>
+          </view>
+        </view>
+      </block>
+      <view catchtap="hideCpnsList" class="bg-danger text-center padding-tb-20 color-white">关闭</view>
+    </view>
+  </x-modal>
+</block>
+<loginModal showMask="{{true}}" bind:onCancel="handleCancel" bind:onOk="handleOk" showLoginModal="{{showLoginModal}}"></loginModal>

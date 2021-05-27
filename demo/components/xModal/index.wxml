@@ -1,0 +1,7 @@
+<view bindtap="closeModal" class="detailPreview flex-center">
+  <view class=" border-r-8 {{isBackColor?'preview-content':''}}">
+    <slot name="modalHeader"></slot>
+    <slot name="modalContent"></slot>
+    <slot name="modalFooter"></slot>
+  </view>
+</view>

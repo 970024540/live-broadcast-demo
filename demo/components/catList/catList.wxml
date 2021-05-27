@@ -1,0 +1,21 @@
+
+<view class="padding-b-40 width-100">
+  <view wx:for="{{listData}}" wx:key="index" class="width-100">
+    <view data-index="{{index}}" bindtap="toggleList" class="flex-space-between padding-tb-35 border-1px-b">
+      <text class="font-sm font-bold color-dark-gray line-height-1">{{item.name}}</text>
+      <text class="padding-l-20 padding-tb-20 iconfont icon-{{item.showList ? 'shang1' : 'xia1'}} color-gray line-height-1"></text>
+    </view>
+    <view hidden="{{!item.showList}}" class="flex-start flex-wrap padding-t-30">
+      <view wx:if="{{item.link_type=='3'}}" wx:for="{{item.children}}" wx:key="item.name" class="{{brand ? 'width-50' : 'width-col-3'}} flex-col-center" 
+         bindtap="jumpClick" data-url="{{jumpBox.myTool(item.page_id)}}" data-item="{{item}}">
+        <image class="{{brand ? 'brand-image margin-tb-20' : 'cat-image'}}" mode="aspectFit" src="{{item.cover}}"></image>
+        <text wx:if="{{!brand}}" class="font-mini color-dark-gray padding-tb-36">{{item.name}}</text>
+      </view>
+      <view wx:if="{{item.link_type!='3'}}" wx:for="{{item.children}}" wx:key="item.name" class="{{brand ? 'width-50' : 'width-col-3'}} flex-col-center"
+        bindtap="itemClickHandle" data-item="{{item}}">
+        <image class="{{brand ? 'brand-image margin-tb-20' : 'cat-image'}}" mode="aspectFit" src="{{item.cover}}"></image>
+        <text wx:if="{{!brand}}" class="font-mini color-dark-gray padding-tb-36">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+</view>

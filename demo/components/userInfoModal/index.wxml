@@ -1,0 +1,23 @@
+<view class="mask">
+  <view wx:if="{{showUserInfoModal}}" class="user-modal padding-tb-20 padding-rl-40 border-r-10 bg-white">
+    <view class="text-center border-1px-b padding-b-20">访问授权</view>
+    <view class="text-center padding-tb-40 font-normal">您访问的服务，需要授权获取微信信息(包括微信头像、微信昵称等)</view>
+    <button open-type="getUserInfo"  class="color-white bg-dark font-normal btn" lang="zh_CN" bindgetuserinfo="onGotUserInfo">立即授权</button>
+  </view>
+  <view wx:if="{{!showUserInfoModal && showGuide}}" class="guide-modal">
+    <view class="relative" style="height: 30rpx">
+      <view class="top-icon"></view>
+    </view>
+    <view class="bg-white color-gray padding-rl-20 border-r-10 font-mini">
+      <view class="flex-center padding-t-20 padding-b-10">
+        <view>小提示</view>
+      </view>
+      <view class="padding-b-20">
+        点击 <text class="iconfont icon-gengduo color-gray font-1x"></text>，选择“添加到我的小程序”，访问更方便
+      </view>
+      <view class="flex-center padding-b-20">
+        <view bindtap="colseGuide" class="padding-tb-10 padding-rl-20 border-1px border-r-10">知道了</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,32 @@
+/* components/goodsSelect/index.wxss */
+.width-left {
+  width: 20vw;
+}
+.width-right {
+  width: 80vw;
+}
+.goods-item {
+  width: 38vw;
+  position: relative;
+}
+.item-icon {
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+}
+.goods-item-img {
+  width: 35vw;
+  height: 35vw;
+}
+.selected-img {
+  width: 20vw;
+  height: 20vw;
+}
+.prev-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.7);
+}

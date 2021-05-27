@@ -1,0 +1,36 @@
+<wxs src="../../utils/ossUrlTest.wxs" module="tool" />
+<!-- 竖向滚动布局 -->
+<view wx:if="{{listType=='list'}}">
+  <block wx:if="{{goods_list.length}}">
+    <view class="width-100 flex-center bg-white">
+      <i-divider content="猜你喜欢" class="width-50 " wx:if="{{goods_list.length}}"></i-divider>
+    </view>
+    <view class="flex-space-between flex-wrap bg-white padding-tb-10" wx:if="{{goods_list.length}}">
+      <goods-list-item wx:for="{{goods_list}}" wx:key="item.goods_id" goodsData="{{item}}" Index="{{index}}" sourceId="{{source_id}}" traceId="{{trace_id}}" params="{{params}}" optionsParams="{{optionsParams}}" scene_id="{{scene_id}}" />
+    </view>
+  </block>
+</view>
+<!-- 横向滚动布局 -->
+<view wx:else class="bg-white">
+  <view wx:if="{{goods_list.length>0}}">
+    <view class="flex-space-between padding-rl-40 padding-tb-40">
+      <view class="font-normal font-bold">猜你喜欢 ></view>
+      <view class="iconfont icon-aixin color-gray padding-r-24"></view>
+    </view>
+    <swiper display-multiple-items="2" next-margin="178rpx" class="margin-l-20" style="height: 480rpx">
+      <swiper-item wx:for="{{goods_list}}" wx:key="index">
+        <view class="flex-col-start color-gray" bindtap="jumpGoodsDetail" data-item="{{item}}" data-index="{{index}}">
+          <image mode="aspectFill" class="item-goods-cover" src="{{tool.ossUrlTest(item.image_default[0], 200)}}"></image>
+          <view class="padding-tb-20 color-gray">
+            <view class="font-small">{{item.brand ? item.brand[0] : ' '}}</view>
+            <view class="font-mini line-height-60 margin-r-20 line-ellispsis-1">{{item.name}}</view>
+            <view style="color: #181818" class="font-mini">￥
+              <text class="font-big font-bold">{{item.price}}</text>
+            </view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>
+

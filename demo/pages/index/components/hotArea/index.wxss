@@ -1,0 +1,7 @@
+/* pages/index/components/hotArea/index.wxss */
+.flex-center{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,27 @@
+.item-goods-cover {
+  height: 180rpx;
+  width: 180rpx;
+}
+.btn{
+  border-radius: 50%;
+  width:50rpx;
+  height: 50rpx;
+  line-height: 30rpx;
+  text-align: center;
+  background-color:rgba(223, 219, 219, 0.8)
+}
+.btn-left{
+  position: absolute;
+  left: 10px;
+  font-size: 28rpx;
+  top:45%
+}
+.btn-right{
+  position: absolute;
+  right: 10px;
+  font-size: 30rpx;
+  top:45%
+}
+.relative {
+  position: relative;
+}

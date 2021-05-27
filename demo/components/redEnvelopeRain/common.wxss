@@ -1,0 +1,25 @@
+button {
+  width: 392rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  border-radius: 44rpx;
+  font-size: 36rpx;
+  color: #fff;
+  border: none;
+  outline: none;
+  text-align: center;
+  letter-spacing: 2rpx;
+}
+
+.btn-pink {
+  background: linear-gradient(to bottom, #E23F4A 0%, #870011 100%);
+}
+.btn-clear {
+  background: transparent;
+  border: 2rpx solid #fff;
+}
+.icon-close {
+    padding: 6rpx 14rpx;
+    border: 1px solid #fff;
+    border-radius: 50%
+  }

@@ -1,0 +1,12 @@
+/* packageCommunity/components/userPageHeader/index.wxss */
+.user-page-header {
+  background: transparent;
+}
+.header-btn {
+  height: 48rpx;
+  width: 108rpx;
+  line-height: 48rpx;
+}
+.header-btn-gray {
+  background-color: #999;
+}

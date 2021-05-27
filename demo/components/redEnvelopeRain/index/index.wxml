@@ -1,0 +1,57 @@
+<view wx:if="{{showGame}}" class="shadow" catchtouchmove="true" >
+  <startup 
+    wx:if="{{!ruleShow && !gameBegin && !timeLeft && !recordShow && !showPrize && !showLoginModal &&  !address}}"  
+    bind:homeSelect="homeSelect" 
+    bind:cancelShow="cancelShow"
+  ></startup>
+  <rule 
+    wx:if="{{ruleShow}}" 
+    bind:cancelShow="closeAll" 
+    winningNews="{{winningNews}}"
+    redRuleUrl="{{redRuleUrl}}"
+    bind:joinGame="getRedrainResult"
+  ></rule>
+  <record 
+    wx:if="{{recordShow}}" 
+    bind:cancelShow="closeRecord" 
+    bind:writeAddress="writeAddress"
+  ></record>
+  <game 
+    wx:if="{{timeLeft}}" 
+    count="{{countdown - 1}}" 
+    bind:countDownOver="gameBeginLe"
+  ></game>
+  <play 
+    wx:if="{{gameBegin}}" 
+    prize="{{prize}}" 
+    game_duration="{{game_duration}}" 
+    bind:canOpenPrize="canOpenPrize" 
+    bind:isGameOver="isGameOver"
+  ></play>
+  <showResult 
+    wx:if="{{showPrize}}" 
+    style="display:{{hiddenPrize?'none':'block'}}"
+    prizeType="{{prizeType}}" 
+    prizeMsg="{{prizeMsg}}" 
+    isPrize="{{isPrize}}" 
+    gameStatus="{{gameStatus}}"
+    overShow="{{overShow}}"
+    bind:cancelShow="closeShow"  
+    bind:getPrize="getPrize"
+    bind:seeRecord="seeRecord" 
+  ></showResult>
+  <redRainAddr 
+    wx:if="{{address}}"  
+    bind:addressOk="btnSubAddress"
+    bind:cancelShow="closeAddr" 
+    showAddrList="{{true}}" 
+    bindonChange="addrChange"
+  ></redRainAddr>
+  <loginModal 
+    showMask="{{false}}" 
+    bind:onCancel="handleCancel" 
+    bind:onOk="handleOk" 
+    showLoginModal="{{showLoginModal}}" 
+    showCloneBtn="{{false}}" 
+  ></loginModal>
+</view>

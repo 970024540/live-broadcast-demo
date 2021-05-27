@@ -1,0 +1,23 @@
+.loginModal{
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom: 0;
+  z-index: 999
+}
+
+.padding-tb-30{
+  padding-top:30rpx;
+  padding-bottom: 30rpx;
+}
+.margin-t-40{
+  margin-top:40rpx;
+}
+
+.margin-0 button{
+  margin-top:0;
+  margin-bottom: 0;
+  margin-right: 0;
+  margin-left: 0;
+}

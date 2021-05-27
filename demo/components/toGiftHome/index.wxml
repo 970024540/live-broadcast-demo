@@ -1,0 +1,11 @@
+<view class="mask flex-center {{showGift?'mask-show':''}}" wx:if="{{showGift}}">
+  <view class="width-100 flex-col-center relative">
+    <view class="boxOne flex-center">
+      <image style="width:600rpx;height:816rpx" src="http://dev-yingerfashion.oss-cn-shenzhen.aliyuncs.com/storage/images/system-image/f4c41265f1a55de2a191cc71c590a6b5.gif"></image>
+    </view>
+    <view bindtap="btnClick" class="{{showBtn?'':'Yes'}} box-kai font-normal color-white text-center">点击开奖</view>
+    <view class="padding-t-20 margin-t-40">
+      <text catchtap="closeBtn" class="iconfont closeCla color-white icon-guanbi"></text>
+    </view>
+  </view>
+</view>

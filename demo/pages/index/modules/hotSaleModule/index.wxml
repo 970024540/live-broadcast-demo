@@ -1,0 +1,7 @@
+<template name="HotSaleModule">
+  <wxs src="../../index.wxs" module="tool" />
+  <import src="../../components/cover/index.wxml" />
+  <header wx:if="{{data.showDesc}}"  styles="{{data}}"></header>
+  <template wx:if="{{data.showCover}}" is="cover" data="{{data}}"></template>
+  <hot-tabbar tabData="{{data.group}}" goodsArea="{{data.goodsArea}}" other="{{tool.handleGoodsgroup(data)}}"></hot-tabbar>
+</template>

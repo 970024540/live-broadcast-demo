@@ -1,0 +1,324 @@
+<wxs module="filters" src="../../utils/filter.wxs"></wxs>
+<wxs src="../../utils/ossUrlTest.wxs" module="tool" />
+<view class="flex-col-start align-items-stretch color-dark height-100">
+  <i-row style="{{showDetailTab ? '' : 'display:none'}}" class="detail-tab-icon font-normal text-center width-100">
+    <i-col bindtap="scrollToView" data-type="0" class="{{currentTab == 0 ? 'color-danger' : ''}}" offset="6" span="6">商品</i-col>
+    <i-col bindtap="scrollToView" data-type="1" class="{{currentTab == 1 ? 'color-danger' : ''}}" span="6">详情</i-col>
+  </i-row>
+  <scroll-view bindscroll="detailScroll" scroll-y scroll-top="{{top}}" scroll-with-animation class="flex-content">
+    <banner-list
+      wx:if="{{$doubleEleven}}"
+      banner_video="{{banner_video}}"
+      banner_list="{{banner_list}}"
+      goodsData="{{goods_data}}"
+      isnew="{{isnew}}"
+      isgroup="{{isgroup}}"
+      schemes="{{schemes}}"
+      scheme_id="{{scheme_id}}"
+      showBargaining="{{showBargaining}}"
+      bargaiData="{{bargaiData}}"
+      bannerTimer="{{bannerTimer}}"
+    ></banner-list>
+    <block wx:else>
+      <swiper style="height:750rpx" bindchange="swiperChange">
+        <swiper-item wx:if="{{banner_video.src}}"  >
+            <video class="banner_video" src="{{banner_video.src}}" object-fit="contain" poster="{{banner_video.poster}}"></video>
+          </swiper-item>
+        <swiper-item data-index="{{index}}" bindtap="prevImage" class="link-img" wx:for="{{banner_list}}" wx:key="index">
+          <image mode="aspectFit" class="height-100" src="{{item}}"></image>
+        </swiper-item>
+      </swiper>
+      <view class="flex-center padding-tb-30">
+        <view wx:for="{{banner_list.length}}" wx:key="index" class="border-box margin-rl-10 indicator {{index == active_banner_index ? 'indicator-active' : ''}}"></view>
+      </view>
+    </block>
+
+    <view class="padding-rl-60 relative">
+      <view bindtap="prevQcodeImg" class="qcode-img flex-col-center">
+        <image src="{{qcode}}" style="height: 112rpx; width: 112rpx;"></image>
+        <text class="share-member-id color-gray font-small line-height-1">{{share_member_id || ''}}</text>
+      </view>
+      <view class="flex-col-center padding-tb-30 font-mini">
+        <view>{{goods_data.brand_name || ''}}<text class="color-danger font-mini padding-l-10">{{goods_data.is_presell == 'true' ? '#预售' : ''}}</text></view>   
+        <text selectable bindlongtap="copyStr" data-type="name" class="margin-tb-20 line-ellispsis-2"><text wx:if="{{goods_data.abroad_id > 0}}" class="bg-red color-white border-r-10 padding-rl-10 margin-r-10 font-mini">跨境商品</text>{{goods_data.name}}</text>
+        
+        <view wx:if="{{ is_can_buy && !isgroup &&!showBargaining && !isSubscribe && !isCrowd}}" class="text-center">
+          <view wx:if="{{goods_data.price}}" class="color-darkest">
+            <text class="font-bold font-sm">￥</text>
+            <text selectable class="font-2x font-bold">{{isnew?goods_data.new_member_sell_price:goods_data.price}}</text>
+            <text wx:if="{{isnew}}" class="newman">新人专享价 ></text>
+            <text wx:if="{{goods_data.tag_name && goods_data.tag_name[0]}}" class="newman">{{goods_data.tag_name[0]}}</text>
+            <text wx:if="{{prepay_status}}" class="font-small bg-red padding-rl-10 color-white margin-l-20">{{goods_data.prepay_name || '预付定金'}}</text>
+            <text wx:if="{{active_status}}" class="font-small bg-red padding-rl-10 color-white margin-l-20">活动商品</text>
+          </view>
+          <view wx:if="{{isnew}}" class="padding-tb-10 color-gray">
+            <text selectable class="text-decoration">￥{{goods_data.price2}}</text>
+            <text class="bg-dark font-mini margin-l-10 color-white">会员专属价</text>
+          </view>
+          <text selectable wx:if="{{goods_data.mktprice}}" class="padding-tb-10 color-gray text-decoration">￥{{goods_data.mktprice}}</text>
+        </view>
+        <view wx:if="{{ !is_can_buy }}">
+          <view class="color-warning text-center font-normal padding-b-20">该商品已失效,无法购买!</view>
+        </view>
+      </view>
+
+    </view>
+
+    <groupbuy id="groupbuy" 
+      wx:if="{{ isgroup }}" isgroupStart="{{isgroupStart}}"
+      total="{{ total }}" totalBuy="{{ totalBuy }}" schemes="{{ schemes }}" joinlist="{{ joinlist }}"
+      price="{{ goods_data.price }}" isShare="{{ shareGroup }}" isFull="{{ join_list_status }}" 
+      scheme_id="{{ scheme_id }}" join_list_id="{{ join_list_id }}" 
+      bind:participate="participateGroup" 
+      bind:initiate="initiateGroup"
+    >
+    </groupbuy>
+    <!-- 预约内容 -->
+      <subscribeBuy
+      wx:if="{{ isSubscribe }}" bind:onTimeEnd = "onTimeEnd" subScribe="{{subScribe}}" goods_data_price="{{goods_data.price}}"
+    >
+    </subscribeBuy>
+    <!-- 砍价内容 -->
+    <bargaiGoodsDetail wx:elif="{{showBargaining}}" datas="{{bargaiData}}"></bargaiGoodsDetail>
+    <crowdBuy bind:onTimeEnd = "onTimeEnd" wx:elif="{{isCrowd}}" datas="{{crowdBuy}}"></crowdBuy>
+    <view class="padding-t-20 padding-rl-60">
+      <view class="flex-space-between padding-tb-25 margin-tb-10 border-1px-b color-gray font-small">
+        <view wx:if="{{goods_data.freight}}" class="">
+          {{goods_data.freight ? '免运费' : '运费： ￥' + goods_data.freight}}
+        </view>
+        <view bindtap="doFavBrand" wx:if="{{goods_data.brand_id}}" class="font-mini color-dark">关注品牌</view>
+      </view>
+      <view wx:for="{{spec_item}}" wx:key="index">
+        <view class="font-normal font-bold padding-tb-40">{{item.name}}</view>
+        <view class="flex-start flex-wrap">
+          <view bindtap="selectSpec" data-type="1" wx:for="{{item.children}}" wx:for-item="value" wx:key="key" class="font-small padding-rl-30 padding-tb-20 margin-r-20 margin-b-20 border-1px {{value.disabled || value.store == 0 ? 'spec-item-disabled' : (value.name == item.selected ? 'spec-item-active' : '')}}">{{value.name}}</view>
+        </view>
+      </view>
+    </view>
+    <goods-attr wx:if="{{goods_data.goods_attr}}" goods_attr="{{goods_data.goods_attr}}"></goods-attr>
+    <view wx:if="{{collocation_data.length}}" class="padding-l-20 goods-collocation">
+      <view class="flex-space-between padding-rl-40 padding-tb-40">
+        <view class="font-normal font-bold">试试这样搭</view>
+        <view class="iconfont icon-you color-gray padding-r-24"></view>
+      </view>
+      <swiper display-multiple-items="{{collocation_data.length>1?2:1}}" next-margin="178rpx" class="margin-l-20" style="height: 480rpx">
+        <swiper-item data-id="{{item.collocation_id}}" bindtap="handle_collocation" wx:for="{{collocation_data}}" wx:key="index" style="width:200px">
+          <view class="flex-col-start color-gray">
+              <image mode="aspectFit"  class="item-goods-cover" src="{{tool.ossUrlTest(item.url, 200)}}"></image>
+            <view class="padding-tb-20 color-gray bg-color">
+              <view class="font-small">{{item.brand_name}}</view>
+              <view class="font-mini line-height-60 line-ellispsis-1">{{item.name}}</view>
+              <view class="font-mini color-danger">最高优惠: ￥
+                <text class="font-bold">{{item.collocation_total_price}}</text>
+              </view>
+            </view>
+          </view>
+        </swiper-item>
+      </swiper>
+    </view>
+    <view wx:if="{{false}}" class="padding-rl-60">
+      <wxs module="toggleList">
+        var toggle = function(event) {
+          var instance = event.instance;
+          if (instance.hasClass('show-list')) {
+            instance.removeClass('show-list');
+          } else {
+            instance.addClass('show-list');
+          }
+        }
+        module.exports.toggle = toggle;
+      </wxs>
+      <view class="list-box font-normal color-dark">
+        <view class="border-1px-b">
+          <view bindtap="{{toggleList.toggle}}" class="flex-space-between padding-tb-50">
+            <view class="font-bold">尺码对照表</view>
+            <view class="icon-show">
+              <text class="iconfont icon-shang1"></text>
+            </view>
+            <view class="icon-close">
+              <text class="iconfont icon-xia1"></text>
+            </view>
+          </view>
+          <view class="list padding-b-40">
+            23423
+          </view>
+        </view>
+        <view class="margin-t-20 border-1px-b">
+          <view bindtap="{{toggleList.toggle}}" class="flex-space-between padding-tb-50">
+            <view class="font-bold">商品属性</view>
+            <view class="icon-show">
+              <text class="iconfont icon-shang1"></text>
+            </view>
+            <view class="icon-close">
+              <text class="iconfont icon-xia1"></text>
+            </view>
+          </view>
+          <view class="list padding-b-40">
+            23423
+          </view>
+        </view>
+
+
+        <view class="margin-t-20 border-1px-b">
+          <view bindtap="{{toggleList.toggle}}" class="flex-space-between padding-tb-50">
+            <view class="font-bold">商品信息</view>
+            <view class="icon-show">
+              <text class="iconfont icon-shang1"></text>
+            </view>
+            <view class="icon-close">
+              <text class="iconfont icon-xia1"></text>
+            </view>
+          </view>
+          <view class="list padding-b-40">
+            23423
+          </view>
+        </view>
+
+
+        <view class="margin-t-20 border-1px-b">
+          <view bindtap="{{toggleList.toggle}}" class="flex-space-between padding-tb-50">
+            <view class="font-bold">成分与护理</view>
+            <view class="icon-show">
+              <text class="iconfont icon-shang1"></text>
+            </view>
+            <view class="icon-close">
+              <text class="iconfont icon-xia1"></text>
+            </view>
+          </view>
+          <view class="list padding-b-40">
+            23423
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="padding-tb-20 padding-l-24">
+      <wxRecommend 
+        goodsData="{{goodId}}" 
+        params="{{urlParams}}" 
+        listType="scrollY"
+        wx:if="{{goodId.length}}"
+        soid="看了又看"
+        author_id="{{urlParams.author_id}}"
+        scene_id="1905092866756"
+        content_id="{{urlParams.content_id}}"
+        content_type="{{urlParams.content_type}}"
+        optionsParams="{{optionsParams}}">
+      </wxRecommend>
+    </view>
+    <view id="detail" class="padding-tb-20 padding-rl-24">
+      <view class="padding-rl-40 padding-tb-40 font-normal font-bold">商品详情</view>
+      <view class="padding-tb-40">
+        <rich-text bindtap="richTextClick" class="richText" nodes="{{richContent}}"></rich-text>
+      </view>
+    </view>
+  </scroll-view>
+  <i-row class="text-center width-100 color-gray border-1px-t">
+    <i-col span="8" i-class="height-100">
+      <view class="flex-start-center align-items-stretch height-100 width-100">
+        <view bindtap="doFav" class="{{is_fav ? 'color-danger' : ''}} flex-item iconfont icon-xihuan font-3x padding-r-10 padding-t-20"></view>
+        
+        <view wx:if="{{ isgroup||showBargaining || isSubscribe || isCrowd}}" data-type="2" bindtap="selectSpec" class="flex-item iconfont icon-addcart font-5x padding-r-10 padding-t-20 color-danger"></view>
+        <view wx:else bindtap="jumpToCart" class="relative flex-item iconfont icon-gouwuche1 font-3x padding-r-10 padding-t-20">
+          <view wx:if="{{cart_num}}"  class="cart-tag bg-red font-small color-white">{{cart_num>99?'99+':cart_num}}</view>
+        </view>
+      </view>
+    </i-col>
+    <block wx:if="{{ isgroup||showBargaining }}">
+      <i-col span="8">
+        <view data-type="3" class="padding-tb-10 flex-col-center" style="background-image: linear-gradient(to right, #ffa615, #ffbc16)" bindtap="selectSpec">
+          <text class="font-mini color-white">单独购买</text>
+          <text class="color-white" style="font-size: 20rpx;">￥{{ isnew?goods_data.new_member_sell_price:goods_data.price }}</text>
+        </view>
+      </i-col>
+      <i-col wx:if="{{isgroup}}" span="8">
+        <view class="padding-tb-10 flex-col-center" style="background-image: linear-gradient(to right, #f30917, #ff4e19)" bindtap="startGroup">
+          <text wx:if="{{isgroupStart}}" class="font-mini color-white">{{schemes[scheme_id].startTime}}</text>
+          <text wx:else class="font-mini color-white">{{ shareGroup ? '参与该团' : '我要开团' }}</text>
+          <text wx:if="{{isgroupStart}}" class="color-white" style="font-size: 20rpx;">拼团开始</text>
+          <text wx:else class="color-white" style="font-size: 20rpx;"
+            >￥{{ goods_data.price ? schemes[scheme_id].scheme_price : '' }}</text>
+        </view>
+      </i-col>
+      <i-col wx:elif="{{showBargaining}}" span="8">
+        <view class="padding-tb-10 flex-col-center" style="background-image: linear-gradient(to right, #f30917, #ff4e19)" bindtap="getBargainClick">
+          <text class="font-mini color-white">发起砍价</text>
+          <text class="color-white" style="font-size: 20rpx;">￥{{ bargaiData.mini_price }}</text>
+        </view>
+      </i-col>
+    </block> 
+      <!-- 预约购买 -->
+    <block wx:elif="{{isSubscribe}}">
+      <i-col span="8">
+        <view wx:if="{{subScribe.straight_alone == 'true'}}" data-type="3" bindtap="selectSpec" class="reset-btn bg-dark padding-tb-30 width-100">单独购买</view>
+      </i-col>
+      <i-col span="8">
+      
+        <view wx:if="{{subScribe.type == 1 || subScribe.type == 2}}" bindtap="selectSubscr" class="reset-btn-bg color-white font-medium padding-tb-30" style="width:{{subScribe.straight_alone == 'true'?'100':'200'}}%">{{subScribe.booked ?'已':'立即'}}预约</view> 
+        <view wx:else  bindtap="selectSubscr"  class="{{sub_type == 5?'reset-btn-no':'reset-btn-bg'}} font-medium color-white padding-tb-30" style="width:{{subScribe.straight_alone == 'true'?'100':'200'}}%">{{subScribe.type == 3?'待开售':'立即抢购'}}</view>       
+      </i-col>
+    </block>
+       <!-- 众人团 -->
+    <block wx:elif="{{isCrowd}}">
+      <i-col span="8">
+        <view data-type="3" bindtap="selectSpec" class="flex-col-center padding-tb-10 bg-dark">
+        <view class="reset-btn width-100 padding-tb-4 bg-dark">单独购买
+        </view>
+        <text class="color-white font-small">￥{{crowdBuy.price}}</text>
+        </view>
+      </i-col>
+      <i-col span="8">
+        <view bindtap="joinCrowd" class="flex-col-center padding-tb-10 {{crowdType == 3?'reset-btn-no':'reset-btn-bg'}}">
+        <text class="reset-btn width-100 padding-tb-4">立即参团
+        </text>
+        <text class="color-white font-small">￥{{crowdBuy.scheme_price}}</text>
+        </view>
+      </i-col>
+    </block>
+    <!-- 活动商品 -->
+    <block wx:elif="{{active_status}}">
+      <i-col span="9">
+        <view data-type="2" bindtap="selectSpec" class="reset-btn bg-warning padding-tb-30 width-100">{{active_end_time}}</view>
+      </i-col>
+      <i-col span="7">
+        <view class="reset-btn padding-tb-30 width-100" disabled="true">立即购买</view>
+      </i-col>
+    </block>
+    <!-- 商品失效 -->
+    <block wx:elif="{{!is_can_buy}}">
+      <i-col span="8">
+        <view class="reset-btn padding-tb-30 width-100" disabled="true">加入购物车</view>
+      </i-col>
+      <i-col span="8">
+        <view class="reset-btn padding-tb-30 width-100 border-1px-l" disabled="true">立即购买</view>
+      </i-col>
+    </block>
+    <block wx:else>
+      <i-col span="8">
+        <view data-type="2" bindtap="selectSpec" class="reset-btn bg-dark padding-tb-30 width-100">加入购物车</view>
+      </i-col>
+      <i-col span="8">
+        <view data-type="4" wx:if="{{prepay_status}}" bindtap="selectSpec" class="reset-btn bg-success padding-tb-30 width-100">预付定金</view>
+        <view data-type="3" wx:else bindtap="selectSpec" class="reset-btn bg-red padding-tb-30 width-100">立即购买</view>
+      </i-col>
+    </block>  
+  </i-row>
+</view>
+
+
+
+<sku-select goods_data="{{goods_data}}" store="{{subScribe.store}}" scheme_price="{{ scheme_price }}" goodsPopupType="{{goodsPopupType}}" 
+bind:hidePopup="hidePopup" bind:computeSpecItem="computeSpecItem" bind:submitHandle="submitHandle">
+  <view wx:if="{{goods_data.is_prepay}}" slot="prepay" class="color-warning">定金支付时间：{{deposit_start_time + '至' + deposit_end_time}}</view>
+</sku-select>
+<view hidden="{{!showQcodeModal}}" bindtap="prevQcodeImg" class="qcode-modal flex-center height-100 width-100">
+  <view class="relative">
+    <canvas style="width: 300px; height: 400px;" canvas-id="qcodeCanvas" catchlongtap="save2Local" binderror="canvasIdErrorCallback"></canvas>
+    <view class="reset-btn canvas-btn font-normal bg-white font-bold padding-tb-24 text-center width-100" open-type='share'>立即转发</view>
+    <view class="width-100 flex-center padding-tb-30">
+      <view catchtap="prevQcodeImg" class="canvas-close border-1px text-center iconfont icon-guanbi font-1x color-white"></view>
+    </view>
+  </view>
+</view>
+<loginModal showMask="{{true}}" bind:onCancel="handleCancel" bind:onOk="handleOk" showLoginModal="{{showLoginModal}}" params="{{urlParams}}"></loginModal>
+<!-- 我要礼物 -->
+<to-gift-home></to-gift-home>

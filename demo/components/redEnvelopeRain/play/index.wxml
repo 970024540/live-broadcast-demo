@@ -1,0 +1,18 @@
+<wxs src="../config.wxs" module="config" />
+<view class="ser-home">
+    <view class="color-white font-2x timeRemain">
+      剩余时间
+      <text class="ser-time font-5x margin-rl-5" >{{game_duration}}</text>
+      秒
+    </view>
+    <ul class="red-packet" id="red-packet">
+      <view wx:if="{{item}}" wx:for="{{liParams}}" wx:key="index">
+        <li style="width: {{item.width}};left: {{item.left}};animation: {{item.durTime}} linear 1 forwards; -webkit-animation: aim-move {{item.durTime}} linear 1 forwards" class="cls" >
+        <view hidden="{{!item.show}}" class="width-100" data-index="{{index}}"  bindtouchstart="isGetPrize">
+          <image mode="widthFix" class="width-100" src="{{config.PACKAGE}}"></image>
+        </view>
+        <image hidden="{{item.show}}" mode="widthFix" class="width-100" src="{{config.FIREWORK}}"></image>
+        </li>
+      </view>
+    </ul>
+  </view>

@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "x-search": "/components/xSearch/index",
+    "i-drawer": "../../dist/drawer/index",
+    "x-tab": "/components/xTab/index",
+    "goods-list-item": "/components/goodsListItem/index",
+    "filter-popup": "./filterPopup/index",
+    "i-load-more": "../../dist/load-more/index",
+    "to-gift-home": "/components/toGiftHome/index",
+    "loginModal": "/components/loginModal/index"
+  }
+}

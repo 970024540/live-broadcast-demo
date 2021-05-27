@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-icon": "/dist/icon/index",
+    "i-actionsheet": "/dist/action-sheet/index",
+    "c-address": "/components/cAddress/index"
+  }
+}

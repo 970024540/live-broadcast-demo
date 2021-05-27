@@ -1,0 +1,13 @@
+@import "../common.wxss";
+
+.full {
+  width: 100vw;
+  height: 100vh;
+}
+.icon-home {
+  font-size: 30rpx;
+  color: #f1f0f0;
+  position: absolute;
+  right: 16%;
+  top: 6%
+}

@@ -1,0 +1,24 @@
+<template name="SwiperModule">
+  <wxs src="../../index.wxs" module="tool" />
+  <import src="../../components/cover/index.wxml" />
+  <header wx:if="{{data.showDesc}}" styles="{{data}}"></header>
+  <template wx:if="{{data.showCover}}" is="cover" data="{{data}}"></template>
+  <swiper
+    class="width-100"
+    bindchange="{{data.barType?'swiperModuleChange':''}}"
+    data-id="{{id}}"
+    style="height:{{(data.options.autoHeight ? (750 * data.slides[0].height / data.slides[0].width) : data.slides[0].height - 0) + (data.options.pagination.show && data.options.pos == 'outer' ? 60 : 0)}}rpx"
+    indicator-dots="{{data.options.pagination.show&&!data.barType}}"
+    autoplay="{{data.options.autoplay}}"
+    interval="{{data.options.delay}}"
+    duration="{{data.options.speed}}"
+    circular="{{data.options.loop}}"
+  >
+    <swiper-item wx:for="{{data.slides}}" wx:key="{{index}}">
+      <view bindtap="jumpTo" data-url="{{tool.myTool(item.link)}}" class="width-100 line-height-0">
+        <image lazy-load style="height:{{item.height}}rpx;" class="width-100" src="{{item.src}}" mode="widthFix" />
+      </view>
+      <view wx:if="{{data.options.pagination.show && data.options.pos == 'outer'}}" class="width-100 bg-white padding-tb-30"></view>
+    </swiper-item>
+  </swiper>
+</template>

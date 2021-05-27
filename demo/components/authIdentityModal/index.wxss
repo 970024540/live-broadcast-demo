@@ -1,0 +1,36 @@
+.sms {
+  width: 132rpx;
+  color: #de2453;
+  font-size: 26rpx;
+}
+.tip {
+  padding: 0 49rpx;
+  position: absolute;
+  bottom: 90rpx;
+  color: #888;
+  font-size: 24rpx;
+  letter-spacing: 1px;
+  line-height: 1.5;
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 110;
+  tap-highlight-color: rgba(0, 0, 0, 0);
+  transition: opacity 400ms;
+}
+
+.mask-show {
+  opacity: 1;
+}
+.closeCla{
+  border: 2rpx solid white;
+  padding: 16rpx;
+  border-radius: 50%;
+}

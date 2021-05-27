@@ -1,0 +1,24 @@
+<template name="default">
+<view style="overflow: hidden;">
+      <view class="relative"  wx:for="{{data.tickets}}" wx:key="index">
+        <view class="ticket-item"  bindtap="get_ticket" data-tabIndex="{{data._tabIndex}}" data-componentindex="{{data._componentsIndex}}" data-index="{{index}}" >
+            <view class="left flex-col-center">
+                <view class="color-danger">
+                    ￥<text class="font-5x color-danger">{{ item.total_amount }}</text>
+                </view>
+                <text class="color-gray">{{ item.brands || '全场通用' }}</text>
+            </view>
+            <view class="flex-item flex-col-tmp">
+                <view class="font-normal font-bold color-dark">{{ item.cpns_name }}</view>
+                <view class="color-gray">
+                    <!-- {{ new Date(item.grant_from_time*1000).toLocaleDateString() }}-{{ new Date(item.grant_to_time*1000).toLocaleDateString() }} -->
+                </view>
+            </view>
+            <view class="margin-r-20 flex-col-center">
+                <view class="grab">抢</view>
+            </view>
+        </view>
+           <icon wx:if="{{!!item.isActive}}" class="iconfont icon-yilingqu1 actived-ticket-icon color-success"></icon>
+        </view>
+    </view>
+</template>

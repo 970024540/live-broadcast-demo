@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "searchBar": "../searchBar/index",
+    "i-load-more": "/dist/load-more/index"
+  }
+}

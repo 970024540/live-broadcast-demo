@@ -1,0 +1,25 @@
+<view class="font-normal bg-white padding-rl-20 padding-b-30">
+  <view class="font-bold padding-tb-30">{{header}}</view>
+  <view class="relative">
+    <text bindtap="bindfocus" hidden="{{focus || length > 0}}" class="placeholder color-gray">{{placeholder}}</text>
+    <textarea
+      wx:if="{{focus}}"
+      value="{{textareaValue}}"
+      auto-focus="{{true}}"
+      class="text-area padding-tb-30 padding-rl-20 border-1px width-100 border-box"
+      maxlength="{{maxlength}}"
+      cursor-spacing="50"
+      bindfocus="bindfocus"
+      bindblur="bindblur"
+      bindlinechange="bindlinechange"
+      bindinput="bindinput"
+      bindconfirm="bindconfirm"
+    ></textarea>
+    <view
+      wx:else
+      bindtap="bindfocus"
+      class="text-area text-view padding-tb-30 padding-rl-20 border-1px width-100 border-box"
+    >{{textareaValue}}</view>
+    <view class="text-length color-gray font-mini">{{length + '/' + maxlength}}</view>
+  </view>
+</view>

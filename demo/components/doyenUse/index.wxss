@@ -1,0 +1,17 @@
+.lineHeight-90{
+  line-height: 90rpx;
+  height: 90rpx;
+}
+.margin-b-16{
+  margin-bottom:16rpx;
+}
+.share-button {
+  border-radius:0 !important;
+  background-color:white;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size:30rpx;
+}
+button::after {
+  border: none;
+}

@@ -1,0 +1,8 @@
+<view bindtap="openMeidaUpload" class="uploadBox flex-center" style="width:{{finalWidth}};height:{{finalHeight}};">
+  <image mode="aspectFit" wx:if="{{type=='image'}}" class="uploadBox-cover {{extendClass}}" style="width:{{finalWidth}};height:{{finalHeight}};" src="{{filePath||default}}"></image>
+  <video wx:if="{{type=='video'&&!!filePath}}" show-center-play-btn="{{!!filePath?true:false}}" class="uploadBox-cover {{extendClass}}" style="width:{{finalWidth}};height:{{finalHeight}};"  src="{{filePath}}"></video>
+  <image wx:if="{{type=='video'&&!filePath}}" class="uploadBox-cover border-1px {{extendClass}}" style="width:{{finalWidth}};height:{{finalHeight}};" src="{{defaultAvatar}}"></image>
+  <text wx:if="{{showTips&&type=='image'}}" class="iconfont {{iconColor}}  {{iconSize}} {{iconfont}}"></text>
+  <text wx:if="{{showTips&&type=='video'}}" class="color-success iconfont font-6x icon-video1"></text>
+  <!-- <text wx:if="{{showCustomImg&&type=='image'}}" class="iconfont color-danger icon-xiangji"></text> -->
+</view>

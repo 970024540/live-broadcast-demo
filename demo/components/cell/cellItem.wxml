@@ -1,0 +1,6 @@
+<view class="flex-start-center border-1px-b padding-tb-20 padding-rl-20">
+  <view class="cell-label">
+     <text class="color-gray">{{title}}</text>
+   </view>
+   <text>{{value}}</text>
+</view>

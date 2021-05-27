@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "v-time": "/components/vTime/index",
+    "i-modal": "/dist/modal/index",
+    "x-modal": "/components/xModal/index",
+    "i-action-sheet": "/dist/action-sheet/index"
+  }
+}

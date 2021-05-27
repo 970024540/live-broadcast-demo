@@ -1,0 +1,4 @@
+.xitem{
+  padding: 16rpx 30rpx;
+  letter-spacing: 1px;
+}

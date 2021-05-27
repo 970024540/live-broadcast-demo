@@ -1,0 +1,9 @@
+<view class="flex-center">
+  <view class="flex-center padding-tb-20 width-100">
+    <view class="xitem text-center" wx:for="{{tabData}}" wx:key="index" bindtap="handleClickItem" data-i="{{index}}"
+      style="background-color:{{ current == index ?other.lineColor : other.bgColor }};background-image:{{current == index?other.tabGradient:''}}">
+      <text class="{{ current == index ? 'font-bold' : '' }} text-center font-normal" 
+        style="color: {{ current == index ? other.activeColor : other.defaultColor }};">{{ item.title }}</text>
+    </view>
+  </view>
+</view>

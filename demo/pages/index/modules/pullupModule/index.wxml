@@ -1,0 +1,22 @@
+<wxs src="../../../../utils/ossUrlTest.wxs" module="ossTool" />
+<template name="PullupModule" class="bg-white">
+  <wxs src="../../index.wxs" module="tool" />
+  <navigator
+    url="{{tool.myTool(data.header.link)}}"
+    wx:if="{{data.showHeader}}"
+    class="text-center bg-white flex-center font-bold font-2x"
+    style="width: 750rpx;height: {{data.header.coverUrl ? (750 * data.header.height / data.header.width) + 'rpx' : 'auto'}};padding: {{data.header.paddingTb * 2}}rpx 0; color: {{data.header.color}};background-image:url({{data.header.coverUrl}});background-position: center; background-size: cover;">
+    {{data.header.title}}
+  </navigator>
+  <view class="flex-space-between flex-wrap bg-white">
+    <view wx:for="{{data.data}}" wx:key="index" class="{{data.type == 'cell' ? 'flex-col-center flex-1-2' : 'flex-start'}} padding-rl-10 padding-tb-10">
+      <navigator class="link-img" style="flex-shrink: 0;width:{{data.type == 'cell' ? 340 : 160}}rpx;height:{{data.type == 'cell' ? 340 : 160}}rpx" url="/packageGoods/goodsDetailView/index?goods_id={{item.goods_id}}">
+        <image model="aspectFit" lazy-load src="{{ossTool.ossUrlTest(item.image_default[0])}}" ></image>
+      </navigator>
+      <view class="{{data.type == 'cell' ? '' : 'padding-rl-20'}}">
+        <view style="height: 60rpx;" class="color-main line-ellispsis-2 margin-t-10 font-small">{{ item.name }}</view>
+        <view class="{{data.type == 'cell' ? 'text-center font-big font-bold' : ''}} color-red padding-tb-10"><text class="font-small">￥</text>{{ item.price }}</view>
+      </view>
+    </view>
+  </view>
+</template>

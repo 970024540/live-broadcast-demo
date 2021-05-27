@@ -1,0 +1,20 @@
+<!--components/authIdentityModal/index.wxml-->
+
+<view class="mask flex-center {{showBoxModal?'mask-show':''}}" wx:if="{{showBoxModal}}">
+  <view class="width-100 flex-col-center relative">
+    <view class="flex-col-center width-80 border-r-10 bg-white padding-rl-40">
+      <text class="font-big font-bold padding-tb-20">请验证您的身份</text>
+      <i-panel>
+        <i-input title="手机号" disabled="{{true}}" value="{{oldAccount}}" placeholder="手机号" />
+        <view class="flex-start-center" slot="footer">
+          <i-input data-name="oldCode" title="验证码" value="{{oldCode}}" bindchange="change" class="flex-item" placeholder="验证码" />
+          <text class="sms" bindtap="old_get_sms_code">{{ time ? time + 's' : '获取验证码' }}</text>
+        </view>
+      </i-panel>
+      <text class="padding-tb-20 padding-rl-40 bg-dark color-white margin-t-20 margin-b-40" bindtap="oldSubmit">确认</text>
+    </view>
+    <view class="padding-t-20 margin-t-40">
+      <text catchtap="closeBtn" class="iconfont closeCla color-white icon-guanbi"></text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,22 @@
+{
+  "usingComponents": {
+    "loginModal": "../../components/loginModal/index",
+    "i-toast": "../../dist/toast/index",
+    "i-row": "../../dist/row/index",
+    "i-col": "../../dist/col/index",
+    "i-tabs": "../../dist/tabs/index",
+    "i-tab": "../../dist/tab/index",
+    "i-load-more": "../../dist/load-more/index",
+    "x-search": "../../components/xSearch/index",
+    "tabbar": "../../pages/index/components/tabbar/index",
+    "hot-tabbar": "../../pages/index/components/hotTabbar/index",
+    "swiper3d": "../../pages/index/components/swiper3d/index",
+    "header": "../../pages/index/components/header/index",
+    "collapse": "../../pages/index/components/collapse/index",
+    "modalModule": "../../pages/index/modules/modalModule/index",
+    "x-timer": "../../components/xTimer/index",
+    "hotArea": "../../pages/index/components/hotArea/index"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#464c5b"
+}

@@ -1,0 +1,52 @@
+.loginModal{
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom: 0;
+  z-index: 111;
+}
+
+.padding-tb-30{
+  padding-top:30rpx;
+  padding-bottom: 30rpx;
+}
+
+.margin-t-40{
+  margin-top:40rpx;
+}
+
+.margin-0 button{
+  margin-top:0;
+  margin-bottom: 0;
+  margin-right: 0;
+  margin-left: 0;
+}
+.weChart-btn{
+  width:80%
+}
+.delect{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  border:1px solid #eee;
+  font-size:28rpx;
+  line-height: 60rpx;
+  text-align: center;
+  margin-top: 80rpx;
+}
+.login-height{
+  height: 300rpx;
+  line-height: 300rpx;
+}
+.weChart-min-btn{
+  margin: 0;
+  padding:0;
+  background: 0;
+  color:#19be6b;
+  font-size: 14rpx;
+  line-height:0;
+}
+.weChart-min-btn::after{
+border:none;
+}

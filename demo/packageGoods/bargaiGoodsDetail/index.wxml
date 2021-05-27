@@ -1,0 +1,32 @@
+<view>
+  <view class="flex-start font-normal">
+    <view class="width-70 padding-tb-20 padding-l-20" style="background:#fff4f4;">
+      <view class="width-100">
+        <view class="color-red">{{datas.bargain_type=='0'?datas.bargain_condition+'刀砍至￥':'最低价砍至￥'}}{{datas.mini_price}}</view>
+        <view class="color-gray"> <text class="line-through margin-r-20">原价 ￥{{datas.price}}</text>{{datas.barNum}}人已砍价成功</view>
+      </view>
+    </view>
+    <view class="width-30 padding-tb-20" style="background:#ffe1e1">
+      <view class="width-100 text-center">
+        <view class="color-red">距结束仅剩</view>
+        <v-time desc="{{ datas.end_time*1000 }}"></v-time>
+      </view>
+    </view>
+  </view>
+  <view class="padding-rl-60 margin-t-20 font-normal">
+    <view class="flex-space-between">
+      <text class="font-bold">砍价须知</text>
+      <text class="color-gray">砍价成功-等待发货/逾期-砍价失败</text>
+    </view>
+    <view class="font-bold margin-t-20">砍价流程</view>
+    <view class="flex-space-between">
+      <text>发起砍价</text>
+      <text class="iconfont icon-you color-red"></text>
+      <text>邀请好友</text>
+      <text class="iconfont icon-you color-red"></text>
+      <text>助攻省钱</text>
+      <text class="iconfont icon-you color-red"></text>
+      <text>支付余额</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,23 @@
+<view class="bg-white padding-tb-30 padding-rl-20" style="background-color: {{styles.desc.headerBg}}">
+  <wxs src="../../index.wxs" module="tool" />
+  <view class="space font-bold" style="font-size:{{styles.desc.titleSize*2}}rpx;color:{{styles.desc.titleColor}};text-align:{{styles.desc.align}}">
+    {{styles.desc.title}}</view>
+  <view wx:if="{{styles.desc.align == 'left'}}" class="flex-space-between">
+    <view wx:if="{{styles.desc.subTitle}}" class="space font-small flex-start padding-t-10 padding-b-20" style="font-size: {{styles.desc.subtitleSize*2}}rpx; color: {{styles.desc.subtitleColor}}">
+      {{ styles.desc.subTitle }}
+    </view>
+    <view class="flex-end">
+      <view class="padding-r-10 font-small flex-start-center" wx:if="{{styles.desc.time}}" style="font-size:{{styles.desc.subtitleSize*2}}rpx;color:{{styles.desc.subtitleColor}}">
+        <text class="padding-r-10">{{ text }}</text>
+        <v-time class="color-tmp " style="padding-top:5rpx;color: {{styles.desc.timerColor}}" desc="{{des}}" wx:if="{{des}}"></v-time>
+      </view>
+      <navigator wx:if="{{styles.desc.more}}" class="iconfont icon-gengduo font-1x" style="color: {{styles.desc.moreColor}}" url="{{tool.myTool(styles.desc.moreLink)}}"></navigator>
+    </view>
+  </view>
+  <view wx:elif="{{styles.desc.align == 'center'}}" class="relative text-center">
+    <view wx:if="{{styles.desc.subTitle}}" class="space font-small flex-ecnter padding-t-10 padding-b-20" style="font-size: {{styles.desc.subtitleSize*2}}rpx; color: {{styles.desc.subtitleColor}}">
+      {{ styles.desc.subTitle }}
+    </view>
+    <navigator wx:if="{{styles.desc.more}}" class="iconfont icon-gengduo font-1x abr-20" style="color: {{styles.desc.moreColor}}" url="{{tool.myTool(styles.desc.moreLink)}}"></navigator>
+  </view>
+</view>

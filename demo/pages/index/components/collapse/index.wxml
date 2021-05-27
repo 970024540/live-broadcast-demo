@@ -1,0 +1,35 @@
+<wxs src="../../../../utils/ossUrlTest.wxs" module="ossTool" />
+<wxs src="../../index.wxs" module="tool" />
+<view class="observer-collapse bg-white">
+  <view wx:for="{{datas.group}}" wx:key="index">
+    <image bindtap="collapseClick" data-i="{{index}}" mode="widthFix" style="width:100%;max-height:400rpx" src="{{item.cover.coverUrl}}"></image>
+    <view wx:for="{{item.data}}" wx:for-item="val" wx:key="key" style="height:{{item.state?164:0}}rpx" 
+      class="margin-rl-20 overflow trans">
+      <view bindtap="clickGoodsItem" data-goodsid="{{val.goods_id}}" class="padding-tb-20 flex-start-center {{datas.bottomDer?'border-1px-b':''}}">
+        <view class='link-img margin-l-40' style="width:120rpx;">
+          <image mode="aspectFit" style="width:120rpx;height:120rpx" lazy-load 
+            src="{{ossTool.ossUrlTest(val.thumbnail_pic?val.thumbnail_pic:val.image_default[0], 200)}}"></image>
+        </view>
+        <view class="flex-item padding-rl-40 flex-space-between">
+          <view class="flex-item">
+            <view class="font-bold font-normal" style="color:{{datas.goodsArea.brandColor}}">{{val.brand_alias}}</view>
+            <view wx:if="{{datas.showName}}" class="font-mini line-ellispsis-1">{{val.name}}</view>
+            <view>
+              <text class="font-big" style="color:{{datas.goodsArea.priceColor}}">￥{{val.price}}</text>
+              <text wx:if="{{datas.showSale}}" class="line-through margin-l-10 font-mini" style="color:{{datas.goodsArea.saleColor}}">￥{{val.mktprice}}</text>
+            </view>
+          </view>
+          <text class="padding-l-20 font-big">></text>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{item.data.length == 0}}" class="flex-center overflow trans" style="height:{{item.state?400:0}}rpx">
+      <i-spin size="large"></i-spin>
+    </view>
+    <view wx:if="{{item.more}}" class="flex-center overflow trans" style="height:{{item.state?92:0}}rpx">
+      <navigator url="{{tool.myTool(item.moreLink)}}" class="{{datas.bottomDer?'border-1px-b':''}}" style="color: {{datas.goodsArea.moreColor}};">
+        查看更多
+      </navigator>
+    </view>
+  </view>
+</view>

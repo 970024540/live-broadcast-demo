@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-steps": "../../dist/steps/index",
+    "i-step": "../../dist/step/index",
+    "i-drawer": "../../dist/drawer/index",
+    "i-button": "../../dist/button/index"
+  }
+}

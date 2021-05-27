@@ -1,0 +1,26 @@
+{
+  "navigationBarTitleText": "商品详情",
+  "usingComponents": {
+    "slogan": "/components/slogan/slogan",
+    "i-input-number": "../../dist/input-number/index",
+    "i-icon": "../../dist/icon/index",
+    "i-button": "../../dist/button/index",
+    "sku-select": "/components/skuSelect/index",
+    "i-row":"../../dist/row/index",
+    "i-col":"../../dist/col/index",
+    "i-modal": "../../dist/modal/index",
+    "loginModal": "../../components/loginModal/index",
+    "wxRecommend":"../../components/wxRecommend/index",
+    "groupbuy": "../groupbuy/index",
+    "crowdBuy": "../crowdBuy/index",
+    "subscribeBuy": "../subscribeBuy/index",
+    "bargaiGoodsDetail": "../bargaiGoodsDetail/index",
+    "banner-list": "./bannerList/index",
+    "goods-attr": "./goodsAttr/index",
+    "to-gift-home": "../../components/toGiftHome/index",
+    "authIdentityModal":"../../components/authIdentityModal/index",
+    "chatBar": "/components/chatBar/index"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#464c5b"
+}

@@ -1,0 +1,6 @@
+<template name="HotAreaModule">
+  <view class="bg-white">
+  <header wx:if="{{data.showDesc}}" styles="{{data}}"></header>
+  <hotArea datas="{{data}}" bindscrollToView="scrollToView"></hotArea>
+  </view>
+</template>

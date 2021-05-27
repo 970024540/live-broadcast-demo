@@ -1,0 +1,94 @@
+<view class="observer-goods-group">
+  <wxs src="../../index.wxs" module="tool" />
+  <import src="../cell/index.wxml" />
+  <import src="../list/index.wxml" />
+  <import src="../scroller/index.wxml" />
+  <import src="../../modules/countdownModule/index.wxml"/>
+  <!-- 居左标题倒计时 -->
+   <x-timer moduleType="2" index="{{suffix}}" wx:if="{{data[suffix].config.showTimer&&data[suffix].config.site=='1'}}" 
+   type="{{data[suffix].countdown.theme}}" fromTime="{{data[suffix].countdown.from_time}}" 
+   toTime="{{data[suffix].countdown.to_time}}" preStartLabel="{{data[suffix].countdown.preStartLabel}}" 
+   endLabel="{{data[suffix].countdown.endLabel}}" StartingLabel="{{data[suffix].countdown.StartingLabel}}"
+   padding_rl="{{data[suffix].countdown.padding_rl}}"
+   ></x-timer>
+  <tab id="navbar"
+    current="{{ suffix }}" scroll="{{tabData.length>2}}" wx:if="{{(data.length == 0 || tabData.length > 1)&&!isTabLeft&&(tabbarType=='1'||tabbarType=='')}}" bgcolor="{{ other.bgColor }}" data-key="{{1}}" bindchange="handleSwitch">
+    <tab-item wx:for="{{tabData}}" wx:key="index"
+      key="{{index}}"
+      title="{{item.title}}" 
+      wx:for-index="index"
+      scroll="{{false}}"
+      length="{{tabData.length}}"
+      lineColor="{{other.lineColor}}" 
+      activeColor="{{other.activeColor}}" 
+      defaultColor="{{other.defaultColor}}"></tab-item>
+  </tab>
+  <!-- 吸顶容器，避免吸顶计算高度误差 -->
+  <tab
+    wx:if="{{(data.length == 0 || tabData.length > 1)&&isFixedTop&&!isTabLeft}}"
+    class="width-100 {{isFixedTop?'sticky-box':''}}" 
+    current="{{ suffix }}" scroll="{{tabData.length>2}}" bgcolor="{{ other.bgColor }}" data-key="{{1}}" bindchange="handleSwitch">
+    <tab-item wx:for="{{tabData}}" wx:key="index"
+      key="{{index}}"
+      current="{{suffix}}"
+      title="{{item.title}}" 
+      wx:for-index="index"
+      scroll="{{false}}"
+      length="{{tabData.length}}"
+      lineColor="{{other.lineColor}}" 
+      activeColor="{{other.activeColor}}" 
+      defaultColor="{{other.defaultColor}}"></tab-item>
+  </tab>
+  <!-- tab居左布局 -->
+  <view wx:if="{{isTabLeft}}" class="flex-start bg-white">
+    <view style="background-color:{{other.bgColor}};width:{{tabLeftWidth?tabLeftWidth:25}}%;">
+      <view class="xitem width-100 text-center {{suffix==index?'font-bold':''}}" bindtap="handleSwitch" data-i="{{index}}"
+        style="border-bottom:{{suffix==index?'4rpx solid'+other.lineColor:'2rpx solid #999'}};color:{{suffix==index?other.activeColor:other.defaultColor}};padding:{{tabPaddT}}px {{tabPaddL}}px {{tabPaddB}}px {{tabPaddR}}px;font-size:{{suffix==index?(tabTextActiveSize?tabTextActiveSize:14)+'px':(tabTextSize?tabTextSize:14)+'px'}};text-align:{{tabAlign}}" 
+        wx:for="{{tabData}}" wx:key="index">{{item.title}}</view>
+    </view>
+    <view style="width:{{tabLeftWidth?100-tabLeftWidth:75}}%">
+      <view style="background:{{ goodsArea[goodsArea.bgType] }};overflow: hidden;">
+      <navigator url="{{tool.myTool(data[suffix].config.cover.link)}}" class="link-img">
+        <image mode="widthFix" lazy-load wx:if="{{data[suffix].config.showCover == true && data[suffix].config.cover.coverUrl}}" src="{{data[suffix].config.cover.coverUrl}}"></image>
+      </navigator>
+      <view class="link-img">
+      <image mode="widthFix" bindtap="handleTap2" data-areaData="{{data[suffix].config.hotArea.areaData}}" id="{{apid}}" lazy-load wx:if="{{data[suffix].config.showHotArea == true && data[suffix].config.hotArea.image}}" src="{{data[suffix].config.hotArea.image}}"></image>
+      </view>
+      <x-timer moduleType="1" index="{{suffix}}" wx:if="{{data[suffix].config.showTimer&&data[suffix].config.site!='1'}}" type="{{data[suffix].countdown.theme}}" fromTime="{{data[suffix].countdown.from_time}}" toTime="{{data[suffix].countdown.to_time}}" preStartLabel="{{data[suffix].countdown.preStartLabel}}" endLabel="{{data[suffix].countdown.endLabel}}" StartingLabel="{{data[suffix].countdown.StartingLabel}}"></x-timer>
+      <view wx:if="{{data[suffix].list.length > 0 && data[suffix].data.length == 0}}" class="flex-center color-gray" style="padding: 200rpx 0">
+        <i-spin size="large"></i-spin>
+      </view>
+      <template wx:elif="{{other.type}}" is="{{other.type}}" 
+        data="{{data:data[suffix],  columns:other.columns||2,  sale:other.showSale,  store:other.showStore,  colors:goodsArea,  showName:other.showName,  scrollNumber:other.scrollNumber}}" />
+      <view wx:if="{{goodsArea.more}}" style="padding: 40rpx 0;background: transparent;">
+        <navigator url="{{tool.myTool(goodsArea.moreLink)}}" 
+          style="border: {{'1px solid ' + goodsArea.moreBorderColor}};color: {{goodsArea.moreColor}};display: block;width: 320rpx;margin: 0 auto;padding: 20rpx 0;text-align: center;background-color: {{goodsArea.moreBgColor}};">
+          查看更多
+        </navigator>
+      </view>
+    </view>
+    </view>
+  </view>
+  <!-- 默认布局 -->
+  <view wx:else style="background:{{ goodsArea[goodsArea.bgType] }};overflow: hidden;">
+    <tabbarMiddle wx:if="{{tabbarType=='2'}}" tabData="{{tabData}}" other="{{other}}" current="{{ suffix }}" bindchange="handleSwitch"></tabbarMiddle>
+    <navigator url="{{tool.myTool(data[suffix].config.cover.link)}}" class="link-img">
+      <image mode="widthFix" lazy-load wx:if="{{data[suffix].config.showCover == true && data[suffix].config.cover.coverUrl}}" src="{{data[suffix].config.cover.coverUrl}}"></image>
+    </navigator>
+    <view class="link-img">
+      <image mode="widthFix" bindtap="handleTap2" data-areaData="{{data[suffix].config.hotArea.areaData}}" id="{{apid}}" lazy-load wx:if="{{data[suffix].config.showHotArea == true && data[suffix].config.hotArea.image}}" src="{{data[suffix].config.hotArea.image}}"></image>
+    </view>
+    <x-timer moduleType="1" index="{{suffix}}" wx:if="{{data[suffix].config.showTimer&&data[suffix].config.site!='1'}}" type="{{data[suffix].countdown.theme}}" fromTime="{{data[suffix].countdown.from_time}}" toTime="{{data[suffix].countdown.to_time}}" preStartLabel="{{data[suffix].countdown.preStartLabel}}" endLabel="{{data[suffix].countdown.endLabel}}" StartingLabel="{{data[suffix].countdown.StartingLabel}}"></x-timer>
+    <view wx:if="{{data[suffix].list.length > 0 && data[suffix].data.length == 0}}" class="flex-center color-gray" style="padding: 200rpx 0">
+      <i-spin size="large"></i-spin>
+    </view>
+    <template wx:elif="{{other.type}}" is="{{other.type}}" 
+      data="{{data: data[suffix], columns: other.columns || 2, sale: other.showSale, store: other.showStore, colors: goodsArea,showName: other.showName,scrollNumber:other.scrollNumber}}" />
+    <view wx:if="{{goodsArea.more}}" style="padding: 40rpx 0;background: transparent;">
+      <navigator url="{{tool.myTool(goodsArea.moreLink)}}" 
+        style="border: {{'1px solid ' + goodsArea.moreBorderColor}};color: {{goodsArea.moreColor}};display: block;width: 320rpx;margin: 0 auto;padding: 20rpx 0;text-align: center;background-color: {{goodsArea.moreBgColor}};">
+        查看更多
+      </navigator>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,23 @@
+<wxs src="../../../../utils/ossUrlTest.wxs" module="ossTool" />
+<template name="hotCell">
+  <view class="flex-space-around flex-wrap padding-rl-10" style="background: transparent;">
+    <view wx:for="{{data.data}}" wx:key="index" class="animation-scale-up flex-col-start padding-tb-10" style="width: {{columns == 2 ? '345rpx' : '223rpx'}};">
+      <view class="link-img relative" style="height: {{columns == 2 ? '345rpx' : '223rpx'}}" bindtap="clickGoodsItem" data-index="{{index}}" data-soid="浏览" data-goodsid="{{item.goods_id}}">
+        <image mode="aspectFit" class="height-100 width-100"  lazy-load src="{{ossTool.ossUrlTest(item.image_url, 200)}}" ></image>
+        <hotTag top="{{index + 1}}" tagScrollSite="{{other.tagScrollSite}}" tagBgColor="{{other.tagBgColor}}" />
+      </view>
+      <view class="padding-t-10 font-bold line-ellispsis-1 font-small" style="color: {{ colors.brandColor }}">{{item.brand_keywords}} {{item.brand }}</view>
+      <view wx:if="{{other.showSell}}" class="{{columns == 2 ? 'flex-start flex-wrap' : ''}} padding-tb-10">
+        <text style="color: {{goodsArea.saleNumColor}}" class="margin-r-10 font-mini">销量: {{ item.sell_num }}</text>
+        <text style="color: {{goodsArea.browseNumColor}}" class="{{columns == 2 ? 'padding-l-20' : ''}} font-mini">浏览量: {{ item.browse_num }}</text>
+      </view>
+      <view wx:if="{{other.showName}}" class="line-ellispsis-1 font-small" style="color: {{ colors.nameColor }}">{{ item.name }}</view>
+      <view class="padding-t-10">
+        <text class="font-sm font-bold" style="color: {{ colors.priceColor }}">￥{{ item.price }}</text>
+        <text wx:if="{{other.sale}}" class="padding-l-10 font-small line-through" style="color: {{ colors.saleColor }}">￥{{ item.mktprice }}</text>
+      </view>
+    </view>
+    <view style="height: 0;width: {{columns == 2 ? '345rpx' : '223rpx'}};"></view>
+    <view style="height: 0;width: {{columns == 2 ? '345rpx' : '223rpx'}};"></view>
+  </view>
+</template>

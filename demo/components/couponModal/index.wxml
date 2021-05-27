@@ -1,0 +1,11 @@
+<view wx:if="{{showCouponModal}}" class="flex-center c-modal">
+  <view class="relative">
+    <view class="modal-close-btn flex-center">
+      <text>{{showModalTime}}</text>
+    </view>
+    <view style="width:600rpx;height:640rpx" class="relative" bindtap="hideCouponModal">
+      <image src="{{imgSrc}}" style="width:600rpx;height:640rpx" lazy-load></image>
+      <text class="font-nomarl color-white" style="position: absolute;top:25%;left:38%;font-size:100rpx">{{amount}}</text>
+    </view>
+  </view>
+</view>

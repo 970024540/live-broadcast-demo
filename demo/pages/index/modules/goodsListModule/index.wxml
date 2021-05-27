@@ -1,0 +1,40 @@
+<template name="GoodslistModule">
+  <wxs src="../../index.wxs" module="tool" />
+  <import src="../../components/cell/index.wxml" />
+  <import src="../../components/list/index.wxml" />
+  <import src="../../components/scroller/index.wxml" />
+  <import src="../../components/cover/index.wxml" />
+  <import src="../../components/tagHeader/index.wxml" />
+  <!-- 横向布局，仅适用于横向滚动排列方式 -->
+  <view wx:if="{{data.layoutType=='2'&&data.type=='scroller'}}">
+    <template wx:if="{{data.tagHeader}}" is="tagheader" data="{{styles: data.tagHead}}"></template>
+    <view class="flex-start-center bg-white">
+      <view style="width:25%">
+        <header wx:if="{{data.showDesc}}"  styles="{{data}}"></header>
+        <template wx:if="{{data.showCover}}" is="cover" data="{{data}}"></template>
+      </view>
+      <view style="width:75%">
+        <view style="background:{{ data.goodsArea[data.goodsArea.bgType] }}" class="clear-float padding-tb-10">
+          <template is="scroller" 
+            data="{{data, sale: data.showSale, store: data.showStore,showName: data.showName, colors: data.goodsArea,layoutType:data.layoutType}}"></template>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 默认布局 -->
+  <view wx:else>
+    <header wx:if="{{data.showDesc}}"  styles="{{data}}"></header>
+    <template wx:if="{{data.showCover}}" is="cover" data="{{data}}"></template>
+    <template wx:if="{{data.tagHeader}}" is="tagheader" data="{{styles: data.tagHead}}"></template>
+    <view style="background:{{ data.goodsArea[data.goodsArea.bgType] }}" class="clear-float padding-tb-10">
+      <template is="{{data.type}}" data="{{data, columns: data.columns, sale: data.showSale,showName: data.showName, store: data.showStore, colors: data.goodsArea}}"></template>
+      <view wx:if="{{data.goodsArea.more}}" style="padding: 40rpx 0;background: transparent;">
+        <navigator url="{{tool.myTool(data.goodsArea.moreLink)}}" 
+          style="border: {{'1px solid ' + data.goodsArea.moreBorderColor}};color: {{data.goodsArea.moreColor}};display: block;width: 320rpx;margin: 0 auto;padding: 20rpx 0;text-align: center;background-color: {{goodsArea.moreBgColor}};" >
+          查看更多
+        </navigator>
+      </view>
+    </view>
+  </view>
+  
+</template>

@@ -1,0 +1,7 @@
+/* pages/index/components/collapse/index.wxss */
+.overflow{
+  overflow: hidden;
+}
+.trans{
+  transition: height 0.2s ease-in-out;
+}

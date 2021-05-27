@@ -1,0 +1,15 @@
+var toFixed = function(value, num) {
+    return value.toFixed(num)
+}
+var lackNum = function(list, join_list_id) {
+    // 用于团购
+    var group = list.filter(function(item) {
+        return item.join_list_id == join_list_id;
+    });
+    return group[0] ? group[0].lack_number : 0;
+}
+
+module.exports = {
+    toFixed: toFixed,
+    lackNum: lackNum
+}

@@ -1,0 +1,21 @@
+{
+  "name": "live-broadcast-demo",
+  "version": "1.0.0",
+  "description": "2233",
+  "main": "index.js",
+  "scripts": {
+    "upload": "node index.js"
+  },
+  "dependencies": {
+    "async": "^3.2.0",
+    "compressing": "^1.5.1",
+    "miniprogram-ci": "^1.0.76",
+    "moment": "^2.27.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/ence_co_ltd/live-broadcast-demo.git"
+  },
+  "author": "",
+  "license": "ISC"
+}

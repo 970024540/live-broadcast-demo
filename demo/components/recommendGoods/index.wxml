@@ -1,0 +1,26 @@
+<wxs src="../../utils/ossUrlTest.wxs" module="tool" />
+<view class="flex-space-between padding-rl-40 padding-tb-40" wx:if="{{brand_name}}">
+  <view class="font-normal font-bold">品牌 /{{brand_name}}</view>
+  <view class="iconfont icon-aixin color-gray padding-r-24"></view>
+</view>
+<view class="font-normal flex-center padding-tb-20" wx:if="{{title}}">{{title}}</view>
+<view class="relative">
+  <swiper bindchange="swiperChangeHandle" display-multiple-items="{{goodsData.length>4?4:goodsData.length}}" current="{{currentIndex}}" style="height: 180rpx">
+    <swiper-item wx:for="{{goodsData}}" wx:key="index">
+      <view class="flex-col-start color-gray" bindtap="jumpGoodsDetail" data-goodsId="{{item.goods_id}}">
+        <image mode="aspectFill" class="item-goods-cover" src="{{tool.ossUrlTest(item.default_image, 200)}}"></image>
+        <view class="padding-tb-20 color-gray" wx:if="{{showPrice}}">
+          <view class="font-small" wx:if="{{brand_name}}">{{brand_name}}</view>
+          <view class="font-mini line-height-60 line-ellispsis-1" wx:if="{{item.name}}">{{item.name}}</view>
+          <view style="color: #181818" class="font-mini" wx:if="{{item.price}}">￥
+            <text class="font-big font-bold">{{item.price}}</text>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+  <block wx:if="{{goodsData.length > 4}}">
+    <view class=" btn btn-left color-white iconfont icon-zuo" wx:if="{{currentIndex!=0}}" bindtap="changeSwiper" data-type="last"></view>
+    <view class=" btn btn-right color-white iconfont icon-you" wx:if="{{currentIndex!=goodsData.length}}" bindtap="changeSwiper" data-type="next"> </view>
+  </block>
+</view>

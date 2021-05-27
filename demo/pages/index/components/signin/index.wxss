@@ -1,0 +1,88 @@
+.total-day-box {
+  height: 96rpx;
+  width: 68rpx;
+  background-color: #fff;
+}
+.total-signin-label {
+  position: absolute;
+  right: -32rpx;
+  bottom: 0px;
+}
+.day-item {
+  color: #ddd;
+}
+.not-signin-btn {
+  border-radius: 10rpx;
+  font-weight: 700;
+  padding: 0 10rpx;
+  border: 1px solid #fff;
+}
+.rule-item-bar {
+  height: 5rpx;
+  min-width: 20rpx;
+  max-width: 200rpx;
+  margin-bottom: 30rpx;
+  background-color: #FFF;
+}
+.cycle-bar {
+  height: 5rpx;
+  background-color: #ddd;
+  position: absolute;
+  left: calc(12px - 50%);
+  width: calc(100% - 24px);
+  top: 32rpx;
+}
+.rule-item-day {
+  height: 64rpx;
+  width: 64rpx;
+  border-radius: 32rpx;
+}
+.rule-item-day-bg {
+  background-color: #fff;
+}
+.rule-item-day-active {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.rule-item-day-disabled {
+  background-color: rgba(0,0,0,0.3);
+}
+.icon-img {
+  height: 60rpx;
+  width: 40rpx;
+}
+.modal-box {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.3);
+  z-index: 9999;
+}
+.point-box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.signin-notice-bar {
+  height: 40rpx;
+}
+.flex-col-6 {
+  width: 25%;
+}
+.prize-popup-img {
+  width: 320rpx;
+  height: 240rpx;
+  object-fit: contain;
+}
+.signin-btn {
+  width: 272rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-radius: 35rpx;
+}
+.min-height-100 {
+  min-height: 200rpx;
+}

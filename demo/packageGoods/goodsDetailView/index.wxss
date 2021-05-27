@@ -1,0 +1,124 @@
+page {
+  height: 100vh;
+  width: 100vw;
+}
+.newman {
+  padding: 0 10rpx;
+  margin-left: 10rpx;
+  color: #fff;
+  font-size: 24rpx;
+  background-color: #dd2453;
+}
+.detail-tab-icon {
+  display: inline-block;
+  height: 43px;
+  line-height: 43px;
+}
+
+.banner_video {
+  width: 750rpx;
+  height: 750rpx;
+}
+.indicator {
+  height: 12rpx;
+  width: 12rpx;
+  border-radius: 50%;
+  border: 2rpx solid #c4c4c4;
+  transition: all .3s;
+}
+.indicator-active {
+  background-color: #181818;
+  border-color: #181818;
+}
+.qcode-img {
+  height: 140rpx;
+  width: 112rpx;
+  position: absolute;
+  right: 30rpx;
+  top: -60rpx;
+}
+.list, .icon-show {
+  display: none;
+}
+.reset-btn-bg {
+  border-radius: 0;
+  line-height: 1;
+  background-image: linear-gradient(to right, #fd274a, #fd4d2a);
+}
+.reset-btn-no {
+  background-color: #dbdbdb;
+  border-radius: 0;
+  line-height: 1;
+}
+.show-list+.list, .show-list .icon-show {
+  display: block;
+}
+.show-list .icon-close {
+  display: none;
+}
+.swiper-item {
+  width: 250rpx;
+}
+.item-goods-cover {
+  height: 300rpx;
+  width: 250rpx;
+}
+.reset-btn[disabled] {
+  background-color: #dbdbdb!important;
+  color: #ffffff!important;
+}
+.canvas-btn {
+  color: #333333;
+}
+.cart-tag {
+  position: absolute;
+  top: 4rpx;
+  right: 20rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  width: 40rpx;
+  text-align: center;
+  border-radius: 50%;
+}
+.richText{
+  width:750rpx;
+}
+.qcode-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.3);
+  z-index: 999;
+}
+.canvas-close {
+  height: 60rpx;
+  line-height: 60rpx;
+  width: 60rpx;
+  border-radius: 50%;
+}
+.relative {
+  position: relative;
+}
+.spec-item-active {
+  border-color: #dd2453;
+  color: #dd2453;
+}
+.spec-item-disabled {
+  border-color: #dfdfdf;
+  color: #dfdfdf;
+}
+.collocation-border {
+  border-left: 2px solid #FF7043;
+}
+.prepay-btn {
+  border-color: #E53935;
+}
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+.button-tips {
+  position: absolute;
+  top: 288px;
+  right: 8px;
+  color: #efefef;
+}

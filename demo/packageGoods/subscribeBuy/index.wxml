@@ -1,0 +1,47 @@
+<wxs module="filters" src="../../utils/filter.wxs"></wxs>
+<view class="flex-start align-items-stretch theme">
+  <view class="flex-item padding-tb-10 padding-rl-20 left color-white">
+    <view class="font-normal">
+      ￥{{ subScribe.price }}
+      <text class="padding-l-20" >原价：￥</text>
+      <text style="text-decoration: line-through">{{ goods_data_price}}</text>
+    </view>
+    <text class="decorate font-mini">已有{{ subScribe.book_count }}人预约</text>
+    <!-- <text class="decorate font-mini margin-l-20">已售{{ totalBuy }}件</text> -->
+  </view>
+  <view class="padding-rl-20 text-center">
+    <text class="color-red" style="font-size: 20rpx;">{{state[subScribe.type]}} \n</text>
+    <v-time bind:onTimeEnd = 'time_end' desc="{{ subScribe[timeType[subScribe.type]] * 1000 }}"></v-time>
+  </view>
+</view>
+<view class="padding-rl-30 margin-t-20 bg-white">
+  <view class="flex-space-between">
+    <view class="rule-color font-mini">{{subScribe.description}}
+        <text class="stock padding-rl-20 font-mini color-white">库存{{subScribe.store}}件</text>
+    </view>
+
+  </view>
+</view>
+<view class="margin-tb-20 bg-white" style="overflow: hidden;">
+  <view class="padding-rl-30 padding-b-10 font-normal font-bold" style="color: #2b2b2b;">预约流程</view>
+</view>
+<view class="process padding-rl-20  width-100">
+  <view class="process-head width-100 padding-rl-30">
+      <view class="process-begin color-red font-mini">
+        {{subScribe.book_from_time_sub}}
+      </view>
+      <view class="process-begin color-red font-mini">
+        {{subScribe.sale_from_time_buy}}
+      </view>
+  </view>
+   <view class="process-body flex-center">
+      <view class="width-25 text-center height-100" wx:for="{{process}}" wx:key="index">
+       <view class="font-mini process-line">●</view>
+       <text class="font-small padding-rl-10 process-text">{{item}}</text>
+      </view>
+  </view> 
+</view>
+
+
+
+ 

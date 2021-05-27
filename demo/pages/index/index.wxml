@@ -1,0 +1,113 @@
+<import src="./modules/swiperModule/index.wxml" />
+<import src="./modules/brandModule/index.wxml" />
+<import src="./modules/vstoreCardModule/index.wxml" />
+<import src="./modules/promotionModule/index.wxml" />
+<import src="./modules/videoModule/index.wxml" />
+<import src="./modules/goodsListModule/index.wxml" />
+<import src="./modules/navibarModule/index.wxml" />
+<import src="./modules/imageModule/index.wxml" />
+<import src="./modules/freestyleModule/index.wxml" />
+<import src="./modules/gridModule/index.wxml" />
+<import src="./modules/textModule/index.wxml" />
+<import src="./modules/swiper3d/index.wxml" />
+<import src="./modules/ticketModule/index.wxml" />
+<import src="./modules/couponModule/index.wxml" />
+<import src="./modules/richtextModule/index.wxml" />
+<import src="./modules/goodsGroupModule/index.wxml"/>
+<import src="./modules/hotSaleModule/index.wxml"/>
+<import src="./modules/articleModule/index.wxml"/>
+<import src="./modules/pullupModule/index.wxml"/>
+<import src="./modules/countdownModule/index.wxml"/>
+<import src="./modules/confessionModule/index.wxml"/>
+<import src="./modules/noticeBarModule/index.wxml"/>
+<import src="./modules/hotAreaModule/index.wxml"/>
+<import src="./modules/collapseModule/index.wxml"/>
+<wxs src="./index.wxs" module="tool" />
+<view class="view bg-gray flex-col-content height-100 font-normal">
+  <view class="content-box height-100 width-100 over-hidden">
+    <!-- 顶部搜索框 -->
+    <view wx:if="{{tabSettingData.isSearch&&!isSearh}}" style="background-color:{{tabSettingData.searchBgColor||'white'}}" 
+      class="slide3 {{isTopSearch?'animate3':''}}">
+      <view class="flex-start-center border-r-10 bg-white padding-tb-10 padding-rl-20">
+        <i-icon class="padding-rl-20" size="24" color="#424242" type="search" />
+        <swiper class="notice-bar width-100" autoplay circular vertical interval="3000">
+          <swiper-item class="flex-col-start" wx:for="{{tabSettingData.searchData}}" wx:key="index" bindtap="marqueeClick" data-val="{{item.label}}">
+            <text style="color:#9f9f9f" class="line-ellispsis-1">{{item.label}}</text>
+          </swiper-item>
+        </swiper> 
+        <i-icon bindtap="imageSearch" class="padding-rl-20" size="24" color="#424242" type="camera" />
+      </view>
+    </view>
+    <x-search style="display:{{isSearh?'block':'none'}}" bindcancelBox="cancelBox" initValue="{{inputValue}}" id="searchBox"></x-search>
+    <tab
+      class="width-100" 
+      scrollType="{{bars.length<=5?'2':'1'}}"
+      current="{{ suffix }}" scroll="{{bars.length>2}}" bgImage="{{tabSettingData.tabBgImage}}" bgcolor="{{ tabSettingData.tabBgColor }}" data-key="{{1}}" bindchange="handleChangeScroll">
+      <tab-item wx:for="{{bars}}" wx:key="index"
+        key="{{index}}"
+        current="{{suffix}}"
+        title="{{item.title}}" 
+        wx:for-index="index"
+        scroll="{{true}}"
+        length="{{bars.length}}"
+        lineColor="{{tabSettingData.tabLineColor}}" 
+        activeColor="{{tabSettingData.tabActiveColor}}" 
+        defaultColor="{{tabSettingData.tabDefaultColor}}"
+        tabShadowColor="{{tabSettingData.tabShadowColor}}"></tab-item>
+    </tab>
+
+    <!-- 吸顶专区栏 -->
+    <template wx:if="{{brandStickyData[suffix]}}" is="BrandModule" data="{{data:brandStickyData[suffix]}}" ></template>
+    <swiper indicator-dots="{{indicatorDots}}" bindanimationfinish="changeSwiper" class="height-100" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"  current="{{ suffix }}">
+      <block wx:for="{{bars}}" wx:for-item="item" wx:key="{{item.uuid}}">
+        <swiper-item>
+          <scroll-view scroll-y class="height-100 relative" style="padding-bottom:{{brandStickyData[suffix]?swiperItemPB+124:swiperItemPB}}rpx" scroll-with-animation="true" bindscrolltolower="scrollToLower" scroll-into-view="{{toView}}" bindscroll="scroll" scroll-top="{{scrollTop}}">
+            <view class="class-item{{x}} {{!!cpt.observerClass ? cpt.observerClass : ''}}" data-name="{{cpt.name}}" data-tab-index="{{cpt.data._tabIndex}}" data-index="{{cpt.data._componentsIndex}}" id="{{cpt.data.apid}}" wx:if="{{item.components.length>0}}" wx:for="{{item.components}}" wx:key="{{x}}" wx:for-item="cpt" wx:for-index="x">
+              <template wx:if="{{cpt.name&&cpt.name!='FloatBoxModule'}}" is="{{cpt.name}}" data="{{...cpt}}" />
+              <!-- 轮播组件分页器类型：长方形 -->
+              <view wx:if="{{cpt.name=='SwiperModule'&&cpt.data.barType=='rectangle'}}" 
+                class="flex-center bg-white {{cpt.data.options.pos=='inner'?'swiper-inner-class':'swiper-outer-class'}}">
+                <view wx:for="{{cpt.data.slides.length}}"
+                  class="swi-bar {{(swiperMBar[cpt.id]?swiperMBar[cpt.id]:0)==item?'swi-bar-active':''}}">
+                </view>
+              </view>
+              <!-- 轮播组件分页器类型：线形 -->
+              <view wx:if="{{cpt.name=='SwiperModule'&&cpt.data.barType=='linear'}}" class="swi-bar-linear">
+                <view style="width:{{1/cpt.data.slides.length*100}}%;margin-left:{{swiperMBar[cpt.id]*1/cpt.data.slides.length*100}}%"
+                 class="swi-bar-linear-active"></view>
+              </view>
+            </view>
+            <i-load-more 
+              class="width-100" 
+              wx:if="{{loading}}" 
+              tip="数据已全部加载" 
+              loading="{{ !loading }}">
+            </i-load-more>
+          </scroll-view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+</view>
+<view wx:for="{{floatData[suffix]}}" wx:for-item="floatItem" wx:key="index">
+  <view wx:if="{{floatItem.show}}"
+    style="bottom:{{floatItem.bottom*2}}rpx;padding:0rpx {{floatItem.paddingRl*2}}rpx;margin-right:{{floatItem.marginRight*2}}rpx;margin-left:{{floatItem.marginLeft*2}}rpx;width:{{floatItem.width}}%;" 
+    class="flootClass padding-rl-10 {{floatItem.location}}" >
+      <view class="link-img"  bindtap="jumpTo" data-url="{{floatItem.linkJump}}" data-translate-url="{{tool.myTool(floatItem.linkJump)}}">
+        <image lazy-load mode="widthFix" data-item="{{floatItem}}" src="{{floatItem.bgImage}}"></image>
+      </view>
+  </view>
+</view>
+<view style="position:absolute;width:45px;height:45px; bottom:40rpx;right:10px;border-radius:50%;background-color:rgba(0,0,0,0.5)" 
+  class="flex-col-center color-white" wx:if="{{isTopBtn}}" bindtap="goTop">
+  <view class="iconfont icon-shang1 font-noraml"></view>
+  <view class="font-small">TOP</view>
+</view>
+<i-toast id="toast" />
+<loginModal showMask="{{true}}" bind:onCancel="handleCancel" bind:onOk="handleOk" showLoginModal="{{showLoginModal}}"></loginModal>
+<modalModule datas="{{bars[suffix].config}}" pageId="{{bars[suffix].uuid}}"></modalModule>
+<c-modal showCouponModal="{{showCouponModal}}" total_amount="{{total_amount}}" bind:onHideCouponModal="hideCouponModal"></c-modal>
+<!-- 我要礼物 -->
+<to-gift-home bind:onLogin="showLogin"></to-gift-home>
+<red-envelope-rain id="redRain"></red-envelope-rain>
+<authIdentityModal></authIdentityModal>

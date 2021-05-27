@@ -1,0 +1,23 @@
+<wxs src="../../../../utils/ossUrlTest.wxs" module="ossTool" />
+<template name="hotList">
+  <view bindtap="clickGoodsItem" wx:for="{{data.data}}" class="animation-scale-up margin-20 flex-start bg-white align-items-stretch" wx:key="index" data-index="{{index}}" data-soid="浏览" data-goodsid="{{item.goods_id}}">
+    <view class="link-img" style="width:240rpx">
+      <image mode="aspectFit" style="width:240rpx;height:240rpx" lazy-load src="{{ossTool.ossUrlTest(item.image_url, 200)}}"></image>
+      <hotTag top="{{index + 1}}" tagScrollSite="{{other.tagScrollSite}}" tagBgColor="{{other.tagBgColor}}"/>
+    </view>
+    <view class="flex-item padding-10 relative" style="background-color: {{colors.listItemColor}}">
+      <view class="font-normal font-bold">
+        <text style="color: {{colors.brandColor}}" class="margin-r-10 line-ellispsis-1 font-bold font-normal">{{item.brand_keywords}} {{ item.brand}}</text>
+        <text wx:if="{{other.showSell}}" style="color: {{colors.saleNumColor}}" class="margin-r-10 font-mini">销量: {{ item.sell_num }}</text>
+        <text wx:if="{{other.showSell}}" style="color: {{colors.browseNumColor}}" class="font-mini">浏览量: {{ item.browse_num }}</text>
+      </view>
+      <view wx:if="{{other.showName}}" class="margin-tb-10 line-ellispsis-2 font-normal" style="color: {{colors.nameColor}}">
+        {{ item.name }}
+      </view>
+      <view>
+        <text class="font-normal font-bold" style="color: {{colors.priceColor}}">￥{{ item.price }}</text>
+        <text wx:if="{{other.sale}}" class="padding-l-10 line-through font-small" style="color: {{colors.saleColor}}">￥{{ item.mktprice }}</text>
+      </view>
+    </view>
+  </view>
+</template>

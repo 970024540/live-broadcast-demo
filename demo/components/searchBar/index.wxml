@@ -1,0 +1,23 @@
+<!--components/xSearch/index.wxml-->
+<view catchtouchmove="doNothing" class="search-bar" style="z-index:5">
+  <view bindtap="inputFocus" class="search-bar-icon">
+    <i-icon size="24" color="#424242" type="search" />
+    <text hidden="{{inputValue || inputFocus}}">搜索</text>
+  </view>
+  <input
+    class="search-input {{typeOther?'bg-gray':'bg-white'}}"
+    type="text"
+    confirm-type="search"
+    value="{{inputValue}}"
+    focus="{{inputFocus}}"
+    bindinput="input"
+    bindfocus="focus"
+    bindblur="blur"
+    bindconfirm="confirm"
+  ></input>
+  <text hidden="{{!inputFocus}}" class="search-cancel" catchtap="confirm">搜索</text>
+</view>
+<view  bind:tap="hiddeResult" class="result" wx:if="{{showResultBox}}" style="top: {{resultTop}}">
+  <slot></slot>
+</view>
+<view catchtouchmove="doNothing" class="mask {{showResultBox?'mask-show':''}}" wx:if="{{showResultBox}}" bindtap='cancel' style="z-index:99"></view>

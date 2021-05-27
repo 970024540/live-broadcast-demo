@@ -1,0 +1,41 @@
+<view class="width-100 banner-swiper padding-20 relative clear-float">
+  <swiper style="height:710rpx">
+    <swiper-item wx:if="{{banner_video.src}}"  >
+        <video class="border-r-10 banner_video" src="{{banner_video.src}}" object-fit="contain" poster="{{banner_video.poster}}"></video>
+      </swiper-item>
+    <swiper-item data-index="{{index}}" class="border-r-10 link-img" wx:for="{{banner_list}}" wx:key="index">
+      <image mode="aspectFill" class="border-r-10 height-100" src="{{item}}"></image>
+    </swiper-item>
+  </swiper>
+  <view class="banner-price padding-10">
+    <view class="height-100 width-100 banner-price-inner flex-col-center">
+      <view class="color-white font-normal line-height-1 padding-l-20">活动价</view>
+      <view class="color-white">
+        <text class="font-mini">￥</text>
+        <text class="font-2x font-bold">{{priceInt || '0'}}</text>
+        <text class="font-mini">{{priceFloat||'.00'}}</text>
+      </view>
+      <view class="price-btn padding-rl-10 font-mini">立即抢购</view>
+      <view style="height: 20rpx"></view>
+    </view>
+  </view>
+  <view class="banner-bottom flex-space-between padding-r-20">
+    <view class="height-100 font-big font-bold color-white" style="line-height: 120rpx"></view>
+    <view wx:if="{{goodsData.from_time > 0}}" class="flex-col-center color-white font-normal">
+      <view>{{bannerTimer.type == 0 ? '距开始还有' : '距结束仅剩'}}</view>
+      <view class="flex-start-center margin-t-10">
+        <view>
+          <text class="banner-timer border-r-3 text-center">{{bannerTimer.day}}</text>天</view>
+        <view>
+          <text class="banner-timer border-r-3 text-center">{{bannerTimer.hour}}</text>时</view>
+        <view>
+          <text class="banner-timer border-r-3 text-center">{{bannerTimer.minute}}</text>分</view>
+        <view>
+          <text class="banner-timer border-r-3 text-center">{{bannerTimer.second}}</text>秒</view>
+      </view>
+    </view>
+    <view wx:else class="flex-item flex-end height-100 padding-rl-30">
+      <view style="background: url(http://zone-yingerfashion.oss-cn-shenzhen.aliyuncs.com/storage/images/system-image/c4d54926cf49831ce129ea78d74578ec.png) center/cover;height: 60rpx;width: 144rpx;"></view>
+    </view>
+  </view>
+</view>

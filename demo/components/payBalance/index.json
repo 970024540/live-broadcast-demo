@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-panel": "../../dist/panel/index",
+    "i-input": "../../dist/input/index",
+    "id-card": "/components/idCard/index",
+    "i-action-sheet": "../../dist/action-sheet/index",
+    "adderss-picker": "/components/addressPicker/index"
+  }
+}
