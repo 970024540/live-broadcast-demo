@@ -5,7 +5,7 @@
     "plugins": {
       "live-player-plugin": {
         "version": "1.1.9",
-        "provider": "wx2b03c6e691cd7370"
+        "provider": "**************"
       }
     },
 
